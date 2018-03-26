@@ -1,0 +1,22 @@
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from '../reducers/index';
+
+const configureStore = (initialState) => {
+  const store = createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(thunk),
+  );
+
+  if (process.env.NODE_ENV !== 'production') {
+    if (module.hot) {
+      module.hot.accept('../reducers/index', () => {
+        store.replaceReducer(rootReducer);
+      });
+    }
+  }
+  return store;
+};
+
+export default configureStore;
