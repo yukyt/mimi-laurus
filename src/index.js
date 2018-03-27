@@ -24,18 +24,6 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('stageList'),
 );
-// TODO: hot reload doesn't working!
-if (module.hot) {
-  module.hot.accept('./components/StageList', () => {
-    const NextApp = require('./components/StageList').default;
-    ReactDOM.render(
-      <Provider store={store}>
-        <NextApp />
-      </Provider>,
-      document.getElementById('stageList'),
-    );
-  });
-}
 
 ReactDOM.render(
   <Provider store={store}>

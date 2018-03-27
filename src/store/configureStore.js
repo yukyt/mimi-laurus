@@ -8,14 +8,6 @@ const configureStore = (initialState) => {
     initialState,
     applyMiddleware(thunk),
   );
-
-  if (process.env.NODE_ENV !== 'production') {
-    if (module.hot) {
-      module.hot.accept('../reducers/index', () => {
-        store.replaceReducer(rootReducer);
-      });
-    }
-  }
   return store;
 };
 
