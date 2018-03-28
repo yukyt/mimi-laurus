@@ -3,24 +3,19 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { chooseSection } from '../actions/stage';
 import { calc } from '../actions/simulator';
+import * as CONSTANTS from '../define';
 
 class StageList extends Component {
   render() {
-    const sections = new Map([
-      ['colosseum', 'コロッセオ'],
-      ['guild', 'ギルド'],
-      ['event', 'イベント'],
-      ['scenario', 'シナリオ'],
-    ]);
     return (
       <section>
         <select
           id="section"
           onChange={e => this.props.onChangeSection(e.target.value)}
         >
-          {Array.from(sections.keys()).map(key => (
+          {Array.from(CONSTANTS.STAGE_SECTION.keys()).map(key => (
             <option key={key} value={key}>
-              {sections.get(key)}
+              {CONSTANTS.STAGE_SECTION.get(key)}
             </option>
           ))}
         </select>

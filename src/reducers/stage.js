@@ -1,3 +1,5 @@
+import * as CONSTANTS from '../define';
+
 export const stages = (state = [], action) => {
   const formattedStages = [];
 
@@ -7,21 +9,21 @@ export const stages = (state = [], action) => {
         for (const chapter in action.stages[section]) {
           for (const stageArray of action.stages[section][chapter]) {
             const styles = new Map();
-            for (const [i, weight] of stageArray[3].entries()) {
+            for (const [i, weight] of stageArray[CONSTANTS.STAGE_JSON_COLUMN.STYLE].entries()) {
               styles.set((i * 2) + (weight < 0 ? 1 : 0), Math.abs(weight));
             }
             const tags = new Map();
-            for (const tag of stageArray[4]) {
+            for (const tag of stageArray[CONSTANTS.STAGE_JSON_COLUMN.TAG]) {
               tags.set(tag[0], {
                 value: tag[1],
                 product: tag[2],
               });
             }
             formattedStages.push({
-              id: stageArray[0],
+              id: stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID],
               section,
               chapter,
-              name: stageArray[0] + stageArray[1],
+              name: stageArray[CONSTANTS.STAGE_JSON_COLUMN.NAME],
               styles,
               tags,
             });

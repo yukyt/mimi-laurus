@@ -1,3 +1,5 @@
+import * as CONSTANTS from '../define';
+
 const itemToggle = (state, action) => {
   if (state.id !== action.id) {
     return state;
@@ -26,7 +28,7 @@ export const items = (state = [], action) => {
       for (const itemArray of action.items) {
         const styles = new Map();
         let i = 0;
-        for (const styleHex of itemArray[4].split('')) {
+        for (const styleHex of itemArray[CONSTANTS.ITEM_JSON_COLUMN.STYLE].split('')) {
           // convert from hex to decimal
           const styleDec = parseInt(styleHex, 16);
           // 8bit: style flag(upper or lower style)
@@ -38,15 +40,15 @@ export const items = (state = [], action) => {
         }
 
         formattedItems.push({
-          id: itemArray[0],
-          category: itemArray[1][0],
-          name: itemArray[3],
+          id: itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID],
+          category: itemArray[CONSTANTS.ITEM_JSON_COLUMN.CATEGORY][0],
+          name: itemArray[CONSTANTS.ITEM_JSON_COLUMN.NAME],
           styles,
           tags: [
-            (itemArray[5] % 45), // TODO: 45 is all tag count. 
-            Math.floor(itemArray[5] / 45),
+            (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count. 
+            Math.floor(itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] / 45),
           ],
-          own: !(action.impossessions.indexOf(itemArray[0]) >= 0),
+          own: !(action.impossessions.indexOf(itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID]) >= 0),
         });
       }
       return formattedItems;
