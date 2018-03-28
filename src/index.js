@@ -7,8 +7,12 @@ import ItemList from './components/ItemList';
 import StageList from './components/StageList';
 import ItemCategoryList from './components/ItemCategoryList';
 import Simulator from './components/Simulator';
+import NaviBar from './components/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 const store = configureStore();
 
@@ -18,6 +22,13 @@ store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.j
 store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
 
 // Render
+ReactDOM.render(
+  <Provider store={store}>
+    <NaviBar />
+  </Provider>,
+  document.getElementById('naviBar'),
+);
+
 ReactDOM.render(
   <Provider store={store}>
     <StageList />
