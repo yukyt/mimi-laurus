@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import ItemList from './components/ItemList';
 import StageList from './components/StageList';
-import Menu from './components/Menu';
+import ItemCategoryList from './components/ItemCategoryList';
 import Simulator from './components/Simulator';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
@@ -34,9 +34,9 @@ ReactDOM.render(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Menu />
+    <ItemCategoryList />
   </Provider>,
-  document.getElementById('menu'),
+  document.getElementById('itemCategoryList'),
 );
 
 ReactDOM.render(
