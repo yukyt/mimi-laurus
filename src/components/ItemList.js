@@ -9,7 +9,12 @@ class ItemList extends Component {
       <ul>
         {this.props.items.map(singleItem => (
           <li key={singleItem.id}>
-            <input type="checkbox" value={singleItem.id} checked={!singleItem.own} onChange={e => this.props.onItemClick(parseInt(e.target.value, 10))} />{singleItem.id} {singleItem.name}
+            <input
+              type="checkbox"
+              value={singleItem.id}
+              checked={!singleItem.own}
+              onChange={e => this.props.onItemClick(parseInt(e.target.value, 10))}
+            />{singleItem.id} {singleItem.name}
           </li>
         ))}
       </ul>
@@ -26,9 +31,9 @@ ItemList.propTypes = {
   items: PropTypes.arrayOf(Object),
 };
 
-const getVisibleItems = (items, itemCategoryFilter) => {
-  return items.filter(item => (item.category === itemCategoryFilter));
-};
+const getVisibleItems = (items, itemCategoryFilter) =>
+  items.filter(item =>
+    (item.category === itemCategoryFilter));
 
 const mapStateToProps = state => ({
   itemCategory: state.itemCategory,

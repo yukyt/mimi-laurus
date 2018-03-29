@@ -45,7 +45,7 @@ export const items = (state = [], action) => {
           name: itemArray[CONSTANTS.ITEM_JSON_COLUMN.NAME],
           styles,
           tags: [
-            (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count. 
+            (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count.
             Math.floor(itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] / 45),
           ],
           own: !(action.impossessions.indexOf(itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID]) >= 0),
@@ -64,9 +64,9 @@ export const impossessions = (state = [], action) => {
       return action.impossessions;
     case 'TOGGLE_ITEM':
       if (results.indexOf(action.id) >= 0) {
-        results = results.filter((v) => (v !== action.id));
+        results = results.filter(v => v !== action.id);
       } else {
-        results.push(action.id); 
+        results.push(action.id);
       }
       localStorage.setItem('impossessions', JSON.stringify(results));
       return results;

@@ -21,7 +21,7 @@ class StageList extends Component {
         </select>
         <select
           id="stage"
-          onChange={(e) =>
+          onChange={e =>
                     this.props.onChangeStage(this.props.stages, this.props.items, e.target.value)
           }
         >

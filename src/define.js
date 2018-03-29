@@ -6,7 +6,7 @@ export const RANK = {
   A: 3,
   B: 2,
   C: 1,
-}
+};
 
 export const RANK_WEIGHT = new Map([
   [RANK.SSS, 3200.0],
@@ -27,8 +27,8 @@ export const STYLE = {
   SEXY: 6,
   PURE: 7,
   WARM: 8,
-  COOL: 9
-}
+  COOL: 9,
+};
 
 export const STYLE_NAME = new Map([
   [STYLE.GORGEOUS, '華麗'],

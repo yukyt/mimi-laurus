@@ -2,6 +2,7 @@ import React from 'react';
 // import { render } from 'react-dom';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './store/configureStore';
 import ItemList from './components/ItemList';
 import StageList from './components/StageList';
@@ -10,7 +11,6 @@ import Simulator from './components/Simulator';
 import NaviBar from './components/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 

@@ -4,15 +4,15 @@ import { AppBar, MenuItem, Drawer } from 'material-ui';
 
 class NaviBar extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      open: false
-    }
+      open: false,
+    };
   }
   onToggle() {
     this.setState({
-      open: !this.state.open
-    })
+      open: !this.state.open,
+    });
   }
   render() {
     return (
@@ -31,7 +31,7 @@ class NaviBar extends Component {
           </Drawer>
           <AppBar
             title="シミュレータ"
-            onLeftIconButtonClick={ () => this.onToggle()}
+            onLeftIconButtonClick={() => this.onToggle()}
           />
         </div>
       </MuiThemeProvider>
