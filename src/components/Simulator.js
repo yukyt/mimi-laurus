@@ -5,22 +5,40 @@ import * as CONSTANTS from '../define';
 
 class Simulator extends Component {
   render() {
+    const list = [];
+    for (const category in this.props.bestCoordinates) {
+      let i = 0;
+      for (const item of this.props.bestCoordinates[category]) {
+        list.push(<li key={category + item.id} style={{ display: i === 0 ? 'block' : 'none' }}>{CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10))}:{item.name}:{item.score}点</li>,);
+        i++;
+      }
+    }
     return (
       <div>
-        {Array.from(this.props.bestCoordinates).map(([key, value]) => (
-          <span key={value.name}>{CONSTANTS.ITEM_CATEGORY_NAME.get(key)}: {value.name} {value.score}点<br /></span>
-        ))}
+        <ul>
+          {list}
+        </ul>
       </div>
     );
   }
 }
+
+const getFocusItem = (bestCoordinates, focusItems) => {
+  const results = {};
+  for (const category in bestCoordinates) {
+    // TODO implement selectable list. (always top item now)
+    results[category] = [bestCoordinates[category][0]];
+  }
+  return results;
+};
 
 Simulator.propTypes = {
   bestCoordinates: PropTypes.objectOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
-  bestCoordinates: state.bestCoordinates,
+  bestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
+  focusItems: state.focusItems,
 });
 
 const mapDispatchToProps = () => ({

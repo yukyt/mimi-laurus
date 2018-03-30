@@ -1,7 +1,17 @@
 import * as CONSTANTS from '../define';
 
-export const bestCoordinates = (state = new Map(), action) => {
-  const formattedBestCoordinates = new Map();
+export const bestCoordinates = (state = {}, action) => {
+  const emptyItem = {
+    id: 0,
+    name: 'nothing',
+    score: 0,
+  };
+  // Initialize
+  const formattedBestCoordinates = {};
+  Object.values(CONSTANTS.ITEM_CATEGORY).map((id) => {
+    formattedBestCoordinates[id] = [emptyItem];
+    return true;
+  });
 
   switch (action.type) {
     case 'CALC': {
@@ -13,6 +23,7 @@ export const bestCoordinates = (state = new Map(), action) => {
       }
 
       for (const item of action.items) {
+        // TODO: show all items
         if (item.own === false) {
           continue;
         }
@@ -40,12 +51,24 @@ export const bestCoordinates = (state = new Map(), action) => {
         // half round up
         totalScore = Math.round(totalScore);
 
-        // High score check
-        if (!formattedBestCoordinates.has(item.category)
-            || formattedBestCoordinates.get(item.category).score < totalScore) {
-          formattedBestCoordinates.set(item.category, { name: item.name, score: totalScore });
+        // add coordinate if score is not zero.
+        if (totalScore > 0) {
+          formattedBestCoordinates[item.category].push({
+            id: item.id,
+            name: item.name,
+            score: totalScore,
+          });
         }
       }
+
+      // Score sort
+      Object.keys(formattedBestCoordinates).map(category => (
+        formattedBestCoordinates[category].sort((a, b) => {
+          if (a.score > b.score) return -1;
+          if (a.score < b.score) return 1;
+          return 0;
+        })
+      ));
       return formattedBestCoordinates;
     }
     default:
