@@ -6,18 +6,21 @@ import { toggleItem } from '../actions/item';
 class ItemList extends Component {
   render() {
     return (
-      <ul>
-        {this.props.items.map(singleItem => (
-          <li key={singleItem.id}>
-            <input
-              type="checkbox"
-              value={singleItem.id}
-              checked={!singleItem.own}
-              onChange={e => this.props.onItemClick(parseInt(e.target.value, 10))}
-            />{singleItem.id} {singleItem.name}
-          </li>
-        ))}
-      </ul>
+      <section style={{ display: this.props.viewMode === 2 ? '' : 'none' }}>
+        <h3>Wardrobe</h3>
+        <ul style={{ display: this.props.viewMode === 2 ? '' : 'none' }} >
+          {this.props.items.map(singleItem => (
+            <li key={singleItem.id}>
+              <input
+                type="checkbox"
+                value={singleItem.id}
+                checked={!singleItem.own}
+                onChange={e => this.props.onItemClick(parseInt(e.target.value, 10))}
+              />{singleItem.id} {singleItem.name}
+            </li>
+          ))}
+        </ul>
+      </section>
     );
   }
 }
@@ -27,6 +30,7 @@ ItemList.defaultProps = {
 };
 
 ItemList.propTypes = {
+  viewMode: PropTypes.number.isRequired,
   onItemClick: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(Object),
 };
@@ -36,6 +40,7 @@ const getVisibleItems = (items, itemCategoryFilter) =>
     (item.category === itemCategoryFilter));
 
 const mapStateToProps = state => ({
+  viewMode: state.viewMode,
   itemCategory: state.itemCategory,
   items: getVisibleItems(state.items, state.itemCategoryFilter),
 });

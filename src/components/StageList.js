@@ -8,7 +8,8 @@ import * as CONSTANTS from '../define';
 class StageList extends Component {
   render() {
     return (
-      <section>
+      <section style={{ display: this.props.viewMode === 1 ? '' : 'none' }}>
+        <h3>Stage</h3>
         <select
           id="section"
           onChange={e => this.props.onChangeSection(e.target.value)}
@@ -52,6 +53,7 @@ const getVisibleStages = (stages, sectionFilter) => {
 };
 
 StageList.propTypes = {
+  viewMode: PropTypes.number.isRequired,
   stages: PropTypes.arrayOf(Object).isRequired,
   items: PropTypes.arrayOf(Object).isRequired,
   onChangeSection: PropTypes.func,
@@ -59,6 +61,7 @@ StageList.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  viewMode: state.viewMode,
   stages: getVisibleStages(state.stages, state.sectionFilter),
   sectionFilter: state.sectionFilter,
   items: state.items,

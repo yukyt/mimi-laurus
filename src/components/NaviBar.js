@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { AppBar, MenuItem, Drawer } from 'material-ui';
+import { clickMenuItem } from '../actions/menu';
 
 class NaviBar extends Component {
   constructor() {
@@ -25,9 +28,9 @@ class NaviBar extends Component {
             onRequestChange={() => this.onToggle()}
           >
             <AppBar title="Menu" />
-            <MenuItem>推奨コーデ(mock)</MenuItem>
-            <MenuItem>ワードローブ(mock)</MenuItem>
-            <MenuItem>ヘルプ(mock)</MenuItem>
+            <MenuItem onClick={() => this.props.onMenuItemClick(1)}>推奨コーデ</MenuItem>
+            <MenuItem onClick={() => this.props.onMenuItemClick(2)}>ワードローブ</MenuItem>
+            <MenuItem onClick={() => this.props.onMenuItemClick(3)}>ヘルプ</MenuItem>
           </Drawer>
           <AppBar
             title="シミュレータ"
@@ -39,4 +42,12 @@ class NaviBar extends Component {
   }
 }
 
-export default NaviBar;
+NaviBar.propTypes = {
+  onMenuItemClick: PropTypes.func.isRequired,
+};
+const mapStateToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+  onMenuItemClick: v => dispatch(clickMenuItem(v)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NaviBar);

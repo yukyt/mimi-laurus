@@ -65,9 +65,9 @@ class Simulator extends Component {
       ));
     }
     return (
-      <div>
+      <section style={{ display: this.props.viewMode === 1 ? '' : 'none' }}>
         {categoryHtml}
-      </div>
+      </section>
     );
   }
 }
@@ -82,10 +82,12 @@ const getFocusItem = (bestCoordinates, focusItems) => {
 };
 
 Simulator.propTypes = {
+  viewMode: PropTypes.number.isRequired,
   bestCoordinates: PropTypes.objectOf(Object).isRequired,
 };
 
 const mapStateToProps = state => ({
+  viewMode: state.viewMode,
   bestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
   focusItems: state.focusItems,
 });
