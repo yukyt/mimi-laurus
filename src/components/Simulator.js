@@ -65,7 +65,7 @@ class Simulator extends Component {
       ));
     }
     return (
-      <section style={{ display: this.props.viewMode === 1 ? '' : 'none' }}>
+      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
         {categoryHtml}
       </section>
     );

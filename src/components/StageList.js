@@ -8,7 +8,7 @@ import * as CONSTANTS from '../define';
 class StageList extends Component {
   render() {
     return (
-      <section style={{ display: this.props.viewMode === 1 ? '' : 'none' }}>
+      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
         <h3>Stage</h3>
         <select
           id="section"

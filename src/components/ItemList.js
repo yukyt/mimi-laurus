@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { toggleItem } from '../actions/item';
+import * as CONSTANTS from '../define';
 
 class ItemList extends Component {
   render() {
     return (
-      <section style={{ display: this.props.viewMode === 2 ? '' : 'none' }}>
+      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
         <h3>Wardrobe</h3>
-        <ul style={{ display: this.props.viewMode === 2 ? '' : 'none' }} >
+        <ul>
           {this.props.items.map(singleItem => (
             <li key={singleItem.id}>
               <input

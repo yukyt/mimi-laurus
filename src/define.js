@@ -1,3 +1,9 @@
+export const VIEW_MODE = {
+  SIMULATOR: 1,
+  WARDROBE: 2,
+  HELP: 3,
+};
+
 // Style Rank (for both Item and Stage)
 export const RANK = {
   SSS: 6,

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { AppBar, MenuItem, Drawer } from 'material-ui';
 import { clickMenuItem } from '../actions/menu';
+import * as CONSTANTS from '../define';
 
 class NaviBar extends Component {
   constructor() {
@@ -28,9 +29,9 @@ class NaviBar extends Component {
             onRequestChange={() => this.onToggle()}
           >
             <AppBar title="Menu" />
-            <MenuItem onClick={() => this.props.onMenuItemClick(1)}>推奨コーデ</MenuItem>
-            <MenuItem onClick={() => this.props.onMenuItemClick(2)}>ワードローブ</MenuItem>
-            <MenuItem onClick={() => this.props.onMenuItemClick(3)}>ヘルプ</MenuItem>
+            <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}>推奨コーデ</MenuItem>
+            <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}>ワードローブ</MenuItem>
+            <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}>ヘルプ</MenuItem>
           </Drawer>
           <AppBar
             title="シミュレータ"
