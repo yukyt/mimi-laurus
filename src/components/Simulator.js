@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { ViewPager, Frame, Track, View } from 'react-view-pager';
+import InfiniteCarousel from 'react-leaf-carousel';
 import * as CONSTANTS from '../define';
 
 // TODO use class.
 const styles = {
   frame: {
-    height: '50px',
-    maxWidth: '900px',
+    maxWidth: '1000px',
   },
   item: {
     width: '300px',
-    height: '50px',
-    display: 'inline-block',
+    margin: '10px',
+    height: '60px',
     card: {
       margin: '5px',
       padding: '5px',
-      height: '30px',
+      height: '50px',
       backgroundColor: '#00bcd4',
       name: {
-        fontSize: '14px',
+        padding: '0',
+        margin: '0',
       },
       score: {
-        fontSize: '12px',
+        padding: '0',
+        margin: '0',
       },
     },
   },
@@ -37,31 +38,53 @@ class Simulator extends Component {
       const itemHtml = [];
       for (const item of this.props.bestCoordinates[category]) {
         itemHtml.push((
-          <View key={item.id} className="view" style={styles.item}>
+          <div key={item.id} style={styles.item}>
             <div style={styles.item.card}>
-              <span style={styles.item.card.name}>{item.name}</span>
-              <span style={styles.item.card.score}>{item.score}点</span>
+              <span style={styles.item.card.name}>{item.name}</span><br />
+              <span style={styles.item.card.score}>{item.score}</span>
             </div>
-          </View>
+          </div>
         ));
       }
       categoryHtml.push((
-        <ViewPager tag="main" key={category}>
+        <div key={category} style={styles.frame}>
           {categoryName}
-          <Frame className="frame" style={styles.frame}>
-            <Track
-              ref={(c) => {
-                this.track = c;
-                return this.track;
-              }}
-              viewsToShow="auto"
-              infinite={false}
-              className="track"
-            >
-              {itemHtml}
-            </Track>
-          </Frame>
-        </ViewPager>
+          <InfiniteCarousel
+            breakpoints={[
+              {
+                breakpoint: 700,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                },
+              },
+              {
+                breakpoint: 1000,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 1,
+                },
+              },
+            ]}
+            arrows
+            dots={false}
+            swipe
+            lazyLoad
+            showSides
+            showSpacing={10}
+            sidesOpacity={0.5}
+            sideSize={0.1}
+            slidesToScroll={1}
+            slidesToShow={3}
+            scrollOnDevice
+            responsive
+            autoCycle={false}
+            styles={styles.frame}
+          >
+            {itemHtml}
+          </InfiniteCarousel>
+        </div>
+
       ));
     }
     return (
@@ -72,15 +95,6 @@ class Simulator extends Component {
   }
 }
 
-const getFocusItem = (bestCoordinates, focusItems) => {
-  const results = {};
-  for (const category in bestCoordinates) {
-    // TODO implement selectable list. (always top item now)
-    results[category] = bestCoordinates[category];
-  }
-  return results;
-};
-
 Simulator.propTypes = {
   viewMode: PropTypes.number.isRequired,
   bestCoordinates: PropTypes.objectOf(Object).isRequired,
@@ -88,8 +102,7 @@ Simulator.propTypes = {
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
-  bestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
-  focusItems: state.focusItems,
+  bestCoordinates: state.bestCoordinates,
 });
 
 const mapDispatchToProps = () => ({
