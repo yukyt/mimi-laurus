@@ -1,30 +1,20 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import InfiniteCarousel from 'react-leaf-carousel';
+import Slider from 'react-slick';
 import * as CONSTANTS from '../define';
 
 // TODO use class.
 const styles = {
-  frame: {
-    maxWidth: '1000px',
-  },
   item: {
     width: '300px',
-    margin: '10px',
-    height: '60px',
     card: {
       margin: '5px',
       padding: '5px',
-      height: '50px',
       backgroundColor: '#00bcd4',
       name: {
-        padding: '0',
-        margin: '0',
       },
       score: {
-        padding: '0',
-        margin: '0',
       },
     },
   },
@@ -32,6 +22,30 @@ const styles = {
 
 class Simulator extends Component {
   render() {
+    const settings = {
+      dots: false,
+      lazyLoad: true,
+      infinite: false,
+      speed: 500,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      variableWidth: true,
+      responsive: [
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
+    };
     const categoryHtml = [];
     for (const category in this.props.bestCoordinates) {
       const categoryName = CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10));
@@ -47,42 +61,11 @@ class Simulator extends Component {
         ));
       }
       categoryHtml.push((
-        <div key={category} style={styles.frame}>
+        <div key={category}>
           {categoryName}
-          <InfiniteCarousel
-            breakpoints={[
-              {
-                breakpoint: 700,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                },
-              },
-              {
-                breakpoint: 1000,
-                settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 1,
-                },
-              },
-            ]}
-            arrows
-            dots={false}
-            swipe
-            lazyLoad
-            showSides
-            showSpacing={10}
-            sidesOpacity={0.5}
-            sideSize={0.1}
-            slidesToScroll={1}
-            slidesToShow={3}
-            scrollOnDevice
-            responsive
-            autoCycle={false}
-            styles={styles.frame}
-          >
+          <Slider {...settings}>
             {itemHtml}
-          </InfiniteCarousel>
+          </Slider>
         </div>
 
       ));
