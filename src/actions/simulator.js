@@ -5,4 +5,10 @@ export const calc = (stages, items, stageSelected) => ({
   stageSelected,
 });
 
+export const swipeItem = (pos, category) => ({
+  type: 'CHANGE_ITEM_POS',
+  pos,
+  category,
+});
+
 export default calc;

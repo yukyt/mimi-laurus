@@ -76,4 +76,16 @@ export const bestCoordinates = (state = {}, action) => {
   }
 };
 
+export const focusItems = (state = [], action) => {
+  const results = state.slice();
+  switch (action.type) {
+    case 'CHANGE_ITEM_POS': {
+      results[action.category] = action.pos;
+      return results;
+    }
+    default:
+      return Array(50).fill(0);
+  }
+};
+
 export default bestCoordinates;

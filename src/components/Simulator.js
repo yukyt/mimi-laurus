@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Slider from 'react-slick';
+import RaisedButton from 'material-ui/RaisedButton';
+import NavigateBefore from 'material-ui/svg-icons/image/navigate-before';
+import NavigateNext from 'material-ui/svg-icons/image/navigate-next';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import * as CONSTANTS from '../define';
+import { swipeItem } from '../actions/simulator';
 
-// TODO use class.
 const styles = {
+  frame: {
+    height: '50px',
+    maxWidth: '1000px',
+  },
+  nav: {
+    width: '30px',
+    minWidth: '30px',
+  },
   item: {
     width: '300px',
+    height: '50px',
+    display: 'inline-block',
     card: {
       margin: '5px',
       padding: '5px',
+      height: '30px',
       backgroundColor: '#00bcd4',
       name: {
+        fontSize: '14px',
       },
       score: {
+        fontSize: '12px',
       },
     },
   },
@@ -22,30 +38,6 @@ const styles = {
 
 class Simulator extends Component {
   render() {
-    const settings = {
-      dots: false,
-      lazyLoad: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      swipeToSlide: true,
-      variableWidth: true,
-      responsive: [
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-          },
-        },
-      ],
-    };
     const categoryHtml = [];
     for (const category in this.props.bestCoordinates) {
       const categoryName = CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10));
@@ -54,20 +46,33 @@ class Simulator extends Component {
         itemHtml.push((
           <div key={item.id} style={styles.item}>
             <div style={styles.item.card}>
-              <span style={styles.item.card.name}>{item.name}</span><br />
-              <span style={styles.item.card.score}>{item.score}</span>
+              <span style={styles.item.card.name}>{item.name}</span>
+              <span style={styles.item.card.score}>{item.score}点</span>
             </div>
           </div>
         ));
       }
       categoryHtml.push((
-        <div key={category}>
+        <MuiThemeProvider key={category}>
           {categoryName}
-          <Slider {...settings}>
-            {itemHtml}
-          </Slider>
-        </div>
-
+          <div className="frame" style={styles.frame}>
+            <RaisedButton
+              icon={<NavigateBefore />}
+              style={styles.nav}
+              onClick={() => this.props.prev(category, this.props.focusItems[category])}
+            />
+            <div
+              style={{ display: 'inline-block' }}
+            >
+              {itemHtml}
+            </div>
+            <RaisedButton
+              icon={<NavigateNext />}
+              style={styles.nav}
+              onClick={() => this.props.next(category, this.props.focusItems[category], this.props.bestCoordinates[category].length)}
+            />
+          </div>
+        </MuiThemeProvider>
       ));
     }
     return (
@@ -78,17 +83,47 @@ class Simulator extends Component {
   }
 }
 
+const getFocusItem = (bestCoordinates, focusItems) => {
+  const results = {};
+  for (const category in bestCoordinates) {
+    let pos = 0;
+    if (focusItems[category]) {
+      pos = focusItems[category];
+    }
+    const maxPos = (bestCoordinates[category].length <= pos + 3) ? bestCoordinates[category].length : pos + 3;
+    results[category] =
+      bestCoordinates[category].slice(pos, maxPos);
+  }
+  return results;
+};
+
 Simulator.propTypes = {
   viewMode: PropTypes.number.isRequired,
   bestCoordinates: PropTypes.objectOf(Object).isRequired,
+  focusItems: PropTypes.arrayOf(Object).isRequired,
+  next: PropTypes.func,
+  prev: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
-  bestCoordinates: state.bestCoordinates,
+  bestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
+  focusItems: state.focusItems,
 });
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = dispatch => ({
+  next: (category, currentPos, maxPos) => {
+    if (maxPos === 1) {
+      return;
+    }
+    dispatch(swipeItem(currentPos + 1, category));
+  },
+  prev: (category, currentPos) => {
+    if (currentPos === 0) {
+      return;
+    }
+    dispatch(swipeItem(currentPos - 1, category));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Simulator);
