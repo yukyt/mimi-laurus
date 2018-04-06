@@ -18,9 +18,8 @@ const styles = {
     minWidth: '30px',
   },
   item: {
-    width: '300px',
+    width: '260px',
     height: '50px',
-    display: 'inline-block',
     card: {
       margin: '5px',
       padding: '5px',
@@ -42,15 +41,17 @@ class Simulator extends Component {
     for (const category in this.props.bestCoordinates) {
       const categoryName = CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10));
       const itemHtml = [];
+      let i = 1;
       for (const item of this.props.bestCoordinates[category]) {
         itemHtml.push((
-          <div key={item.id} style={styles.item}>
+          <div key={item.id} style={styles.item} className={`item${i}`} >
             <div style={styles.item.card}>
               <span style={styles.item.card.name}>{item.name}</span>
               <span style={styles.item.card.score}>{item.score}点</span>
             </div>
           </div>
         ));
+        i++;
       }
       categoryHtml.push((
         <MuiThemeProvider key={category}>
