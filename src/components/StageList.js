@@ -1,37 +1,53 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { chooseSection } from '../actions/stage';
 import { calc } from '../actions/simulator';
 import * as CONSTANTS from '../define';
 
 class StageList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
         <h3>Stage</h3>
-        <select
-          id="section"
-          onChange={e => this.props.onChangeSection(e.target.value)}
-        >
-          {Array.from(CONSTANTS.STAGE_SECTION.keys()).map(key => (
-            <option key={key} value={key}>
-              {CONSTANTS.STAGE_SECTION.get(key)}
-            </option>
-          ))}
-        </select>
-        <select
-          id="stage"
-          onChange={e =>
-                    this.props.onChangeStage(this.props.stages, this.props.items, e.target.value)
-          }
-        >
-          {this.props.stages.map(stage => (
-            <option key={stage.id} value={stage.id}>
-              {stage.name}
-            </option>
-          ))}
-        </select>
+        <MuiThemeProvider>
+          <DropDownMenu
+            id="section"
+            autoWidth
+            value={this.state.section}
+            onChange={(e, index, value) => {
+              this.setState({ section: value });
+              this.props.onChangeSection(value);
+            }}
+          >
+            {Array.from(CONSTANTS.STAGE_SECTION.keys()).map(section => (
+              <MenuItem key={section} value={section} primaryText={CONSTANTS.STAGE_SECTION.get(section)} />
+            ))}
+          </DropDownMenu>
+        </MuiThemeProvider>
+        <MuiThemeProvider>
+          <DropDownMenu
+            id="stage"
+            autoWidth
+            value={this.state.stage}
+            onChange={(e, index, value) => {
+              this.setState({ stage: value });
+              this.props.onChangeStage(this.props.stages, this.props.items, value);
+            }}
+          >
+            {this.props.stages.map(stage => (
+              <MenuItem key={stage.id} value={stage.id} primaryText={stage.name} />
+            ))}
+          </DropDownMenu>
+        </MuiThemeProvider>
       </section>
     );
   }
@@ -68,8 +84,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onChangeSection: (section) => {
-    dispatch(chooseSection(section));
+  onChangeSection: (sectionId) => {
+    dispatch(chooseSection(sectionId));
   },
   onChangeStage: (stages, items, stageId) => {
     dispatch(calc(stages, items, stageId));
