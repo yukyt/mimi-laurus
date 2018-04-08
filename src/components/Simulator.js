@@ -40,6 +40,7 @@ class Simulator extends Component {
     const categoryHtml = [];
     for (const category in this.props.bestCoordinates) {
       const categoryName = CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10));
+      const pos = this.props.focusItems[category] + 1;
       const itemHtml = [];
       let i = 1;
       for (const item of this.props.bestCoordinates[category]) {
@@ -55,7 +56,7 @@ class Simulator extends Component {
       }
       categoryHtml.push((
         <MuiThemeProvider key={category}>
-          {categoryName}
+          {categoryName} {pos}位
           <div className="frame" style={styles.frame}>
             <RaisedButton
               icon={<NavigateBefore />}
