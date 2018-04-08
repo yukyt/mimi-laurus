@@ -23,11 +23,6 @@ export const bestCoordinates = (state = {}, action) => {
       }
 
       for (const item of action.items) {
-        // TODO: show all items
-        if (item.own === false) {
-          continue;
-        }
-
         let tagScore = 0;
         // stage tags loop
         for (const [tagKey, tagObject] of stageObject.tags) {
@@ -57,6 +52,7 @@ export const bestCoordinates = (state = {}, action) => {
             id: item.id,
             name: item.name,
             score: totalScore,
+            possession: item.possession,
           });
         }
       }

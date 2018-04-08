@@ -5,7 +5,7 @@ const itemToggle = (item, action) => {
     return item;
   }
   return Object.assign({}, item, {
-    own: !item.own,
+    possession: !item.possession,
   });
 };
 
@@ -48,7 +48,7 @@ export const items = (state = [], action) => {
             (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count.
             Math.floor(itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] / 45),
           ],
-          own: !(action.impossessions.indexOf(itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID]) >= 0),
+          possession: !(action.impossessions.indexOf(itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID]) >= 0),
         });
       }
       return formattedItems;

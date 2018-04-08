@@ -15,7 +15,7 @@ class ItemList extends Component {
               <input
                 type="checkbox"
                 value={singleItem.id}
-                checked={!singleItem.own}
+                checked={!singleItem.possession}
                 onChange={e => this.props.onItemClick(parseInt(e.target.value, 10))}
               />{singleItem.id} {singleItem.name}
             </li>
