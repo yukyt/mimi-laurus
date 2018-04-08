@@ -11,7 +11,7 @@ import * as CONSTANTS from '../define';
 class StageList extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { section: 'colosseum' };
   }
 
   render() {
