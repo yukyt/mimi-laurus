@@ -6,7 +6,7 @@ body {
   .item2 {display: none;}
   .item3 {display: none;}
 }
-@media screen and (min-width: 600px) and (max-width: 899px) {
+@media screen and (min-width: 620px) and (max-width: 899px) {
   .item1 {display: inline-block;}
   .item2 {display: inline-block;}
   .item3 {display: none;}
@@ -15,4 +15,29 @@ body {
   .item1 {display: inline-block;}
   .item2 {display: inline-block;}
   .item3 {display: inline-block;}
+}
+
+.frame {
+  height: 50px;
+  max-width: 1000px;
+}
+.nav {
+  width: 40px;
+  min-width: 40px;
+}
+.item {
+  width: 260px;
+  height: 36px;
+  margin: 5px;
+  padding: 5px;
+}
+.item .impossession {
+  background-color: gray;
+}
+
+.item .name {
+  font-size: 14px;
+}
+.item .score {
+  font-size: 12px;
 }

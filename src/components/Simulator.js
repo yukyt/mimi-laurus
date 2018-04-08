@@ -4,34 +4,18 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import NavigateBefore from 'material-ui/svg-icons/image/navigate-before';
 import NavigateNext from 'material-ui/svg-icons/image/navigate-next';
+import Paper from 'material-ui/Paper';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import * as CONSTANTS from '../define';
 import { swipeItem } from '../actions/simulator';
 
+const itemClass = i => `item item${i}`;
+
+// TODO css class is not working properly for Raised button.
 const styles = {
-  frame: {
-    height: '50px',
-    maxWidth: '1000px',
-  },
   nav: {
     width: '30px',
     minWidth: '30px',
-  },
-  item: {
-    width: '260px',
-    height: '50px',
-    card: {
-      margin: '5px',
-      padding: '5px',
-      height: '30px',
-      backgroundColor: '#00bcd4',
-      name: {
-        fontSize: '14px',
-      },
-      score: {
-        fontSize: '12px',
-      },
-    },
   },
 };
 
@@ -45,19 +29,17 @@ class Simulator extends Component {
       let i = 1;
       for (const item of this.props.bestCoordinates[category]) {
         itemHtml.push((
-          <div key={item.id} style={styles.item} className={`item${i}`} >
-            <div style={styles.item.card}>
-              <span style={styles.item.card.name}>{item.name}</span>
-              <span style={styles.item.card.score}>{item.score}点</span>
-            </div>
-          </div>
+          <Paper key={item.id} className={itemClass(i)} zDepth={1}>
+            <span className="name">{item.name}</span>
+            <span className="score">{item.score}点</span>
+          </Paper>
         ));
         i++;
       }
       categoryHtml.push((
         <MuiThemeProvider key={category}>
           {categoryName} {pos}位
-          <div className="frame" style={styles.frame}>
+          <div className="frame">
             <RaisedButton
               icon={<NavigateBefore />}
               style={styles.nav}
