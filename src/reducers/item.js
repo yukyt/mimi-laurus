@@ -1,11 +1,11 @@
 import * as CONSTANTS from '../define';
 
-const itemToggle = (state, action) => {
-  if (state.id !== action.id) {
-    return state;
+const itemToggle = (item, action) => {
+  if (item.id !== action.itemId) {
+    return item;
   }
-  return Object.assign({}, state, {
-    own: !state.own,
+  return Object.assign({}, item, {
+    own: !item.own,
   });
 };
 
@@ -58,15 +58,15 @@ export const items = (state = [], action) => {
 };
 
 export const impossessions = (state = [], action) => {
-  let results = state;
+  let results = state.slice();
   switch (action.type) {
     case 'FETCH_IMPOSSESSIONS_SUCCESS':
       return action.impossessions;
     case 'TOGGLE_ITEM':
-      if (results.indexOf(action.id) >= 0) {
-        results = results.filter(v => v !== action.id);
+      if (results.indexOf(action.itemId) >= 0) {
+        results = results.filter(v => v !== action.itemId);
       } else {
-        results.push(action.id);
+        results.push(action.itemId);
       }
       localStorage.setItem('impossessions', JSON.stringify(results));
       return results;
