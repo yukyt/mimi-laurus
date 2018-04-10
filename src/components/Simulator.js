@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
-import NavigateBefore from 'material-ui/svg-icons/image/navigate-before';
-import NavigateNext from 'material-ui/svg-icons/image/navigate-next';
+import Button from 'material-ui/Button';
+import NavigateBefore from 'material-ui-icons/NavigateBefore';
+import NavigateNext from 'material-ui-icons/NavigateNext';
 import Paper from 'material-ui/Paper';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import * as CONSTANTS from '../define';
 import { swipeItem } from '../actions/simulator';
 
@@ -46,26 +45,30 @@ class Simulator extends Component {
         i++;
       }
       categoryHtml.push((
-        <MuiThemeProvider key={category}>
+        <div key={category}>
           {categoryName} {pos}位
           <div className="frame">
-            <RaisedButton
-              icon={<NavigateBefore />}
+            <Button
+              variant="raised"
               style={styles.nav}
+              color="primary"
               onClick={() => this.props.prev(category, this.props.focusItems[category])}
-            />
-            <div
-              style={{ display: 'inline-block' }}
             >
+              {<NavigateBefore />}
+            </Button>
+            <div>
               {itemHtml}
             </div>
-            <RaisedButton
-              icon={<NavigateNext />}
+            <Button
+              variant="raised"
               style={styles.nav}
+              color="primary"
               onClick={() => this.props.next(category, this.props.focusItems[category], this.props.bestCoordinates[category].length)}
-            />
+            >
+              {<NavigateNext />}
+            </Button>
           </div>
-        </MuiThemeProvider>
+        </div>
       ));
     }
     return (
