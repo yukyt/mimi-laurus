@@ -31,7 +31,8 @@ class NaviBar extends Component {
           onClose={() => this.onToggle(false)}
           onOpen={() => this.onToggle(true)}
         >
-          <MenuItem>Smart Laurus</MenuItem>
+          <div>Smart Laurus</div>
+          <div style={{ fontSize: '11px' }}>ver. alpha</div>
           <Divider />
           <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}>推奨コーデ</MenuItem>
           <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}>ワードローブ</MenuItem>
@@ -43,7 +44,7 @@ class NaviBar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit">
-              Smart Laurus
+              {CONSTANTS.VIEW_NAME_NAME.get(this.props.viewMode)}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -53,9 +54,12 @@ class NaviBar extends Component {
 }
 
 NaviBar.propTypes = {
+  viewMode: PropTypes.number.isRequired,
   onMenuItemClick: PropTypes.func.isRequired,
 };
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  viewMode: state.viewMode,
+});
 const mapDispatchToProps = dispatch => ({
   onMenuItemClick: v => dispatch(clickMenuItem(v)),
 });

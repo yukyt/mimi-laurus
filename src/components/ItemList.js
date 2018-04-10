@@ -8,7 +8,6 @@ class ItemList extends Component {
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
-        <h3>Wardrobe</h3>
         <ul>
           {this.props.items.map(singleItem => (
             <li key={singleItem.id}>

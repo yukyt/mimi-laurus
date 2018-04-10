@@ -4,6 +4,12 @@ export const VIEW_MODE = {
   HELP: 3,
 };
 
+export const VIEW_NAME_NAME = new Map([
+  [VIEW_MODE.SIMULATOR, 'Simulator'],
+  [VIEW_MODE.WARDROBE, 'Wardrobe'],
+  [VIEW_MODE.HELP, 'Help'],
+]);
+
 // Style Rank (for both Item and Stage)
 export const RANK = {
   SSS: 6,

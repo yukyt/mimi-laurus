@@ -47,7 +47,6 @@ class StageList extends Component {
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
-        <h3>Stage Select</h3>
         <FormControl style={styles.formControl}>
           <InputLabel htmlFor="section-select">Section</InputLabel>
           <Select
