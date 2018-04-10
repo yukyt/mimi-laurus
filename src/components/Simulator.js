@@ -14,8 +14,9 @@ const itemClass = i => `item item${i}`;
 // TODO css class is not working properly for Raised button.
 const styles = {
   nav: {
-    width: '30px',
-    minWidth: '30px',
+    width: '40px',
+    minWidth: '40px',
+    boxSizing: 'borderBox',
   },
 };
 
