@@ -20,7 +20,6 @@ const styles = {
 };
 
 const possessionStyle = (possession) => {
-  console.log(possession);
   if (possession) {
     return null;
   }

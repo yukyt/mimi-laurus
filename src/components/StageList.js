@@ -37,7 +37,6 @@ class StageList extends Component {
         this.props.onChangeSection(event.target.value);
         this.setState({ stage: '' });
       } else {
-        console.log(event.target.value);
         this.props.onChangeStage(this.props.stages, this.props.items, event.target.value);
       }
     };
