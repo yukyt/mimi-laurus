@@ -25,6 +25,23 @@ body {
   margin: 10px;
 }
 
+#itemCategoryList {
+  margin: 10px;
+}
+
+div.itemCategories {
+  flex-direction: row;
+  align-content: flex-start;
+}
+label.itemCategory {
+  width: 114px;
+  margin-left: 0px;
+
+}
+label.itemCategory > span:first-child {
+  width: 30px;
+}
+
 .frame {
   display: flex;
   box-sizing: border-box;
