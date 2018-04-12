@@ -37,8 +37,8 @@ class Simulator extends Component {
       for (const item of this.props.bestCoordinates[category]) {
         itemHtml.push((
           <Paper key={item.id} className={itemClass(i)} style={possessionStyle(item.possession)} zDepth={1}>
-            <span className="name">{item.name}</span>
-            <span className="score">{item.score}点</span>
+            <div className="name">{item.name}</div>
+            <div className="score">{item.score}点</div>
           </Paper>
         ));
         i++;

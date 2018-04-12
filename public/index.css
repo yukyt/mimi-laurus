@@ -36,7 +36,7 @@ div.itemCategories {
 label.itemCategory {
   width: 114px;
   margin-left: 0px;
-  margin-right: 8px;
+  margin-right: 6px;
 }
 label.itemCategory > span:first-child {
   width: 30px;
@@ -51,9 +51,9 @@ label.itemCategory > span:first-child {
 .item {
   box-sizing: border-box;
   width: 260px;
-  height: 36px;
+  height: 40px;
   margin: 0px 5px;
-  padding: 5px;
+  padding: 1px 5px;
 }
 
 .item .name {
