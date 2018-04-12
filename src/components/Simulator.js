@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 import NavigateBefore from 'material-ui-icons/NavigateBefore';
 import NavigateNext from 'material-ui-icons/NavigateNext';
+import MenuIcon from 'material-ui-icons/Menu';
 import Paper from 'material-ui/Paper';
+import IconButton from 'material-ui/IconButton';
+import Tooltip from 'material-ui/Tooltip';
 import * as CONSTANTS from '../define';
 import { swipeItem } from '../actions/simulator';
 
@@ -37,8 +40,15 @@ class Simulator extends Component {
       for (const item of this.props.bestCoordinates[category]) {
         itemHtml.push((
           <Paper key={item.id} className={itemClass(i)} style={possessionStyle(item.possession)} zDepth={1}>
-            <div className="name">{item.name}</div>
-            <div className="score">{item.score}点</div>
+            <div>
+              <div className="name">{item.name}</div>
+              <div className="score">{item.score}点</div>
+            </div>
+            <Tooltip id="tooltip-icon" title="something">
+              <IconButton aria-label="Menu" className="menu">
+                <MenuIcon />
+              </IconButton>
+            </Tooltip>
           </Paper>
         ));
         i++;
@@ -55,9 +65,7 @@ class Simulator extends Component {
             >
               {<NavigateBefore />}
             </Button>
-            <div>
-              {itemHtml}
-            </div>
+            {itemHtml}
             <Button
               variant="raised"
               style={styles.nav}

@@ -56,9 +56,18 @@ label.itemCategory > span:first-child {
   padding: 1px 5px;
 }
 
+.item > div {
+  width: 190px;
+  display: inline-block
+}
 .item .name {
   font-size: 14px;
 }
 .item .score {
   font-size: 12px;
+}
+.item .menu {
+  margin-top: -20px;
+  display: inline-block;
+
 }
