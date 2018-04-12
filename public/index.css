@@ -36,7 +36,7 @@ div.itemCategories {
 label.itemCategory {
   width: 114px;
   margin-left: 0px;
-
+  margin-right: 8px;
 }
 label.itemCategory > span:first-child {
   width: 30px;
@@ -45,7 +45,8 @@ label.itemCategory > span:first-child {
 .frame {
   display: flex;
   box-sizing: border-box;
-  max-width: 1000px;
+  max-width: 932px;
+  justify-content: center;
 }
 .item {
   box-sizing: border-box;
