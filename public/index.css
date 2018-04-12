@@ -34,12 +34,12 @@ div.itemCategories {
   align-content: flex-start;
 }
 label.itemCategory {
-  width: 114px;
+  width: 113px;
   margin-left: 0px;
-  margin-right: 6px;
+  margin-right: 0px;
 }
 label.itemCategory > span:first-child {
-  width: 30px;
+  width: 28px;
 }
 
 .frame {
