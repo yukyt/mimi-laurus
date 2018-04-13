@@ -1,25 +1,42 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Checkbox from 'material-ui/Checkbox';
+
 import { toggleItem } from '../actions/item';
 import * as CONSTANTS from '../define';
 
 class ItemList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleToggle = value => () => {
+      this.props.onItemClick(value);
+    };
+  }
+
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
-        <ul>
+        <List>
           {this.props.items.map(singleItem => (
-            <li key={singleItem.id}>
-              <input
-                type="checkbox"
-                value={singleItem.id}
+            <ListItem
+              key={singleItem.id}
+              role={undefined}
+              dense
+              button
+              onClick={this.handleToggle(singleItem.id)}
+            >
+              <Checkbox
                 checked={!singleItem.possession}
-                onChange={e => this.props.onItemClick(parseInt(e.target.value, 10))}
-              />{singleItem.id} {singleItem.name}
-            </li>
+                tabIndex={-1}
+                disableRipple
+              />
+              <ListItemText primary={`${singleItem.name}`} />
+            </ListItem>
           ))}
-        </ul>
+        </List>
       </section>
     );
   }
@@ -46,7 +63,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onItemClick: itemId => dispatch(toggleItem(itemId)),
+  onItemClick: (itemId) => {
+    console.log(itemId);
+    dispatch(toggleItem(itemId));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
