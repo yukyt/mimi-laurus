@@ -1,6 +1,6 @@
 import * as CONSTANTS from '../define';
 
-export const itemCategoryFilter = (state = 'NONE', action) => {
+export const itemCategoryFilter = (state = CONSTANTS.ITEM_CATEGORY.HAIR, action) => {
   switch (action.type) {
     case 'SET_ITEM_CATEGORY_FILTER':
       return action.filter;
