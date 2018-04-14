@@ -153,3 +153,8 @@ export const STAGE_JSON_COLUMN = {
   STYLE: 3,
   TAG: 4,
 };
+
+export const ITEM_SHOW_COUNT = {
+  DEFAULT: 50,
+  INCREASE: 50,
+};

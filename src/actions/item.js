@@ -16,12 +16,3 @@ export const initImpossessions = () => (dispatch) => {
   return true;
 };
 
-export const toggleItem = itemId => ({
-  type: 'TOGGLE_ITEM',
-  itemId,
-});
-
-export const setItemCategoryFilter = filter => ({
-  type: 'SET_ITEM_CATEGORY_FILTER',
-  filter,
-});

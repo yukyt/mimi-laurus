@@ -3,8 +3,8 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
-
-import { toggleItem } from '../actions/item';
+import Waypoint from 'react-waypoint';
+import { toggleItem, scrollEnd } from '../actions/wardrobe';
 import * as CONSTANTS from '../define';
 
 class ItemList extends Component {
@@ -20,7 +20,7 @@ class ItemList extends Component {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
         <List>
-          {this.props.items.map(singleItem => (
+          {this.props.items.slice(0, this.props.itemShowMaxCount).map(singleItem => (
             <ListItem
               key={singleItem.id}
               role={undefined}
@@ -37,6 +37,10 @@ class ItemList extends Component {
             </ListItem>
           ))}
         </List>
+        <Waypoint onEnter={() => {
+            this.props.onScrollEnd();
+          }}
+        />
       </section>
     );
   }
@@ -49,23 +53,27 @@ ItemList.defaultProps = {
 ItemList.propTypes = {
   viewMode: PropTypes.number.isRequired,
   onItemClick: PropTypes.func.isRequired,
+  onScrollEnd: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(Object),
+  itemShowMaxCount: PropTypes.number.isRequired,
 };
 
 const getVisibleItems = (items, itemCategoryFilter) =>
-  items.filter(item =>
-    (item.category === itemCategoryFilter));
+  items.filter(item => (item.category === itemCategoryFilter));
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
   itemCategory: state.itemCategory,
   items: getVisibleItems(state.items, state.itemCategoryFilter),
+  itemShowMaxCount: state.itemShowMaxCount,
 });
 
 const mapDispatchToProps = dispatch => ({
   onItemClick: (itemId) => {
-    console.log(itemId);
     dispatch(toggleItem(itemId));
+  },
+  onScrollEnd: () => {
+    dispatch(scrollEnd());
   },
 });
 

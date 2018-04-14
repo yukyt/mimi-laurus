@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import * as CONSTANTS from '../define';
-import { setItemCategoryFilter } from '../actions/item';
+import { setItemCategoryFilter } from '../actions/wardrobe';
 
 const styles = theme => ({
   root: {
