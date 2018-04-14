@@ -29,6 +29,15 @@ const possessionStyle = (possession) => {
   return { backgroundColor: 'gray' };
 };
 
+const bestCoordinateShowCount = () => {
+  if (window.matchMedia('(max-width: 690px)').matches) {
+    return 1;
+  } else if (window.matchMedia('(max-width: 930px)').matches) {
+    return 2;
+  }
+  return 3;
+};
+
 class Simulator extends Component {
   render() {
     const categoryHtml = [];
@@ -37,9 +46,10 @@ class Simulator extends Component {
       const pos = this.props.focusItems[category] + 1;
       const itemHtml = [];
       let i = 1;
-      for (const item of this.props.bestCoordinates[category]) {
+
+      for (const item of this.props.bestCoordinates[category].slice(0, bestCoordinateShowCount())) {
         itemHtml.push((
-          <Paper key={item.id} className={itemClass(i)} style={possessionStyle(item.possession)} zDepth={1}>
+          <Paper key={item.id} className={itemClass(i)} style={possessionStyle(item.possession)}>
             <div>
               <div className="name">{item.name}</div>
               <div className="score">{item.score}点</div>
@@ -62,6 +72,7 @@ class Simulator extends Component {
               style={styles.nav}
               color="primary"
               onClick={() => this.props.prev(category, this.props.focusItems[category])}
+              disabled={this.props.focusItems[category] === 0}
             >
               {<NavigateBefore />}
             </Button>
@@ -70,7 +81,8 @@ class Simulator extends Component {
               variant="raised"
               style={styles.nav}
               color="primary"
-              onClick={() => this.props.next(category, this.props.focusItems[category], this.props.bestCoordinates[category].length)}
+              onClick={() => this.props.next(category, this.props.focusItems[category])}
+              disabled={this.props.bestCoordinates[category].length === 1}
             >
               {<NavigateNext />}
             </Button>
@@ -89,13 +101,8 @@ class Simulator extends Component {
 const getFocusItem = (bestCoordinates, focusItems) => {
   const results = {};
   for (const category in bestCoordinates) {
-    let pos = 0;
-    if (focusItems[category]) {
-      pos = focusItems[category];
-    }
-    const maxPos = (bestCoordinates[category].length <= pos + 3) ? bestCoordinates[category].length : pos + 3;
     results[category] =
-      bestCoordinates[category].slice(pos, maxPos);
+      bestCoordinates[category].slice(focusItems[category], focusItems[category] + 3);
   }
   return results;
 };
@@ -115,10 +122,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  next: (category, currentPos, maxPos) => {
-    if (maxPos === 1) {
-      return;
-    }
+  next: (category, currentPos) => {
     dispatch(swipeItem(currentPos + 1, category));
   },
   prev: (category, currentPos) => {
