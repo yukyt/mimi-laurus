@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers/index';
 
@@ -8,11 +8,15 @@ const middleware = process.env.NODE_ENV !== 'production' ?
   [require('redux-immutable-state-invariant').default(), thunk] : // eslint-disable-line global-require
   [thunk];
 
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
+
 const configureStore = (initialState) => {
   const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(...middleware),
+    composeEnhancers(applyMiddleware(...middleware)),
   );
   return store;
 };
