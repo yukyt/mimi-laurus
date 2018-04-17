@@ -27,6 +27,7 @@ class ItemList extends Component {
               dense
               button
               onClick={this.handleToggle(singleItem.id)}
+              style={{ backgroundColor: (singleItem.possession) ? 'white' : 'gray' }}
             >
               <Checkbox
                 checked={!singleItem.possession}
