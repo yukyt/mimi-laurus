@@ -4,12 +4,11 @@ import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
 import NavigateBefore from 'material-ui-icons/NavigateBefore';
 import NavigateNext from 'material-ui-icons/NavigateNext';
-import MenuIcon from 'material-ui-icons/Menu';
 import Paper from 'material-ui/Paper';
-import IconButton from 'material-ui/IconButton';
-import Tooltip from 'material-ui/Tooltip';
+import Checkbox from 'material-ui/Checkbox';
 import * as CONSTANTS from '../define';
 import { swipeItem } from '../actions/simulator';
+import { toggleItem } from '../actions/wardrobe';
 
 const itemClass = i => `item item${i}`;
 
@@ -50,15 +49,17 @@ class Simulator extends Component {
       for (const item of this.props.bestCoordinates[category].slice(0, bestCoordinateShowCount())) {
         itemHtml.push((
           <Paper key={item.id} className={itemClass(i)} style={possessionStyle(item.possession)}>
+            <Checkbox
+              checked={!item.possession}
+              className="checkbox"
+              tabIndex={-1}
+              onClick={() => this.props.onItemClick(item.id)}
+              disableRipple={false}
+            />
             <div>
               <div className="name">{item.name}</div>
               <div className="score">{item.score}点</div>
             </div>
-            <Tooltip id="tooltip-icon" title="something">
-              <IconButton aria-label="Menu" className="menu">
-                <MenuIcon />
-              </IconButton>
-            </Tooltip>
           </Paper>
         ));
         i++;
@@ -113,6 +114,7 @@ Simulator.propTypes = {
   focusItems: PropTypes.arrayOf(Object).isRequired,
   next: PropTypes.func,
   prev: PropTypes.func,
+  onItemClick: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -122,6 +124,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  onItemClick: (itemId) => {
+    dispatch(toggleItem(itemId));
+  },
   next: (category, currentPos) => {
     dispatch(swipeItem(currentPos + 1, category));
   },

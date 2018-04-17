@@ -7,13 +7,28 @@ export const bestCoordinates = (state = {}, action) => {
     score: 0,
   };
   // Initialize
-  const formattedBestCoordinates = {};
+  let formattedBestCoordinates = {};
   Object.values(CONSTANTS.ITEM_CATEGORY).map((id) => {
     formattedBestCoordinates[id] = [emptyItem];
     return true;
   });
 
   switch (action.type) {
+    case 'TOGGLE_ITEM': {
+      formattedBestCoordinates = JSON.parse(JSON.stringify(state));
+      Object.keys(formattedBestCoordinates).map((category) => {
+        formattedBestCoordinates[category].filter((item) => {
+          if (item.id !== action.itemId) {
+            return item;
+          }
+          const newItem = item;
+          newItem.possession = !newItem.possession;
+          return newItem;
+        });
+        return formattedBestCoordinates[category];
+      });
+      return formattedBestCoordinates;
+    }
     case 'CALC': {
       let stageObject;
       for (const stage of action.stages) {
@@ -83,5 +98,3 @@ export const focusItems = (state = [], action) => {
       return Array(50).fill(0);
   }
 };
-
-export default bestCoordinates;

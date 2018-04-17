@@ -11,4 +11,3 @@ export const swipeItem = (pos, category) => ({
   category,
 });
 
-export default calc;

@@ -53,7 +53,7 @@ label.itemCategory > span:first-child {
   width: 260px;
   height: 40px;
   margin: 0px 5px;
-  padding: 1px 5px;
+  padding: 1px;
 }
 
 .item > div {
@@ -66,8 +66,10 @@ label.itemCategory > span:first-child {
 .item .score {
   font-size: 12px;
 }
-.item .menu {
-  margin-top: -20px;
+.item .checkbox {
+  margin-top: -15px;
   display: inline-block;
-
+}
+.item svg {
+  margin-top: 8px;
 }
