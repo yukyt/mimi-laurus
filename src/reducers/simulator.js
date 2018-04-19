@@ -5,6 +5,7 @@ export const bestCoordinates = (state = {}, action) => {
     id: 0,
     name: 'nothing',
     score: 0,
+    possession: true,
   };
   // Initialize
   let formattedBestCoordinates = {};

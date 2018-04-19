@@ -7,7 +7,7 @@ import configureStore from './store/configureStore';
 import ItemList from './components/ItemList';
 import StageList from './components/StageList';
 import ItemCategoryList from './components/ItemCategoryList';
-import Simulator from './components/Simulator';
+import Simulator from './containers/Simulator';
 import NaviBar from './components/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
