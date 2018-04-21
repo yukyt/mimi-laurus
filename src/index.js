@@ -6,7 +6,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './store/configureStore';
 import ItemList from './components/ItemList';
 import StageList from './components/StageList';
-import ItemCategoryList from './components/ItemCategoryList';
+import Wardrobe from './containers/Wardrobe';
 import Simulator from './containers/Simulator';
 import NaviBar from './components/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
@@ -45,7 +45,7 @@ ReactDOM.render(
 
 ReactDOM.render(
   <Provider store={store}>
-    <ItemCategoryList />
+    <Wardrobe />
   </Provider>,
   document.getElementById('itemCategoryList'),
 );
