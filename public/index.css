@@ -17,6 +17,7 @@ body {
   .item3 {display: inline-block;}
 }
 
+/** Simulator */
 #stageList {
   margin: 10px;
 }
@@ -25,6 +26,44 @@ body {
   margin: 10px;
 }
 
+.frame {
+  display: flex;
+  box-sizing: border-box;
+  max-width: 932px;
+  justify-content: center;
+}
+.item {
+  box-sizing: border-box;
+  width: 260px;
+  height: 40px;
+  margin: 0px 5px;
+  display: table-cell;
+  vertical-align: middle;
+}
+/* material-ui checkbox is 48x48. */
+.item span:first-child {
+  height: 40px;
+  width: 40px;
+}
+
+.item .detail {
+  width: 190px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 2px 0;
+}
+.item .name {
+  font-size: 14px;
+}
+.item .score {
+  font-size: 11px;
+}
+.item .checkbox {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/** Wardrobe */
 #itemCategoryList {
   margin: 10px;
 }
@@ -42,34 +81,3 @@ label.itemCategory > span:first-child {
   width: 28px;
 }
 
-.frame {
-  display: flex;
-  box-sizing: border-box;
-  max-width: 932px;
-  justify-content: center;
-}
-.item {
-  box-sizing: border-box;
-  width: 260px;
-  height: 40px;
-  margin: 0px 5px;
-  padding: 1px;
-}
-
-.item > div {
-  width: 190px;
-  display: inline-block
-}
-.item .name {
-  font-size: 14px;
-}
-.item .score {
-  font-size: 12px;
-}
-.item .checkbox {
-  margin-top: -15px;
-  display: inline-block;
-}
-.item svg {
-  margin-top: 8px;
-}

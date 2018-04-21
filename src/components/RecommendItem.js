@@ -21,7 +21,7 @@ const RecommendItem = ({
       onClick={() => onClick(item.id)}
       disableRipple={false}
     />
-    <div>
+    <div className="detail">
       <div className="name">{item.name}</div>
       <div className="score">{item.score}点</div>
     </div>
