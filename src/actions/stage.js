@@ -5,7 +5,7 @@ export const initStages = url => async (dispatch) => {
     dispatch({ type: 'FETCH_STAGES_SUCCESS', stages: responseJson });
     return true;
   } catch (error) {
-    dispatch({ type: 'FETCH_STAGES_FAILD', error });
+    dispatch({ type: 'FETCH_STAGES_FAILED', error });
     return false;
   }
 };
