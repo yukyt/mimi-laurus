@@ -88,14 +88,20 @@ export const bestCoordinates = (state = {}, action) => {
   }
 };
 
-export const focusItems = (state = [], action) => {
-  const results = state.slice();
+export const focusItems = (state = new Map(), action) => {
   switch (action.type) {
-    case 'CHANGE_ITEM_POS': {
-      results[action.category] = action.pos;
+    case 'CHANGE_FOCUS': {
+      const results = new Map(state);
+      results.set(action.category, action.pos);
+      return results;
+    }
+    case 'CALC':
+    case 'RESET_FOCUS': {
+      const results = new Map();
+      CONSTANTS.ITEM_CATEGORY_NAME.forEach((value, key) => results.set(key, 0));
       return results;
     }
     default:
-      return Array(50).fill(0);
+      return state;
   }
 };

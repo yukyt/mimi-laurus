@@ -9,15 +9,6 @@ const itemToggle = (item, action) => {
   });
 };
 
-export const itemCategory = (state = '', action) => {
-  switch (action.type) {
-    case 'INIT_ITEM_CATEGORY':
-      return action.itemCategory;
-    default:
-      return state;
-  }
-};
-
 export const items = (state = [], action) => {
   const formattedItems = [];
   switch (action.type) {

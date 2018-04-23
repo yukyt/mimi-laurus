@@ -5,9 +5,12 @@ export const calc = (stages, items, stageSelected) => ({
   stageSelected,
 });
 
-export const swipeItem = (pos, category) => ({
-  type: 'CHANGE_ITEM_POS',
-  pos,
+export const swipeItem = (category, pos) => ({
+  type: 'CHANGE_FOCUS',
   category,
+  pos,
 });
 
+export const resetFocus = () => ({
+  type: 'RESET_FOCUS',
+});

@@ -11,6 +11,8 @@ import Simulator from './containers/Simulator';
 import NaviBar from './components/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
+import { resetFocus } from './actions/simulator';
+
 
 injectTapEventPlugin();
 
@@ -20,6 +22,7 @@ const store = configureStore();
 store.dispatch(initImpossessions());
 store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json', store.getState().impossessions));
 store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
+store.dispatch(resetFocus());
 
 // Render
 ReactDOM.render(

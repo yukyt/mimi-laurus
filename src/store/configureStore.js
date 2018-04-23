@@ -12,10 +12,9 @@ const middleware = process.env.NODE_ENV !== 'production' ?
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
-const configureStore = (initialState) => {
+const configureStore = () => {
   const store = createStore(
     rootReducer,
-    initialState,
     composeEnhancers(applyMiddleware(...middleware)),
   );
   return store;

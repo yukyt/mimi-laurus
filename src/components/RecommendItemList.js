@@ -26,17 +26,17 @@ const bestCoordinateShowCount = () => {
 };
 
 const RecommendItemList = ({
-  category, categoryName, order, next, prev, focusItem, bestCoordinates, onItemClick,
+  category, categoryName, order, next, prev, bestCoordinates, onItemClick,
 }) => (
   <div>
-    {categoryName} {order}位
+    {categoryName} {order + 1}位
     <div className="frame">
       <Button
         variant="raised"
         style={styles.nav}
         color="primary"
-        onClick={() => prev(category, focusItem)}
-        disabled={focusItem === 0}
+        onClick={() => prev(category, order)}
+        disabled={order === 0}
       >
         {<NavigateBefore />}
       </Button>
@@ -51,7 +51,7 @@ const RecommendItemList = ({
         variant="raised"
         style={styles.nav}
         color="primary"
-        onClick={() => next(category, focusItem)}
+        onClick={() => next(category, order)}
         disabled={bestCoordinates.length === 1}
       >
         {<NavigateNext />}
@@ -66,7 +66,6 @@ RecommendItemList.propTypes = {
   categoryName: PropTypes.string.isRequired,
   order: PropTypes.number.isRequired,
   bestCoordinates: PropTypes.arrayOf(Object).isRequired,
-  focusItem: PropTypes.number.isRequired,
   next: PropTypes.func.isRequired,
   prev: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,

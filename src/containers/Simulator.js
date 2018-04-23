@@ -7,8 +7,8 @@ import Advisor from '../components/Advisor';
 const getFocusItem = (bestCoordinates, focusItems) => {
   const results = {};
   for (const category in bestCoordinates) {
-    results[category] =
-      bestCoordinates[category].slice(focusItems[category], focusItems[category] + 3);
+    const pos = focusItems.get(parseInt(category, 10));
+    results[category] = bestCoordinates[category].slice(pos, pos + 3);
   }
   return results;
 };
@@ -27,13 +27,13 @@ const mapDispatchToProps = dispatch => ({
     dispatch(toggleItem(itemId));
   },
   next: (category, currentPos) => {
-    dispatch(swipeItem(currentPos + 1, category));
+    dispatch(swipeItem(category, currentPos + 1));
   },
   prev: (category, currentPos) => {
     if (currentPos === 0) {
       return;
     }
-    dispatch(swipeItem(currentPos - 1, category));
+    dispatch(swipeItem(category, currentPos - 1));
   },
 });
 

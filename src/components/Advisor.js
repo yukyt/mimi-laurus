@@ -9,13 +9,12 @@ const Advisor = ({
   <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
     {Object.keys(bestCoordinates).map(category =>
       (<RecommendItemList
-        key={CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10))}
-        category={category}
+        key={parseInt(category, 10)}
+        category={parseInt(category, 10)}
         categoryName={CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10))}
-        order={focusItems[category] + 1}
+        order={focusItems.get(parseInt(category, 10))}
         next={next}
         prev={prev}
-        focusItem={focusItems[category]}
         bestCoordinates={bestCoordinates[category].slice(0, 3)}
         onItemClick={() => onItemClick}
       />))
@@ -25,7 +24,7 @@ const Advisor = ({
 
 Advisor.propTypes = {
   bestCoordinates: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  focusItems: PropTypes.arrayOf(Object).isRequired,
+  focusItems: PropTypes.instanceOf(Map).isRequired,
   viewMode: PropTypes.number.isRequired,
   next: PropTypes.func.isRequired,
   prev: PropTypes.func.isRequired,
