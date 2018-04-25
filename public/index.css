@@ -1,31 +1,32 @@
 body {
   margin: 0;
 }
-@media screen and (max-width: 659px) {
+@media screen and (max-width: 599px) {
   .item1 {display: inline-block;}
   .item2 {display: none;}
   .item3 {display: none;}
+  #appBar { margin-left: 0; }
+  .content { margin-left: 0; }
 }
-@media screen and (min-width: 660px) and (max-width: 929px) {
+@media screen and (min-width: 600px) and (max-width: 959px) {
   .item1 {display: inline-block;}
   .item2 {display: inline-block;}
   .item3 {display: none;}
+  #appBar { margin-left: 0; }
+  .content { margin-left: 0; }
 }
-@media screen and (min-width:930px) {
+@media screen and (min-width:960px) {
   .item1 {display: inline-block;}
   .item2 {display: inline-block;}
   .item3 {display: inline-block;}
+  #appBar { margin-left: 128px; }
+  div.content { margin-left: 138px; }
 }
 
+.content {
+  margin: 10px;
+}
 /** Simulator */
-#stageList {
-  margin: 10px;
-}
-
-#simulator {
-  margin: 10px;
-}
-
 .frame {
   display: flex;
   box-sizing: border-box;
@@ -37,7 +38,6 @@ body {
   width: 260px;
   height: 40px;
   margin: 0px 5px;
-  display: table-cell;
   vertical-align: middle;
 }
 /* material-ui checkbox is 48x48. */
@@ -53,7 +53,7 @@ body {
   margin: 2px 0;
 }
 .item .name {
-  font-size: 14px;
+  font-size: 13px;
 }
 .item .score {
   font-size: 11px;
@@ -64,10 +64,6 @@ body {
 }
 
 /** Wardrobe */
-#itemCategoryList {
-  margin: 10px;
-}
-
 div.itemCategories {
   flex-direction: row;
   align-content: flex-start;

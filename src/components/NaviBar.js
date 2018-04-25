@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import Drawer from 'material-ui/Drawer';
 import SwipeableDrawer from 'material-ui/SwipeableDrawer';
 import { AppBar, MenuItem } from 'material-ui';
 import Toolbar from 'material-ui/Toolbar';
 import Divider from 'material-ui/Divider';
+import Hidden from 'material-ui/Hidden';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
@@ -24,23 +26,59 @@ class NaviBar extends Component {
     });
   }
   render() {
+    const drawerContent = (
+      <div>
+        <div>Smart Laurus</div>
+        <div style={{ fontSize: '11px' }}>ver. alpha</div>
+        <Divider />
+        <MenuItem onClick={() =>
+          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}
+        >
+          推奨コーデ
+        </MenuItem>
+        <MenuItem onClick={() =>
+          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}
+        >
+          ワードローブ
+        </MenuItem>
+        <MenuItem onClick={() =>
+          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
+        >
+          ヘルプ
+        </MenuItem>
+      </div>
+    );
     return (
       <div>
-        <SwipeableDrawer
-          open={this.state.open}
-          onClose={() => this.onToggle(false)}
-          onOpen={() => this.onToggle(true)}
-        >
-          <div>Smart Laurus</div>
-          <div style={{ fontSize: '11px' }}>ver. alpha</div>
-          <Divider />
-          <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}>推奨コーデ</MenuItem>
-          <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}>ワードローブ</MenuItem>
-          <MenuItem onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}>ヘルプ</MenuItem>
-        </SwipeableDrawer>
-        <AppBar position="static">
+        <Hidden mdUp>
+          <SwipeableDrawer
+            variant="temporary"
+            open={this.state.open}
+            onClose={() => this.onToggle(false)}
+            onOpen={() => this.onToggle(true)}
+            swipeAreaWidth={10}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+          >
+            {drawerContent}
+          </SwipeableDrawer>
+        </Hidden>
+        <Hidden smDown implementation="css">
+          <Drawer
+            variant="permanent"
+            open
+          >
+            {drawerContent}
+          </Drawer>
+        </Hidden>
+        <AppBar position="static" id="appBar">
           <Toolbar>
-            <IconButton color="inherit" aria-label="Menu" onClick={() => this.onToggle(true)}>
+            <IconButton
+              color="inherit"
+              aria-label="Menu"
+              onClick={() => this.onToggle(true)}
+            >
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit">

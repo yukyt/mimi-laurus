@@ -44,7 +44,7 @@ const RecommendItemList = ({
         (<RecommendItem
           key={bestCoordinate.id}
           item={bestCoordinate}
-          itemClass={itemClass(i)}
+          itemClass={itemClass(i + 1)}
           onClick={onItemClick(bestCoordinate.id)}
         />))}
       <Button
