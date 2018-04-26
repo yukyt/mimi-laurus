@@ -62,7 +62,7 @@ const RecommendItemList = ({
 );
 
 RecommendItemList.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.number.isRequired,
   categoryName: PropTypes.string.isRequired,
   order: PropTypes.number.isRequired,
   bestCoordinates: PropTypes.arrayOf(Object).isRequired,
