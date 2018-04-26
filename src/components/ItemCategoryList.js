@@ -4,27 +4,11 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 import * as CONSTANTS from '../define';
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  formControl: {
-    margin: theme.spacing.unit * 3,
-  },
-  group: {
-    margin: `${theme.spacing.unit}px 0`,
-    display: 'flex',
-    flexDirection: 'row !important',
-    flexWrap: 'wrap',
-    alignContent: 'flex-start',
-  },
-});
-
 const ItemCategoryList = ({
   viewMode, itemCategoryFilter, onClickItemCategory,
 }) => (
   <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
-    <FormControl component="fieldset" style={styles.formControl}>
+    <FormControl component="fieldset">
       <FormLabel component="legend">Item category</FormLabel>
       <RadioGroup
         aria-label="item-category"
