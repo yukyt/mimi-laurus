@@ -158,3 +158,6 @@ export const ITEM_SHOW_COUNT = {
   DEFAULT: 50,
   INCREASE: 50,
 };
+
+export const INIT_SECTION_ID = 'colosseum';
+export const INIT_STAGE_ID = 'C1-1';

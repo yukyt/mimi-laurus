@@ -1,5 +1,4 @@
 import React from 'react';
-// import { render } from 'react-dom';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -11,18 +10,22 @@ import Simulator from './containers/Simulator';
 import NaviBar from './components/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
-import { resetFocus } from './actions/simulator';
-
+import { resetFocus, calc } from './actions/simulator';
+import * as CONSTANTS from './define';
 
 injectTapEventPlugin();
 
 const store = configureStore();
 
-// Load data
-store.dispatch(initImpossessions());
-store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json', store.getState().impossessions));
-store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
-store.dispatch(resetFocus());
+const init = async () => {
+  store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
+  store.dispatch(initImpossessions());
+  store.dispatch(resetFocus());
+  await store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json', store.getState().impossessions));
+  store.dispatch(calc(store.getState().stages, store.getState().items, CONSTANTS.INIT_STAGE_ID));
+};
+
+init();
 
 // Render
 ReactDOM.render(

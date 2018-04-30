@@ -27,8 +27,8 @@ class StageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      section: 'colosseum',
-      stage: '',
+      section: CONSTANTS.INIT_SECTION_ID,
+      stage: CONSTANTS.INIT_STAGE_ID,
     };
 
     this.handleChange = (event) => {
