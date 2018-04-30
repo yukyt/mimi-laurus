@@ -27,6 +27,10 @@ body {
   margin: 10px;
 }
 /** Simulator */
+#simulator .loading {
+  display: block;
+  margin: 10px auto;
+}
 .frame {
   display: flex;
   box-sizing: border-box;

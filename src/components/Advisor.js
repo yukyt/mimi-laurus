@@ -1,12 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { CircularProgress } from 'material-ui/Progress';
 import RecommendItemList from './RecommendItemList';
 import * as CONSTANTS from '../define';
+
+const nowRendering = isRendering => ((isRendering) ? (<CircularProgress className="loading" />) : '');
 
 const Advisor = ({
   bestCoordinates, focusItems, viewMode, next, prev, onItemClick,
 }) => (
   <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
+    {nowRendering(Object.keys(bestCoordinates).length === 0)}
     {Object.keys(bestCoordinates).map(category =>
       (<RecommendItemList
         key={parseInt(category, 10)}
