@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import Button from 'material-ui/Button';
 import NavigateBefore from 'material-ui-icons/NavigateBefore';
@@ -25,41 +25,46 @@ const bestCoordinateShowCount = () => {
   return 3;
 };
 
-const RecommendItemList = ({
-  category, categoryName, order, next, prev, bestCoordinates, onItemClick,
-}) => (
-  <div>
-    {categoryName} {order + 1}位
-    <div className="frame">
-      <Button
-        variant="raised"
-        style={styles.nav}
-        color="primary"
-        onClick={() => prev(category, order)}
-        disabled={order === 0}
-      >
-        {<NavigateBefore />}
-      </Button>
-      {bestCoordinates.slice(0, bestCoordinateShowCount()).map((bestCoordinate, i) =>
-        (<RecommendItem
-          key={bestCoordinate.id}
-          item={bestCoordinate}
-          itemClass={itemClass(i + 1)}
-          onClick={onItemClick(bestCoordinate.id)}
-        />))}
-      <Button
-        variant="raised"
-        style={styles.nav}
-        color="primary"
-        onClick={() => next(category, order)}
-        disabled={bestCoordinates.length === 1}
-      >
-        {<NavigateNext />}
-      </Button>
-    </div>
-  </div>
-
-);
+class RecommendItemList extends Component {
+  shouldComponentUpdate(nextProps) {
+    return (JSON.stringify(this.props.bestCoordinates)
+      !== JSON.stringify(nextProps.bestCoordinates));
+  }
+  render() {
+    return (
+      <div>
+        {this.props.categoryName} {this.props.order + 1}位
+        <div className="frame">
+          <Button
+            variant="raised"
+            style={styles.nav}
+            color="primary"
+            onClick={() => this.props.prev(this.props.category, this.props.order)}
+            disabled={this.props.order === 0}
+          >
+            {<NavigateBefore />}
+          </Button>
+          {this.props.bestCoordinates.slice(0, bestCoordinateShowCount()).map((bestCoordinate, i) =>
+            (<RecommendItem
+              key={bestCoordinate.id}
+              item={bestCoordinate}
+              itemClass={itemClass(i + 1)}
+              onClick={this.props.onItemClick(bestCoordinate.id)}
+            />))}
+          <Button
+            variant="raised"
+            style={styles.nav}
+            color="primary"
+            onClick={() => this.props.next(this.props.category, this.props.order)}
+            disabled={this.props.bestCoordinates.length === 1}
+          >
+            {<NavigateNext />}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
 
 RecommendItemList.propTypes = {
   category: PropTypes.number.isRequired,
