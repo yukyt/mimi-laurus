@@ -5,7 +5,6 @@ import NavigateBefore from 'material-ui-icons/NavigateBefore';
 import NavigateNext from 'material-ui-icons/NavigateNext';
 import RecommendItem from './RecommendItem';
 
-// TODO css class is not working properly for Raised button.
 const styles = {
   nav: {
     width: '40px',
@@ -25,10 +24,25 @@ const bestCoordinateShowCount = () => {
   return 3;
 };
 
+const isDiffBestCoordinates = (currentBestCoordinates, nextBestCoordinates) => {
+  // length check
+  if (currentBestCoordinates.length !== nextBestCoordinates.length) {
+    return true;
+  }
+  // check all item (up to 3 each category)
+  for (const i in currentBestCoordinates) {
+    // id and possession check
+    if (currentBestCoordinates[i].id !== nextBestCoordinates[i].id
+        || currentBestCoordinates[i].possession !== nextBestCoordinates[i].possession) {
+      return true;
+    }
+  }
+  return false;
+};
+
 class RecommendItemList extends Component {
   shouldComponentUpdate(nextProps) {
-    return (JSON.stringify(this.props.bestCoordinates)
-      !== JSON.stringify(nextProps.bestCoordinates));
+    return isDiffBestCoordinates(this.props.bestCoordinates, nextProps.bestCoordinates);
   }
   render() {
     return (
