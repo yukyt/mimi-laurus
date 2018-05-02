@@ -1,7 +1,7 @@
 {
-  "name": "smart-laurus",
+  "name": "mini-laurus",
   "version": "0.1.0",
-  "homepage": "https://yukyt.github.io/smart-laurus",
+  "homepage": "https://yukyt.github.io/mini-laurus",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",

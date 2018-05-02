@@ -28,7 +28,7 @@ class NaviBar extends Component {
   render() {
     const drawerContent = (
       <div>
-        <div>Smart Laurus</div>
+        <div>Mini Laurus</div>
         <div style={{ fontSize: '11px' }}>ver. alpha</div>
         <Divider />
         <MenuItem onClick={() =>
