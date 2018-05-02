@@ -41,6 +41,18 @@ class NaviBar extends Component {
         >
           ワードローブ
         </MenuItem>
+        <Divider />
+        <MenuItem onClick={() =>
+          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SAVE)}
+        >
+          ファイル書出
+        </MenuItem>
+        <MenuItem onClick={() =>
+          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.LOAD)}
+        >
+          ファイル読込
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={() =>
           this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
         >

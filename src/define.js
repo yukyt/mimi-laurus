@@ -1,13 +1,17 @@
 export const VIEW_MODE = {
   SIMULATOR: 1,
   WARDROBE: 2,
-  HELP: 3,
+  SAVE: 3,
+  LOAD: 4,
+  HELP: 5,
 };
 
 export const VIEW_NAME_NAME = new Map([
-  [VIEW_MODE.SIMULATOR, 'Simulator'],
-  [VIEW_MODE.WARDROBE, 'Wardrobe'],
-  [VIEW_MODE.HELP, 'Help'],
+  [VIEW_MODE.SIMULATOR, '推奨コーデ'],
+  [VIEW_MODE.WARDROBE, '衣装確認'],
+  [VIEW_MODE.SAVE, 'ファイル書出'],
+  [VIEW_MODE.LOAD, 'ファイル読込'],
+  [VIEW_MODE.HELP, 'ヘルプ'],
 ]);
 
 // Style Rank (for both Item and Stage)

@@ -7,7 +7,10 @@ import ItemList from './components/ItemList';
 import StageList from './components/StageList';
 import Wardrobe from './containers/Wardrobe';
 import Simulator from './containers/Simulator';
-import NaviBar from './components/NaviBar';
+import Save from './containers/Save';
+import Load from './containers/Load';
+import Help from './containers/Help';
+import NaviBar from './containers/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
 import { resetFocus, calc } from './actions/simulator';
@@ -61,4 +64,25 @@ ReactDOM.render(
     <ItemList />
   </Provider>,
   document.getElementById('itemList'),
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Save />
+  </Provider>,
+  document.getElementById('save'),
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Load />
+  </Provider>,
+  document.getElementById('load'),
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Help />
+  </Provider>,
+  document.getElementById('help'),
 );
