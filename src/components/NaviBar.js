@@ -75,6 +75,7 @@ class NaviBar extends Component {
         <AppBar position="static" id="appBar">
           <Toolbar>
             <IconButton
+              id="menuIcon"
               color="inherit"
               aria-label="Menu"
               onClick={() => this.onToggle(true)}

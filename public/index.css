@@ -7,6 +7,7 @@ body {
   .item3 {display: none;}
   #appBar { margin-left: 0; }
   .content { margin-left: 0; }
+  #menuIcon { display: block; }
 }
 @media screen and (min-width: 600px) and (max-width: 959px) {
   .item1 {display: inline-block;}
@@ -14,6 +15,7 @@ body {
   .item3 {display: none;}
   #appBar { margin-left: 0; }
   .content { margin-left: 0; }
+  #menuIcon { display: block; }
 }
 @media screen and (min-width:960px) {
   .item1 {display: inline-block;}
@@ -21,6 +23,7 @@ body {
   .item3 {display: inline-block;}
   #appBar { margin-left: 128px; }
   div.content { margin-left: 138px; }
+  #menuIcon { display: none; }
 }
 
 .content {
