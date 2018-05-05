@@ -21,10 +21,12 @@ injectTapEventPlugin();
 const store = configureStore();
 
 const init = async () => {
-  store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
   store.dispatch(initImpossessions());
   store.dispatch(resetFocus());
-  await store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json', store.getState().impossessions));
+  const awaitItems = store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json', store.getState().impossessions));
+  const awaitStages = store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
+  await awaitItems;
+  await awaitStages;
   store.dispatch(calc(store.getState().stages, store.getState().items, CONSTANTS.INIT_STAGE_ID));
 };
 
