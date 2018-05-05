@@ -2,6 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import Paper from 'material-ui/Paper';
 import Checkbox from 'material-ui/Checkbox';
+import DeleteForeverIcon from 'material-ui-icons/DeleteForever';
+import AddToPhotosIcon from 'material-ui-icons/AddToPhotos';
+
 
 const possessionStyle = (possession) => {
   if (possession) {
@@ -17,6 +20,8 @@ const RecommendItem = ({
     <Checkbox
       checked={!item.possession}
       className="checkbox"
+      icon={<DeleteForeverIcon />}
+      checkedIcon={<AddToPhotosIcon />}
       tabIndex={-1}
       onClick={() => onClick(item.id)}
       disableRipple={false}
