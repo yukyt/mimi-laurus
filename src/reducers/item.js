@@ -52,13 +52,16 @@ export const impossessions = (state = [], action) => {
   switch (action.type) {
     case 'FETCH_IMPOSSESSIONS_SUCCESS':
       return action.impossessions;
+    case 'LOAD_IMPOSSESSIONS_SUCCESS':
+      return action.impossessions;
     case 'TOGGLE_ITEM':
       if (results.indexOf(action.itemId) >= 0) {
         results = results.filter(v => v !== action.itemId);
       } else {
         results.push(action.itemId);
       }
-      localStorage.setItem('impossessions', JSON.stringify(results));
+      localStorage.setItem('impossessions', JSON.stringify(results.map(v => String(v))));
+      console.log(results)
       return results;
     default:
       return state;

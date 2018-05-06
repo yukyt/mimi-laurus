@@ -11,8 +11,13 @@ export const initItems = (url, impossessions) => async (dispatch) => {
 };
 
 export const initImpossessions = () => (dispatch) => {
-  const storageValue = JSON.parse(localStorage.getItem('impossessions')) || [];
-  dispatch({ type: 'FETCH_IMPOSSESSIONS_SUCCESS', impossessions: storageValue.filter(v => parseInt(v, 10)) });
+  const impossessions = JSON.parse(localStorage.getItem('impossessions')) || [];
+  dispatch({ type: 'FETCH_IMPOSSESSIONS_SUCCESS', impossessions: impossessions.map(v => parseInt(v, 10)) });
   return true;
 };
 
+export const loadImpossessionFile = impossessions => (dispatch) => {
+  localStorage.setItem('impossessions', JSON.stringify(impossessions));
+  dispatch({ type: 'LOAD_IMPOSSESSIONS_SUCCESS', impossessions: impossessions.map(v => parseInt(v, 10)) });
+  return true;
+};
