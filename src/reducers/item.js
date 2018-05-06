@@ -4,9 +4,7 @@ const itemToggle = (item, action) => {
   if (item.id !== action.itemId) {
     return item;
   }
-  return Object.assign({}, item, {
-    possession: !item.possession,
-  });
+  return { ...item, possession: !item.possession };
 };
 
 export const items = (state = [], action) => {
