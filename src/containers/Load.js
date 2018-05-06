@@ -2,24 +2,42 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
+import Snackbar from 'material-ui/Snackbar';
 import * as CONSTANTS from '../define';
 import { loadImpossessionFile } from '../actions/item';
 
 class Load extends Component {
+  constructor() {
+    super();
+    this.state = {
+      open: false,
+      message: '初期化中',
+    };
+  }
   onDropAccepted(files) {
-    console.log('file upload accepted');
+    this.setState({
+      open: true,
+      message: 'ファイル読み込み中…',
+    });
     this.reader = new FileReader();
     this.reader.onload = () => {
       // TODO validation
       this.props.onLoadFile(JSON.parse(this.reader.result));
-      // TODO notice
-      console.log('file upload success');
+      this.setState({
+        open: true,
+        message: 'ファイル読み込み完了しました',
+      });
     };
     this.reader.readAsText(files[0]);
   }
   onDropRejected() {
-      // TODO notice
-      console.log('file upload rejected');
+    this.setState({
+      open: true,
+      message: 'ファイル読み込み失敗しました',
+    });
+  }
+  handleClose() {
+    this.setState({ open: false });
   }
   render() {
     return (
@@ -28,7 +46,7 @@ class Load extends Component {
         <div>
           <Dropzone
             onDropAccepted={e => this.onDropAccepted(e)}
-            onDropRejected={this.onDropRejected}
+            onDropRejected={e => this.onDropRejected(e)}
             accept="application/json"
           >
             <div>
@@ -36,6 +54,12 @@ class Load extends Component {
             </div>
           </Dropzone>
         </div>
+        <Snackbar
+          open={this.state.open}
+          autoHideDuration={5000}
+          onClose={e => this.handleClose(e)}
+          message={this.state.message}
+        />
       </section>
     );
   }
