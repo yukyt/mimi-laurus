@@ -21,19 +21,26 @@ class Load extends Component {
     });
     this.reader = new FileReader();
     this.reader.onload = () => {
-      // TODO validation
-      this.props.onLoadFile(JSON.parse(this.reader.result));
-      this.setState({
-        open: true,
-        message: 'ファイル読み込み完了しました',
-      });
+      const regex = new RegExp(/\[[0-9",]+\]$/);
+      if (regex.test(this.reader.result)) {
+        this.props.onLoadFile(JSON.parse(this.reader.result));
+        this.setState({
+          open: true,
+          message: 'ファイル読み込みが完了しました。',
+        });
+      } else {
+        this.setState({
+          open: true,
+          message: 'ファイル読み込みに失敗しました。ファイルの中身が正しくありません。',
+        });
+      }
     };
     this.reader.readAsText(files[0]);
   }
   onDropRejected() {
     this.setState({
       open: true,
-      message: 'ファイル読み込み失敗しました',
+      message: 'ファイル読み込みに失敗しました。jsonファイルをアップしてください。',
     });
   }
   handleClose() {
