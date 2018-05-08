@@ -49,7 +49,6 @@ class Load extends Component {
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.LOAD ? '' : 'none' }}>
-        開発中
         <div>
           <Dropzone
             onDropAccepted={e => this.onDropAccepted(e)}
