@@ -1,62 +1,47 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Menu, { MenuItem } from 'material-ui/Menu';
+import { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import Select from 'material-ui/Select';
+import { FormControl } from 'material-ui/Form';
 import * as CONSTANTS from '../define';
 
 class ItemCategoryList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      anchorEl: null,
-      selectedKey: 1,
+      category: CONSTANTS.ITEM_CATEGORY.HAIR,
     };
-  }
-  handleClickListItem(e) {
-    this.setState({ anchorEl: e.currentTarget });
-  }
-  handleMenuItemClick(e, key) {
-    this.setState({ selectedKey: key, anchorEl: null });
-    this.props.onClickItemCategory(key);
-  }
-  handleClose() {
-    this.setState({ anchorEl: null });
-  }
+    this.handleChange = (e) => {
+      this.setState({ category: e.target.value });
+      this.props.onClickItemCategory(e.target.value);
+    };
+  };
+
   render() {
-    const { anchorEl } = this.state;
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
-        <List component="nav">
-          <ListItem
-            button
-            aria-haspopup="true"
-            aria-controls="wardrobe-item-category-menu"
-            aria-label="アイテムカテゴリ"
-            onClick={e => this.handleClickListItem(e)}
+        <FormControl>
+          <InputLabel htmlFor="wardrobe-item-category-select">Item Category</InputLabel>
+          <Select
+            value={this.state.category}
+            onChange={this.handleChange}
+            style={{ width: '200px' }}
+            inputProps={{
+              id: 'wardrobe-item-category-select',
+            }}
           >
-            <ListItemText
-              primary="アイテムカテゴリ"
-              secondary={CONSTANTS.ITEM_CATEGORY_NAME.get(this.state.selectedKey)}
-            />
-          </ListItem>
-        </List>
-        <Menu
-          id="wardrobe-item-category-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={e => this.handleClose(e)}
-        >
-          {Object.values(CONSTANTS.ITEM_CATEGORY).map(key => (
-            <MenuItem
-              key={key}
-              selected={key === this.state.selectedKey}
-              onClick={e => this.handleMenuItemClick(e, key)}
-            >
-              {CONSTANTS.ITEM_CATEGORY_NAME.get(key)}
-            </MenuItem>
+            {Object.values(CONSTANTS.ITEM_CATEGORY).map(key => (
+              <MenuItem
+                key={key}
+                value={key}
+              >
+                {CONSTANTS.ITEM_CATEGORY_NAME.get(key)}
+              </MenuItem>
           ))}
-        </Menu>
+          </Select>
+        </FormControl>
       </section>
     );
   }
