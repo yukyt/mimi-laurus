@@ -83,4 +83,8 @@ label.itemCategory {
 label.itemCategory > span:first-child {
   width: 28px;
 }
+.wardrobe-item-list {
+  box-sizing: border-box;
+  height: 48px;
+}
 

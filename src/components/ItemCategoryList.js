@@ -17,7 +17,7 @@ class ItemCategoryList extends Component {
       this.setState({ category: e.target.value });
       this.props.onClickItemCategory(e.target.value);
     };
-  };
+  }
 
   render() {
     return (

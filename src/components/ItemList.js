@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Waypoint from 'react-waypoint';
+import DeleteForeverIcon from 'material-ui-icons/DeleteForever';
+import AddToPhotosIcon from 'material-ui-icons/AddToPhotos';
 import { toggleItem, scrollEnd } from '../actions/wardrobe';
 import * as CONSTANTS from '../define';
 
@@ -26,13 +28,16 @@ class ItemList extends Component {
               role={undefined}
               dense
               button
-              onClick={this.handleToggle(singleItem.id)}
+              className="wardrobe-item-list"
               style={{ backgroundColor: (singleItem.possession) ? 'white' : 'gray' }}
+              disableRipple
             >
               <Checkbox
                 checked={!singleItem.possession}
                 tabIndex={-1}
-                disableRipple
+                icon={<DeleteForeverIcon />}
+                checkedIcon={<AddToPhotosIcon />}
+                onClick={this.handleToggle(singleItem.id)}
               />
               <ListItemText primary={`${singleItem.name}`} />
             </ListItem>
