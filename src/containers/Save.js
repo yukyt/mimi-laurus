@@ -21,7 +21,10 @@ const download = () => {
 class Save extends Component {
   render() {
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SAVE ? '' : 'none' }}>
+      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
+        <div>
+          非所持アイテム情報をファイルに書き出します。
+        </div>
         <Button
           aria-label="Save"
           variant="raised"

@@ -48,7 +48,10 @@ class Load extends Component {
   }
   render() {
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.LOAD ? '' : 'none' }}>
+      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
+        <div>
+          非所持アイテム情報をファイルから読み込みます。
+        </div>
         <div>
           <Dropzone
             onDropAccepted={e => this.onDropAccepted(e)}

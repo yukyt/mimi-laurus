@@ -29,6 +29,21 @@ body {
 .content {
   margin: 10px;
 }
+
+/** Navi bar */
+#naviBar {
+  text-align: center;
+}
+#naviBar .title {
+  font-size: 16px;
+}
+#naviBar .version {
+  font-size: 11px;
+}
+#naviBar .menu {
+  font-size: 14px;
+}
+
 /** Simulator */
 #simulator .loading {
   display: block;
@@ -87,4 +102,3 @@ label.itemCategory > span:first-child {
   box-sizing: border-box;
   height: 48px;
 }
-

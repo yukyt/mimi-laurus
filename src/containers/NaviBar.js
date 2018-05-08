@@ -28,33 +28,34 @@ class NaviBar extends Component {
   render() {
     const drawerContent = (
       <div>
-        <div>Mimi Laurus</div>
-        <div style={{ fontSize: '11px' }}>ver. alpha</div>
+        <div className="title">
+          Mimi Laurus
+        </div>
+        <div className="version">
+          ver. alpha
+        </div>
         <Divider />
-        <MenuItem onClick={() =>
-          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}
+        <MenuItem
+          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}
+          className="menu"
         >
-          推奨コーデ
+          おすすめコーデ
         </MenuItem>
-        <MenuItem onClick={() =>
-          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}
+        <MenuItem
+          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}
+          className="menu"
         >
-          ワードローブ
+          クローゼット
         </MenuItem>
-        <Divider />
-        <MenuItem onClick={() =>
-          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SAVE)}
+        <MenuItem
+          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SAVE_LOAD)}
+          className="menu"
         >
-          ファイル書出
+          セーブ＆ロード
         </MenuItem>
-        <MenuItem onClick={() =>
-          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.LOAD)}
-        >
-          ファイル読込
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={() =>
-          this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
+        <MenuItem
+          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
+          className="menu"
         >
           ヘルプ
         </MenuItem>
