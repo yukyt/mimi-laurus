@@ -61,7 +61,6 @@ export const impossessions = (state = [], action) => {
         results.push(action.itemId);
       }
       localStorage.setItem('impossessions', JSON.stringify(results.map(v => String(v))));
-      console.log(results)
       return results;
     default:
       return state;

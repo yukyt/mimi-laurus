@@ -5,7 +5,6 @@ import { setItemCategoryFilter } from '../actions/wardrobe';
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
-  itemCategoryFilter: state.itemCategoryFilter,
   onClickItemCategory: PropTypes.func,
 });
 
