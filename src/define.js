@@ -154,6 +154,7 @@ export const STAGE_JSON_COLUMN = {
   NAME: 1,
   STYLE: 3,
   TAG: 4,
+  BLACK_LIST: 6,
 };
 
 export const ITEM_SHOW_COUNT = {

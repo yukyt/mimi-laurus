@@ -39,6 +39,11 @@ export const bestCoordinates = (state = {}, action) => {
       }
 
       for (const item of action.items) {
+        // blackList check
+        if (stageObject.blackList.includes(item.id)) {
+          continue;
+        }
+
         let tagScore = 0;
         // stage tags loop
         for (const [tagKey, tagObject] of stageObject.tags) {
