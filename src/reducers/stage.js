@@ -23,7 +23,7 @@ export const stages = (state = [], action) => {
               id: stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID],
               section,
               chapter,
-              name: stageArray[CONSTANTS.STAGE_JSON_COLUMN.NAME],
+              name: `${stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID]} ${stageArray[CONSTANTS.STAGE_JSON_COLUMN.NAME]}`,
               styles,
               tags,
               blackList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.BLACK_LIST],
