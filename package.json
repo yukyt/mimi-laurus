@@ -4,6 +4,7 @@
   "homepage": "https://yukyt.github.io/mimi-laurus",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.43",
     "classnames": "^2.2.5",
     "eslint": "4.9.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -11,7 +12,7 @@
     "eslint-plugin-jsx-a11y": "6.0.2",
     "eslint-plugin-react": "7.4.0",
     "gh-pages": "^1.1.0",
-    "material-ui": "^1.0.0-beta.41",
+    "material-ui": "^1.0.0-beta.45",
     "material-ui-icons": "^1.0.0-beta.36",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
