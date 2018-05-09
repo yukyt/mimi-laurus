@@ -3,7 +3,7 @@ import { items, impossessions } from './item';
 import { sectionFilter, stages } from './stage';
 import { bestCoordinates, focusItems } from './simulator';
 import { viewMode } from './menu';
-import { itemCategoryFilter, itemShowMaxCount } from './wardrobe';
+import { itemCategoryFilter, itemShowMaxCount, searchText } from './wardrobe';
 
 export default combineReducers({
   items,
@@ -19,4 +19,5 @@ export default combineReducers({
 
   itemCategoryFilter,
   itemShowMaxCount,
+  searchText,
 });

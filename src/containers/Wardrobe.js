@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import ItemCategoryList from '../components/ItemCategoryList';
-import { setItemCategoryFilter } from '../actions/wardrobe';
+import { setItemCategoryFilter, setSearchText } from '../actions/wardrobe';
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
@@ -11,6 +11,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onClickItemCategory: (filter) => {
     dispatch(setItemCategoryFilter(filter));
+  },
+  onChangeSearchText: (searchText) => {
+    dispatch(setSearchText(searchText));
   },
 });
 

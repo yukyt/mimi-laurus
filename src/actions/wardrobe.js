@@ -11,3 +11,8 @@ export const toggleItem = itemId => ({
 export const scrollEnd = () => ({
   type: 'SCROLL_END',
 });
+
+export const setSearchText = searchText => ({
+  type: 'SET_SEARCH_TEXT',
+  searchText,
+});

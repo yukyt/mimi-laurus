@@ -64,13 +64,15 @@ ItemList.propTypes = {
   itemShowMaxCount: PropTypes.number.isRequired,
 };
 
-const getVisibleItems = (items, itemCategoryFilter) =>
-  items.filter(item => (item.category === itemCategoryFilter));
+const getVisibleItems = (items, itemCategoryFilter, searchText) =>
+  items
+    .filter(item => (item.category === itemCategoryFilter))
+    .filter(item => (item.name.indexOf(searchText) > -1));
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
   itemCategory: state.itemCategory,
-  items: getVisibleItems(state.items, state.itemCategoryFilter),
+  items: getVisibleItems(state.items, state.itemCategoryFilter, state.searchText),
   itemShowMaxCount: state.itemShowMaxCount,
 });
 

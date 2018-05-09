@@ -20,3 +20,12 @@ export const itemShowMaxCount = (state = CONSTANTS.ITEM_SHOW_COUNT.DEFAULT, acti
       return state;
   }
 };
+
+export const searchText = (state = '', action) => {
+  switch (action.type) {
+    case 'SET_SEARCH_TEXT':
+      return action.searchText;
+    default:
+      return state;
+  }
+};

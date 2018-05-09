@@ -5,6 +5,7 @@ import { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import { FormControl } from 'material-ui/Form';
+import TextField from 'material-ui/TextField';
 import * as CONSTANTS from '../define';
 
 class ItemCategoryList extends Component {
@@ -12,10 +13,15 @@ class ItemCategoryList extends Component {
     super(props);
     this.state = {
       category: CONSTANTS.ITEM_CATEGORY.HAIR,
+      search: '',
     };
     this.handleChange = (e) => {
       this.setState({ category: e.target.value });
       this.props.onClickItemCategory(e.target.value);
+    };
+    this.searchTextChange = (e) => {
+      this.setState({ search: e.target.value });
+      this.props.onChangeSearchText(e.target.value);
     };
   }
 
@@ -42,6 +48,15 @@ class ItemCategoryList extends Component {
           ))}
           </Select>
         </FormControl>
+        <form>
+          <TextField
+            id="search"
+            label="絞り込みキーワード"
+            value={this.state.search}
+            onChange={e => this.searchTextChange(e)}
+            margin="normal"
+          />
+        </form>
       </section>
     );
   }
@@ -50,12 +65,11 @@ class ItemCategoryList extends Component {
 ItemCategoryList.propTypes = {
   viewMode: PropTypes.number.isRequired,
   onClickItemCategory: PropTypes.func,
+  onChangeSearchText: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
 });
-const mapDispatchToProps = dispatch => ({
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemCategoryList);
+export default connect(mapStateToProps)(ItemCategoryList);
