@@ -25,10 +25,11 @@ const RecommendItem = ({
       tabIndex={-1}
       onClick={() => onClick(item.id)}
       disableRipple={false}
+      style={{ display: (item.id) ? 'inline-block' : 'none' }}
     />
     <div className="detail">
       <div className="name">{item.name}</div>
-      <div className="score">{item.score}点</div>
+      <div className="score" style={{ display: (item.id) ? 'block' : 'none' }}>{item.score}点</div>
     </div>
   </Paper>
 );

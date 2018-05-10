@@ -3,7 +3,7 @@ import * as CONSTANTS from '../define';
 export const bestCoordinates = (state = {}, action) => {
   const emptyItem = {
     id: 0,
-    name: 'nothing',
+    name: '　ありません(\'ω\'乂)',
     score: 0,
     possession: true,
   };
