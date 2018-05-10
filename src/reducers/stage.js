@@ -27,6 +27,7 @@ export const stages = (state = [], action) => {
               styles,
               tags,
               blackList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.BLACK_LIST],
+              whiteList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.WHITE_LIST],
             });
           }
         }

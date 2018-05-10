@@ -38,10 +38,21 @@ export const bestCoordinates = (state = {}, action) => {
         }
       }
 
+      const categoryBlackList = [];
+      if (stageObject.blackList.length > 0 && !Number.isInteger(stageObject.blackList[0])) {
+        for (const k of stageObject.blackList[0].type) {
+          categoryBlackList.push(CONSTANTS.BLACKLIST_ITEM_CATEGORY.get(k));
+        }
+      }
+
       for (const item of action.items) {
-        // blackList check
-        if (stageObject.blackList.includes(item.id)) {
-          continue;
+        // WhiteList check
+        if (!stageObject.whiteList.includes(item.id)) {
+          // BlackList check
+          if (stageObject.blackList.includes(item.id)
+              || categoryBlackList.includes(item.category)) {
+            continue;
+          }
         }
 
         let tagScore = 0;

@@ -133,6 +133,43 @@ export const ITEM_CATEGORY_NAME = new Map([
   [ITEM_CATEGORY.SKIN, '肌'],
 ]);
 
+export const BLACKLIST_ITEM_CATEGORY = new Map([
+  ['hair', ITEM_CATEGORY.HAIR],
+  ['dress', ITEM_CATEGORY.DRESS],
+  ['coat', ITEM_CATEGORY.COAT],
+  ['tops', ITEM_CATEGORY.TOPS],
+  ['bottoms', ITEM_CATEGORY.BOTTOMS],
+  ['hosiery', ITEM_CATEGORY.SOCKS],
+  ['anklet', ITEM_CATEGORY.ANKLET],
+  ['shoes', ITEM_CATEGORY.SHOES],
+  ['makeup', ITEM_CATEGORY.MAKEUP],
+
+  ['hair-ornaments', ITEM_CATEGORY.HAIR_ORNAMENT],
+  ['veil', ITEM_CATEGORY.VEIL],
+  ['hairpin', ITEM_CATEGORY.HAIRPIN],
+  ['ear', ITEM_CATEGORY.EAR],
+  ['earrings', ITEM_CATEGORY.EARRINGS],
+  ['scarf', ITEM_CATEGORY.SCARF],
+  ['necklace', ITEM_CATEGORY.NECKLACE],
+  ['right-hand-ornaments', ITEM_CATEGORY.RIGHT_HAND_ORNAMENT],
+  ['left-hand-ornaments', ITEM_CATEGORY.LEFT_HAND_ORNAMENT],
+  ['glove', ITEM_CATEGORY.GLOVES],
+  ['right-hand-holding', ITEM_CATEGORY.RIGHT_HAND_HOLDING],
+  ['left-hand-holding', ITEM_CATEGORY.LEFT_HAND_HOLDING],
+  ['both-hand-holding', ITEM_CATEGORY.BOTH_HAND_HOLDING],
+  ['waist', ITEM_CATEGORY.WAIST],
+  ['face', ITEM_CATEGORY.FACE],
+  ['brooch', ITEM_CATEGORY.BODY],
+  ['tatoo', ITEM_CATEGORY.TATOO],
+  ['wing', ITEM_CATEGORY.WING],
+  ['tail', ITEM_CATEGORY.TAIL],
+  ['foreground', ITEM_CATEGORY.FOREGROUND],
+  ['background', ITEM_CATEGORY.BACKGROUND],
+  ['head-ornaments', ITEM_CATEGORY.HANGING],
+  ['ground', ITEM_CATEGORY.GROUND],
+  ['skin', ITEM_CATEGORY.SKIN],
+]);
+
 export const STAGE_SECTION = new Map([
   ['colosseum', 'コロッセオ'],
   ['guild', 'ギルド'],
@@ -155,6 +192,7 @@ export const STAGE_JSON_COLUMN = {
   STYLE: 3,
   TAG: 4,
   BLACK_LIST: 6,
+  WHITE_LIST: 7,
 };
 
 export const ITEM_SHOW_COUNT = {
