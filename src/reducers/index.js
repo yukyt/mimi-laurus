@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import 'babel-polyfill';
 import { items, impossessions } from './item';
 import { sectionFilter, stages } from './stage';
 import { bestCoordinates, focusItems } from './simulator';
