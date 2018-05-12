@@ -29,7 +29,5 @@ Help.propTypes = {
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
 });
-const mapDispatchToProps = dispatch => ({
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Help);
+export default connect(mapStateToProps)(Help);

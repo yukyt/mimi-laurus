@@ -45,7 +45,5 @@ Save.propTypes = {
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
 });
-const mapDispatchToProps = dispatch => ({
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Save);
+export default connect(mapStateToProps)(Save);
