@@ -69,7 +69,6 @@ body {
 }
 
 .item .detail {
-  width: 190px;
   display: inline-block;
   vertical-align: middle;
   margin: 2px 0;
