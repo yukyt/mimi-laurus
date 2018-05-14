@@ -10,9 +10,8 @@ const possessionStyle = (possession) => {
   if (possession) {
     return {};
   }
-  return { backgroundColor: 'gray' };
+  return { backgroundColor: 'lightgray' };
 };
-
 
 const RecommendItem = ({
   item, itemClass, onClick,
@@ -33,7 +32,12 @@ const RecommendItem = ({
       })()}
     </Button>
     <div className="detail">
-      <div className="name">{item.name}</div>
+      <div className="header">
+        <span className="possession">
+          {(() => ((!item.possession) ? '[非所持]' : ''))()}
+        </span>
+        <span className="name">{item.name}</span>
+      </div>
       <div className="score" style={{ display: (item.id) ? 'block' : 'none' }}>{item.score}点</div>
     </div>
   </Paper>

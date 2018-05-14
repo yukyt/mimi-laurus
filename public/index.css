@@ -68,6 +68,12 @@ body {
   vertical-align: middle;
   margin: 2px 0;
 }
+.item .header {
+  height: 20px;
+}
+.item .possession {
+  font-size: 8px;
+}
 .item .name {
   font-size: 13px;
 }

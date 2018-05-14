@@ -29,7 +29,7 @@ class ItemList extends Component {
               dense
               button
               className="wardrobe-item-list"
-              style={{ backgroundColor: (singleItem.possession) ? 'white' : 'gray' }}
+              style={{ backgroundColor: (singleItem.possession) ? 'white' : 'lightgray' }}
               disableRipple
             >
               <Button
@@ -46,7 +46,7 @@ class ItemList extends Component {
                   return (<AddToPhotosIcon className="possession-button-icon" />);
                 })()}
               </Button>
-              <ListItemText primary={`${singleItem.name}`} />
+              <ListItemText primary={`${singleItem.possession ? '' : '[非所持]'}${singleItem.name}`} />
             </ListItem>
           ))}
         </List>
