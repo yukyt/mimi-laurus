@@ -62,11 +62,6 @@ body {
   margin: 0px 5px;
   vertical-align: middle;
 }
-/* material-ui checkbox is 48x48. */
-.item span:first-child {
-  height: 40px;
-  width: 40px;
-}
 
 .item .detail {
   display: inline-block;
@@ -79,9 +74,13 @@ body {
 .item .score {
   font-size: 11px;
 }
-.item .checkbox {
-  display: inline-block;
-  vertical-align: top;
+.item .possession-button {
+  margin: 2px 2px;
+  width: 36px;
+  height: 36px;
+}
+.item .possession-button-icon {
+  vertical-align: middle;
 }
 
 /** Wardrobe */
@@ -100,4 +99,13 @@ label.itemCategory > span:first-child {
 .wardrobe-item-list {
   box-sizing: border-box;
   height: 48px;
+}
+
+.wardrobe-item-list .possession-button {
+  margin: 2px 2px;
+  width: 36px;
+  height: 36px;
+}
+.wardrobe-item-list .possession-button-icon {
+  vertical-align: middle;
 }

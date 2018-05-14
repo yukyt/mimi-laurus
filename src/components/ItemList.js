@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import List, { ListItem, ListItemText } from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
+import Button from 'material-ui/Button';
 import Waypoint from 'react-waypoint';
 import DeleteForeverIcon from 'material-ui-icons/DeleteForever';
 import AddToPhotosIcon from 'material-ui-icons/AddToPhotos';
@@ -32,13 +32,20 @@ class ItemList extends Component {
               style={{ backgroundColor: (singleItem.possession) ? 'white' : 'gray' }}
               disableRipple
             >
-              <Checkbox
-                checked={!singleItem.possession}
-                tabIndex={-1}
-                icon={<DeleteForeverIcon />}
-                checkedIcon={<AddToPhotosIcon />}
+              <Button
+                variant="fab"
+                color="primary"
+                className="possession-button"
+                style={{ display: (singleItem.id) ? 'inline-block' : 'none' }}
                 onClick={this.handleToggle(singleItem.id)}
-              />
+              >
+                {(() => {
+                  if (singleItem.possession) {
+                    return <DeleteForeverIcon className="possession-button-icon" />;
+                  }
+                  return (<AddToPhotosIcon className="possession-button-icon" />);
+                })()}
+              </Button>
               <ListItemText primary={`${singleItem.name}`} />
             </ListItem>
           ))}

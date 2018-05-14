@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import Paper from 'material-ui/Paper';
-import Checkbox from 'material-ui/Checkbox';
+import Button from 'material-ui/Button';
 import DeleteForeverIcon from 'material-ui-icons/DeleteForever';
 import AddToPhotosIcon from 'material-ui-icons/AddToPhotos';
 
@@ -13,20 +13,25 @@ const possessionStyle = (possession) => {
   return { backgroundColor: 'gray' };
 };
 
+
 const RecommendItem = ({
   item, itemClass, onClick,
 }) => (
   <Paper className={itemClass} style={possessionStyle(item.possession)}>
-    <Checkbox
-      checked={!item.possession}
-      className="checkbox"
-      icon={<DeleteForeverIcon />}
-      checkedIcon={<AddToPhotosIcon />}
-      tabIndex={-1}
-      onClick={() => onClick(item.id)}
-      disableRipple={false}
+    <Button
+      variant="fab"
+      color="primary"
+      className="possession-button"
       style={{ display: (item.id) ? 'inline-block' : 'none' }}
-    />
+      onClick={() => onClick(item.id)}
+    >
+      {(() => {
+        if (item.possession) {
+          return <DeleteForeverIcon className="possession-button-icon" />;
+        }
+        return (<AddToPhotosIcon className="possession-button-icon" />);
+      })()}
+    </Button>
     <div className="detail">
       <div className="name">{item.name}</div>
       <div className="score" style={{ display: (item.id) ? 'block' : 'none' }}>{item.score}点</div>
