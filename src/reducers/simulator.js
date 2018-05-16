@@ -76,7 +76,7 @@ export const bestCoordinates = (state = {}, action) => {
           totalScore += (styleScore + tagScore) * styleRate;
         }
         // half round up
-        totalScore = Math.round(totalScore);
+        totalScore = Math.round(totalScore * CONSTANTS.ITEM_CATEGORY_SCALE.get(item.category));
 
         // add coordinate if score is not zero.
         if (totalScore > 0) {
