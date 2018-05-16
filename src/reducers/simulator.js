@@ -71,6 +71,10 @@ export const bestCoordinates = (state = {}, action) => {
           if (item.styles.has(styleId)) {
             // if item has matched style, add score (only rank score here)
             styleScore = CONSTANTS.RANK_WEIGHT.get(item.styles.get(styleId));
+            // if item category is accessory, decrease score.
+            if (item.category >= CONSTANTS.ACCESSORY_MINIMUM_ITEM_CATEGORY) {
+              styleScore *= CONSTANTS.ITEM_CATEGORY_DUMPING;
+            }
           }
           // style rate effects both tag score and style score.
           totalScore += (styleScore + tagScore) * styleRate;

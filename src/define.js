@@ -172,6 +172,16 @@ export const ITEM_CATEGORY_SCALE = new Map([
   [ITEM_CATEGORY.SKIN, 0.2],
 ]);
 
+/*
+ * if user wear more than 3 accessories, accessory item score is decrease.
+ * but its a bit heavy, because of re-calc every item focus change.
+ * so I choose 40% fix rate.
+ * this is same as maximum (16 or more accessories equip) dumping.
+ */
+export const ITEM_CATEGORY_DUMPING = 0.4;
+
+/* if item category is bigger than this, its a accessory */
+export const ACCESSORY_MINIMUM_ITEM_CATEGORY = ITEM_CATEGORY.HAIR_ORNAMENT;
 
 export const BLACKLIST_ITEM_CATEGORY = new Map([
   ['hair', ITEM_CATEGORY.HAIR],
