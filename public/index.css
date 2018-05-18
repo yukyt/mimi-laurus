@@ -84,6 +84,7 @@ body {
   margin: 2px 2px;
   width: 36px;
   height: 36px;
+  box-shadow: none;
 }
 .item .possession-button-icon {
   vertical-align: middle;
