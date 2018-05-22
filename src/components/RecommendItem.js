@@ -19,7 +19,7 @@ const RecommendItem = ({
   <Paper className={itemClass} style={possessionStyle(item.possession)}>
     <Button
       variant="fab"
-      color="primary"
+      color="secondary"
       className="possession-button"
       style={{ display: (item.id) ? 'inline-block' : 'none' }}
       onClick={() => onClick(item.id)}

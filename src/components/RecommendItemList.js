@@ -52,7 +52,7 @@ class RecommendItemList extends Component {
           <Button
             variant="raised"
             style={styles.nav}
-            color="primary"
+            color="secondary"
             onClick={() => this.props.prev(this.props.category, this.props.order)}
             disabled={this.props.order === 0}
           >
@@ -68,7 +68,7 @@ class RecommendItemList extends Component {
           <Button
             variant="raised"
             style={styles.nav}
-            color="primary"
+            color="secondary"
             onClick={() => this.props.next(this.props.category, this.props.order)}
             disabled={this.props.bestCoordinates.length === 1}
           >

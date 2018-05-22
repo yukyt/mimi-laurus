@@ -85,7 +85,11 @@ class NaviBar extends Component {
             {drawerContent}
           </Drawer>
         </Hidden>
-        <AppBar position="static" id="appBar">
+        <AppBar
+          position="static"
+          id="appBar"
+          color="secondary"
+        >
           <Toolbar>
             <IconButton
               id="menuIcon"

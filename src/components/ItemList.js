@@ -34,7 +34,7 @@ class ItemList extends Component {
             >
               <Button
                 variant="fab"
-                color="primary"
+                color="secondary"
                 className="possession-button"
                 style={{ display: (singleItem.id) ? 'inline-block' : 'none' }}
                 onClick={this.handleToggle(singleItem.id)}

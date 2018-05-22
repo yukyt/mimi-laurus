@@ -28,7 +28,7 @@ class Save extends Component {
         <Button
           aria-label="Save"
           variant="raised"
-          color="primary"
+          color="secondary"
           onClick={download}
         >
           <FileDownloadIcon />
