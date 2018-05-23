@@ -1,38 +1,42 @@
 import * as CONSTANTS from '../define';
 
 export const stages = (state = [], action) => {
-  const formattedStages = [];
-
   switch (action.type) {
     case 'FETCH_STAGES_SUCCESS': {
-      for (const section in action.stages) {
-        for (const chapter in action.stages[section]) {
-          for (const stageArray of action.stages[section][chapter]) {
-            const styles = new Map();
-            for (const [i, weight] of stageArray[CONSTANTS.STAGE_JSON_COLUMN.STYLE].entries()) {
-              styles.set((i * 2) + (weight < 0 ? 1 : 0), Math.abs(weight));
-            }
-            const tags = new Map();
-            for (const tag of stageArray[CONSTANTS.STAGE_JSON_COLUMN.TAG]) {
-              tags.set(tag[0], {
-                value: tag[1],
-                product: tag[2],
+      let sectionName = {};
+      let chapterName = {};
+      const ret = Object.keys(action.stages)
+        .map((sectionKey) => {
+          sectionName = sectionKey;
+          return Object.keys(action.stages[sectionName]).map((chapterKey) => {
+            chapterName = chapterKey;
+            return action.stages[sectionName][chapterName].map((stageArray) => {
+              const styles = new Map();
+              stageArray[CONSTANTS.STAGE_JSON_COLUMN.STYLE].forEach((weight, i) => {
+                styles.set((i * 2) + (weight < 0 ? 1 : 0), Math.abs(weight));
               });
-            }
-            formattedStages.push({
-              id: stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID],
-              section,
-              chapter,
-              name: `${stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID]} ${stageArray[CONSTANTS.STAGE_JSON_COLUMN.NAME]}`,
-              styles,
-              tags,
-              blackList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.BLACK_LIST],
-              whiteList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.WHITE_LIST],
+              const tags = new Map();
+              stageArray[CONSTANTS.STAGE_JSON_COLUMN.TAG].forEach((tagArray) => {
+                tags.set(tagArray[0], {
+                  value: tagArray[1],
+                  product: tagArray[2],
+                });
+              });
+              return {
+                id: stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID],
+                section: sectionName,
+                chapter: chapterName,
+                name: `${stageArray[CONSTANTS.STAGE_JSON_COLUMN.ID]} ${stageArray[CONSTANTS.STAGE_JSON_COLUMN.NAME]}`,
+                styles,
+                tags,
+                blackList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.BLACK_LIST],
+                whiteList: stageArray[CONSTANTS.STAGE_JSON_COLUMN.WHITE_LIST],
+              };
             });
-          }
-        }
-      }
-      return formattedStages;
+          });
+        });
+      // flatten
+      return ret.concat.apply([], ret.concat.apply([], ret));
     }
     default:
       return state;

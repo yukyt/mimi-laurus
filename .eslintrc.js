@@ -16,11 +16,6 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/require-default-props": 0,
-        "react/prefer-stateless-function": 0,
-        "guard-for-in": 0,
-        "no-restricted-syntax": 0,
-        "no-continue": 0,
         "no-plusplus": 0,
         "no-bitwise": 0,
         "react/jsx-uses-react": [

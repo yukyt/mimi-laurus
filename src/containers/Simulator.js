@@ -6,10 +6,10 @@ import Advisor from '../components/Advisor';
 
 const getFocusItem = (bestCoordinates, focusItems) => {
   const results = {};
-  for (const category in bestCoordinates) {
+  Object.keys(bestCoordinates).forEach((category) => {
     const pos = focusItems.get(parseInt(category, 10));
     results[category] = bestCoordinates[category].slice(pos, pos + 3);
-  }
+  });
   return results;
 };
 

@@ -14,10 +14,9 @@ export const items = (state = [], action) => {
       return state.map(t =>
         itemToggle(t, action));
     case 'FETCH_ITEMS_SUCCESS':
-      for (const itemArray of action.items) {
+      action.items.forEach((itemArray) => {
         const styles = new Map();
-        let i = 0;
-        for (const styleHex of itemArray[CONSTANTS.ITEM_JSON_COLUMN.STYLE].split('')) {
+        itemArray[CONSTANTS.ITEM_JSON_COLUMN.STYLE].split('').forEach((styleHex, i) => {
           // convert from hex to decimal
           const styleDec = parseInt(styleHex, 16);
           // 8bit: style flag(upper or lower style)
@@ -25,8 +24,7 @@ export const items = (state = [], action) => {
           // 1～7bit: style weight (0:none 1:C 2:B 3:A 4:S 5:SS 6:SSS 7~8:undefined)
           const styleClass = (styleDec & 7) + 1;
           styles.set(styleType, styleClass);
-          i++;
-        }
+        });
 
         formattedItems.push({
           id: itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID],
@@ -40,7 +38,7 @@ export const items = (state = [], action) => {
           possession:
             !(action.impossessions.indexOf(itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID]) >= 0),
         });
-      }
+      });
       return formattedItems;
     default:
       return state;

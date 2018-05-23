@@ -31,42 +31,38 @@ export const bestCoordinates = (state = {}, action) => {
       return formattedBestCoordinates;
     }
     case 'CALC': {
-      let stageObject;
-      for (const stage of action.stages) {
-        if (stage.id === action.stageSelected) {
-          stageObject = stage;
-        }
-      }
+      const stageObject = Object.values(action.stages)
+        .find(stage => (stage.id === action.stageSelected));
 
       const categoryBlackList = [];
       if (stageObject.blackList.length > 0 && !Number.isInteger(stageObject.blackList[0])) {
-        for (const k of stageObject.blackList[0].type) {
+        stageObject.blackList[0].type.forEach((k) => {
           categoryBlackList.push(CONSTANTS.BLACKLIST_ITEM_CATEGORY.get(k));
-        }
+        });
       }
 
-      for (const item of action.items) {
+      action.items.forEach((item) => {
         // WhiteList check
         if (!stageObject.whiteList.includes(item.id)) {
           // BlackList check
           if (stageObject.blackList.includes(item.id)
               || categoryBlackList.includes(item.category)) {
-            continue;
+            return;
           }
         }
 
         let tagScore = 0;
         // stage tags loop
-        for (const [tagKey, tagObject] of stageObject.tags) {
+        stageObject.tags.forEach((tagObject, tagKey) => {
           if (item.tags.includes(tagKey)) {
             // if item has matched tag, add score (rank score * rate)
             tagScore += CONSTANTS.RANK_WEIGHT.get(tagObject.value) * tagObject.product;
           }
-        }
+        });
 
         let totalScore = 0;
         // stage styles loop
-        for (const [styleId, styleRate] of stageObject.styles) {
+        stageObject.styles.forEach((styleRate, styleId) => {
           let styleScore = 0;
           if (item.styles.has(styleId)) {
             // if item has matched style, add score (only rank score here)
@@ -78,7 +74,7 @@ export const bestCoordinates = (state = {}, action) => {
           }
           // style rate effects both tag score and style score.
           totalScore += (styleScore + tagScore) * styleRate;
-        }
+        });
         // half round up
         totalScore = Math.round(totalScore * CONSTANTS.ITEM_CATEGORY_SCALE.get(item.category));
 
@@ -91,7 +87,7 @@ export const bestCoordinates = (state = {}, action) => {
             possession: item.possession,
           });
         }
-      }
+      });
 
       // Score sort
       Object.keys(formattedBestCoordinates).map(category => (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Button from 'material-ui/Button';
@@ -18,26 +18,22 @@ const download = () => {
   window.URL.revokeObjectURL(url);
 };
 
-class Save extends Component {
-  render() {
-    return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
-        <div>
+const Save = props => (
+  <section style={{ display: props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
+    <div>
           非所持アイテム情報をファイルに書き出します。
-        </div>
-        <Button
-          aria-label="Save"
-          variant="raised"
-          color="secondary"
-          onClick={download}
-        >
-          <FileDownloadIcon />
+    </div>
+    <Button
+      aria-label="Save"
+      variant="raised"
+      color="secondary"
+      onClick={download}
+    >
+      <FileDownloadIcon />
           書き出し
-        </Button>
-      </section>
-    );
-  }
-}
+    </Button>
+  </section>
+);
 
 Save.propTypes = {
   viewMode: PropTypes.number.isRequired,

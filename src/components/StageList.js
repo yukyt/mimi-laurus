@@ -109,8 +109,8 @@ StageList.propTypes = {
   viewMode: PropTypes.number.isRequired,
   stages: PropTypes.arrayOf(Object).isRequired,
   items: PropTypes.arrayOf(Object).isRequired,
-  onChangeSection: PropTypes.func,
-  onChangeStage: PropTypes.func,
+  onChangeSection: PropTypes.func.isRequired,
+  onChangeStage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

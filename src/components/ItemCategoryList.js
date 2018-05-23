@@ -64,8 +64,8 @@ class ItemCategoryList extends Component {
 
 ItemCategoryList.propTypes = {
   viewMode: PropTypes.number.isRequired,
-  onClickItemCategory: PropTypes.func,
-  onChangeSearchText: PropTypes.func,
+  onClickItemCategory: PropTypes.func.isRequired,
+  onChangeSearchText: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
