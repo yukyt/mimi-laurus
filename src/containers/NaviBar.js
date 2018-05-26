@@ -59,6 +59,12 @@ class NaviBar extends Component {
         >
           ヘルプ
         </MenuItem>
+        <MenuItem
+          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.COMMENT)}
+          className="menu"
+        >
+          コメント
+        </MenuItem>
       </div>
     );
     return (

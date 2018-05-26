@@ -10,6 +10,7 @@ import Simulator from './containers/Simulator';
 import Save from './containers/Save';
 import Load from './containers/Load';
 import Help from './containers/Help';
+import Comment from './containers/Comment';
 import NaviBar from './containers/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages } from './actions/stage';
@@ -87,4 +88,11 @@ ReactDOM.render(
     <Help />
   </Provider>,
   document.getElementById('help'),
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Comment />
+  </Provider>,
+  document.getElementById('comment'),
 );

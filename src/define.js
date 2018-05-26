@@ -3,6 +3,7 @@ export const VIEW_MODE = {
   WARDROBE: 2,
   SAVE_LOAD: 3,
   HELP: 4,
+  COMMENT: 5,
 };
 
 export const VIEW_NAME_NAME = new Map([
@@ -10,6 +11,7 @@ export const VIEW_NAME_NAME = new Map([
   [VIEW_MODE.WARDROBE, 'アイテム確認'],
   [VIEW_MODE.SAVE_LOAD, '非所持アイテムのセーブ/ロード'],
   [VIEW_MODE.HELP, 'ヘルプ'],
+  [VIEW_MODE.COMMENT, 'コメント'],
 ]);
 
 // Style Rank (for both Item and Stage)

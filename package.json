@@ -43,6 +43,7 @@
     "raf": "3.4.0",
     "react": "^16.2.0",
     "react-dev-utils": "^5.0.0",
+    "react-disqus-comments": "^1.2.0",
     "react-dom": "^16.2.0",
     "react-dropzone": "^4.2.9",
     "react-redux": "^5.0.7",
