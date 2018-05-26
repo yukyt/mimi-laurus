@@ -31,9 +31,10 @@ const isDiffBestCoordinates = (currentBestCoordinates, nextBestCoordinates) => {
   }
   // check all item (up to 3 each category)
   // if item id and possession is same, its same.
-  return Object.keys(currentBestCoordinates).find(i => (
+  const match = Object.keys(currentBestCoordinates).find(i => (
     currentBestCoordinates[i].id !== nextBestCoordinates[i].id
      || currentBestCoordinates[i].possession !== nextBestCoordinates[i].possession));
+  return (match !== undefined);
 };
 
 class RecommendItemList extends Component {
