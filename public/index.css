@@ -43,6 +43,31 @@ body {
   #menuIcon {
     display: none; } }
 
+.item {
+  box-sizing: border-box;
+  width: 260px;
+  height: 40px;
+  margin: 0px 5px;
+  vertical-align: middle; }
+  .item .item__detail {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 2px 0; }
+  .item .item__header {
+    height: 20px; }
+  .item .item__possession {
+    font-size: 8px; }
+  .item .item__name {
+    font-size: 13px; }
+  .item .item__score {
+    font-size: 11px; }
+  .item .item__possession-button {
+    margin: 2px 2px;
+    width: 36px;
+    height: 36px; }
+  .item .item__possession-button-icon {
+    vertical-align: middle; }
+
 /** Navi bar */
 #naviBar .naviBar {
   text-align: center; }
@@ -67,39 +92,6 @@ body {
   max-width: 932px;
   justify-content: left; }
 
-#simulator .item {
-  box-sizing: border-box;
-  width: 260px;
-  height: 40px;
-  margin: 0px 5px;
-  vertical-align: middle; }
-
-#simulator .item__detail {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 2px 0; }
-
-#simulator .item__header {
-  height: 20px; }
-
-#simulator .item__possession {
-  font-size: 8px; }
-
-#simulator .item__name {
-  font-size: 13px; }
-
-#simulator .item__score {
-  font-size: 11px; }
-
-#simulator .item__possession-button {
-  margin: 2px 2px;
-  width: 36px;
-  height: 36px;
-  box-shadow: none; }
-
-#simulator .item__possession-button-icon {
-  vertical-align: middle; }
-
 /** Wardrobe */
 #itemList .itemCategories {
   flex-direction: row;
@@ -112,18 +104,3 @@ body {
 
 #itemList .itemCategory > span:first-child {
   width: 28px; }
-
-#itemList .item {
-  box-sizing: border-box;
-  width: 260px;
-  height: 40px;
-  margin: 0px 5px;
-  vertical-align: middle; }
-
-#itemList .item__possession-button {
-  margin: 2px 2px;
-  width: 36px;
-  height: 36px; }
-
-#itemList .item__possession-button-icon {
-  vertical-align: middle; }

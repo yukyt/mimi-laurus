@@ -1,6 +1,3 @@
-body
-  margin: 0
-
 @media screen and (max-width: 599px)
   .item_pos_1
     display: inline-block
@@ -43,6 +40,34 @@ body
   #menuIcon
     display: none
 
+body
+  margin: 0
+
+.item
+  box-sizing: border-box
+  width: 260px
+  height: 40px
+  margin: 0px 5px
+  vertical-align: middle
+  .item__detail
+    display: inline-block
+    vertical-align: middle
+    margin: 2px 0
+  .item__header
+    height: 20px
+  .item__possession
+    font-size: 8px
+  .item__name
+    font-size: 13px
+  .item__score
+    font-size: 11px
+  .item__possession-button
+    margin: 2px 2px
+    width: 36px
+    height: 36px
+  .item__possession-button-icon
+    vertical-align: middle
+
 /** Navi bar */
 #naviBar
   .naviBar
@@ -64,31 +89,6 @@ body
     box-sizing: border-box
     max-width: 932px
     justify-content: left
-  .item
-    box-sizing: border-box
-    width: 260px
-    height: 40px
-    margin: 0px 5px
-    vertical-align: middle
-  .item__detail
-    display: inline-block
-    vertical-align: middle
-    margin: 2px 0
-  .item__header
-    height: 20px
-  .item__possession
-    font-size: 8px
-  .item__name
-    font-size: 13px
-  .item__score
-    font-size: 11px
-  .item__possession-button
-    margin: 2px 2px
-    width: 36px
-    height: 36px
-    box-shadow: none
-  .item__possession-button-icon
-    vertical-align: middle
 
 /** Wardrobe */
 #itemList
@@ -101,15 +101,3 @@ body
     margin-right: 0px
   .itemCategory > span:first-child
     width: 28px
-  .item
-    box-sizing: border-box
-    width: 260px
-    height: 40px
-    margin: 0px 5px
-    vertical-align: middle
-  .item__possession-button
-    margin: 2px 2px
-    width: 36px
-    height: 36px
-  .item__possession-button-icon
-    vertical-align: middle
