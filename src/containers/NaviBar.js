@@ -94,6 +94,7 @@ class NaviBar extends Component {
         <AppBar
           position="static"
           id="appBar"
+          className="appBar"
           color="secondary"
         >
           <Toolbar>
@@ -101,6 +102,7 @@ class NaviBar extends Component {
               id="menuIcon"
               color="inherit"
               aria-label="Menu"
+              className="appBar__menuIcon"
               onClick={() => this.onToggle(true)}
             >
               <MenuIcon />

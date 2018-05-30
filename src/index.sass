@@ -5,12 +5,12 @@
     display: none
   .item_pos_3
     display: none
-  #appBar
-    margin-left: 0
   .content
-    margin: 0 0 0 10px
-  #menuIcon
-    display: block
+    margin: 10px
+  .appBar
+    margin-left: 0
+    .appBar__menuIcon
+      display: block
 
 @media screen and (min-width: 600px) and (max-width: 959px)
   .item_pos_1
@@ -19,12 +19,12 @@
     display: inline-block
   .item_pos_3
     display: none
-  #appBar
-    margin-left: 0
   .content
-    margin: 0 0 0 10px
-  #menuIcon
-    display: block
+    margin: 10px
+  .appBar
+    margin-left: 0
+    .appBar__menuIcon
+      display: block
 
 @media screen and (min-width:960px)
   .item_pos_1
@@ -33,12 +33,12 @@
     display: inline-block
   .item_pos_3
     display: inline-block
-  #appBar
-    margin-left: 128px
   .content
-    margin: 0 0 0 138px
-  #menuIcon
-    display: none
+    margin: 10px 10px 10px 138px
+  .appBar
+    margin-left: 128px
+    .appBar__menuIcon
+      display: none
 
 body
   margin: 0
@@ -69,9 +69,8 @@ body
     vertical-align: middle
 
 /** Navi bar */
-#naviBar
-  .naviBar
-    text-align: center
+.naviBar
+  text-align: center
   .naviBar__title
     font-size: 16px
   .naviBar__version
@@ -80,24 +79,22 @@ body
     font-size: 14px
 
 /** Simulator */
-#simulator
-  .loading
-    display: block
-    margin: 10px auto
-  .frame
-    display: flex
-    box-sizing: border-box
-    max-width: 932px
-    justify-content: left
+.loading
+  display: block
+  margin: 10px auto
+.frame
+  display: flex
+  box-sizing: border-box
+  max-width: 932px
+  justify-content: left
 
 /** Wardrobe */
-#itemList
-  .itemCategories
-    flex-direction: row
-    align-content: flex-start
-  .itemCategory
-    width: 113px
-    margin-left: 0px
-    margin-right: 0px
-  .itemCategory > span:first-child
-    width: 28px
+.itemCategories
+  flex-direction: row
+  align-content: flex-start
+.itemCategory
+  width: 113px
+  margin-left: 0px
+  margin-right: 0px
+.itemCategory > span:first-child
+  width: 28px
