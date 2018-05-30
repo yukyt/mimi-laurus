@@ -28,22 +28,22 @@ class ItemList extends Component {
               role={undefined}
               dense
               button
-              className="wardrobe-item-list"
+              className="item"
               style={{ backgroundColor: (singleItem.possession) ? 'white' : 'lightgray' }}
               disableRipple
             >
               <Button
                 variant="fab"
                 color="secondary"
-                className="possession-button"
+                className="item__possession-button"
                 style={{ display: (singleItem.id) ? 'inline-block' : 'none' }}
                 onClick={this.handleToggle(singleItem.id)}
               >
                 {(() => {
                   if (singleItem.possession) {
-                    return <DeleteForeverIcon className="possession-button-icon" />;
+                    return <DeleteForeverIcon className="item__possession-button-icon" />;
                   }
-                  return (<AddToPhotosIcon className="possession-button-icon" />);
+                  return (<AddToPhotosIcon className="item__possession-button-icon" />);
                 })()}
               </Button>
               <ListItemText primary={`${singleItem.possession ? '' : '[非所持]'}${singleItem.name}`} />

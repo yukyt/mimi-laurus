@@ -28,40 +28,40 @@ class NaviBar extends Component {
   render() {
     const drawerContent = (
       <div>
-        <div className="title">
+        <div className="naviBar__title">
           Mimi Laurus
         </div>
-        <div className="version">
+        <div className="naviBar__version">
           ver. alpha
         </div>
         <Divider />
         <MenuItem
           onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}
-          className="menu"
+          className="naviBar__menu"
         >
           おすすめコーデ
         </MenuItem>
         <MenuItem
           onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}
-          className="menu"
+          className="naviBar__menu"
         >
           クローゼット
         </MenuItem>
         <MenuItem
           onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SAVE_LOAD)}
-          className="menu"
+          className="naviBar__menu"
         >
           セーブ＆ロード
         </MenuItem>
         <MenuItem
           onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
-          className="menu"
+          className="naviBar__menu"
         >
           ヘルプ
         </MenuItem>
         <MenuItem
           onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.COMMENT)}
-          className="menu"
+          className="naviBar__menu"
         >
           コメント
         </MenuItem>

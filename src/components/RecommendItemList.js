@@ -13,7 +13,7 @@ const styles = {
   },
 };
 
-const itemClass = i => `item item${i}`;
+const itemClass = i => `item item_pos_${i}`;
 
 const bestCoordinateShowCount = () => {
   if (window.matchMedia('(max-width: 690px)').matches) {

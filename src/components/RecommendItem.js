@@ -20,25 +20,25 @@ const RecommendItem = ({
     <Button
       variant="fab"
       color="secondary"
-      className="possession-button"
+      className="item__possession-button"
       style={{ display: (item.id) ? 'inline-block' : 'none' }}
       onClick={() => onClick(item.id)}
     >
       {(() => {
         if (item.possession) {
-          return <DeleteForeverIcon className="possession-button-icon" />;
+          return <DeleteForeverIcon className="item__possession-button-icon" />;
         }
-        return (<AddToPhotosIcon className="possession-button-icon" />);
+        return (<AddToPhotosIcon className="item__possession-button-icon" />);
       })()}
     </Button>
-    <div className="detail">
-      <div className="header">
-        <span className="possession">
+    <div className="item__detail">
+      <div className="item__header">
+        <span className="item__possession">
           {(() => ((!item.possession) ? '[非所持]' : ''))()}
         </span>
-        <span className="name">{item.name}</span>
+        <span className="item__name">{item.name}</span>
       </div>
-      <div className="score" style={{ display: (item.id) ? 'block' : 'none' }}>{item.score}点</div>
+      <div className="item__score" style={{ display: (item.id) ? 'block' : 'none' }}>{item.score}点</div>
     </div>
   </Paper>
 );
