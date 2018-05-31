@@ -64,7 +64,8 @@ body {
   .item .item__possession-button {
     margin: 2px 2px;
     width: 36px;
-    height: 36px; }
+    height: 36px;
+    box-shadow: none; }
   .item .item__possession-button-icon {
     vertical-align: middle; }
 
