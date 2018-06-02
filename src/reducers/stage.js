@@ -51,3 +51,12 @@ export const sectionFilter = (state = 'NONE', action) => {
       return state;
   }
 };
+
+export const selectedStage = (state = 'NONE', action) => {
+  switch (action.type) {
+    case 'SELECT_STAGE':
+      return action.stageId;
+    default:
+      return state;
+  }
+};

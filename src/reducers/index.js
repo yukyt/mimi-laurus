@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import 'babel-polyfill';
 import { items, impossessions } from './item';
-import { sectionFilter, stages } from './stage';
+import { sectionFilter, stages, selectedStage } from './stage';
 import { bestCoordinates, focusItems } from './simulator';
 import { viewMode } from './menu';
 import { itemCategoryFilter, itemShowMaxCount, searchText } from './wardrobe';
@@ -12,6 +12,7 @@ export default combineReducers({
 
   sectionFilter,
   stages,
+  selectedStage,
 
   bestCoordinates,
   focusItems,

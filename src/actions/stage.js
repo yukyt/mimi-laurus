@@ -14,3 +14,8 @@ export const chooseSection = filter => ({
   type: 'SET_SECTION_FILTER',
   filter,
 });
+
+export const chooseStage = stageId => ({
+  type: 'SELECT_STAGE',
+  stageId,
+});

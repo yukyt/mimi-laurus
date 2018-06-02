@@ -1,18 +1,8 @@
 import * as CONSTANTS from '../define';
 
-const itemToggle = (item, action) => {
-  if (item.id !== action.itemId) {
-    return item;
-  }
-  return { ...item, possession: !item.possession };
-};
-
 export const items = (state = [], action) => {
   const formattedItems = [];
   switch (action.type) {
-    case 'TOGGLE_ITEM':
-      return state.map(t =>
-        itemToggle(t, action));
     case 'FETCH_ITEMS_SUCCESS':
       action.items.forEach((itemArray) => {
         const styles = new Map();
@@ -35,8 +25,6 @@ export const items = (state = [], action) => {
             (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count.
             Math.floor(itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] / 45),
           ],
-          possession:
-            !(action.impossessions.indexOf(itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID]) >= 0),
         });
       });
       return formattedItems;

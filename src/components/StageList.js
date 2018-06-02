@@ -5,7 +5,7 @@ import { InputLabel } from 'material-ui/Input';
 import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import { FormControl } from 'material-ui/Form';
-import { chooseSection } from '../actions/stage';
+import { chooseSection, chooseStage } from '../actions/stage';
 import { calc } from '../actions/simulator';
 import * as CONSTANTS from '../define';
 
@@ -37,11 +37,15 @@ class StageList extends Component {
         this.props.onChangeSection(event.target.value);
         this.setState({ stage: '' });
       } else {
-        this.props.onChangeStage(this.props.stages, this.props.items, event.target.value);
+        this.props.onChangeStage(
+          this.props.stages,
+          this.props.items,
+          event.target.value,
+          this.props.impossessions,
+        );
       }
     };
   }
-
 
   render() {
     return (
@@ -109,6 +113,7 @@ StageList.propTypes = {
   viewMode: PropTypes.number.isRequired,
   stages: PropTypes.arrayOf(Object).isRequired,
   items: PropTypes.arrayOf(Object).isRequired,
+  impossessions: PropTypes.arrayOf(Number).isRequired,
   onChangeSection: PropTypes.func.isRequired,
   onChangeStage: PropTypes.func.isRequired,
 };
@@ -118,14 +123,16 @@ const mapStateToProps = state => ({
   stages: getVisibleStages(state.stages, state.sectionFilter),
   sectionFilter: state.sectionFilter,
   items: state.items,
+  impossessions: state.impossessions,
 });
 
 const mapDispatchToProps = dispatch => ({
   onChangeSection: (sectionId) => {
     dispatch(chooseSection(sectionId));
   },
-  onChangeStage: (stages, items, stageId) => {
-    dispatch(calc(stages, items, stageId));
+  onChangeStage: (stages, items, stageId, impossessions) => {
+    dispatch(chooseStage(stageId));
+    dispatch(calc(stages, items, stageId, impossessions));
   },
 });
 

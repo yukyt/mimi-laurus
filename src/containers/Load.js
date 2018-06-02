@@ -5,6 +5,7 @@ import Dropzone from 'react-dropzone';
 import Snackbar from 'material-ui/Snackbar';
 import * as CONSTANTS from '../define';
 import { loadImpossessionFile } from '../actions/item';
+import { calc } from '../actions/simulator';
 
 class Load extends Component {
   constructor() {
@@ -14,7 +15,7 @@ class Load extends Component {
       message: '初期化中',
     };
   }
-  onDropAccepted(files) {
+  onDropAccepted(files, stages, items, selectedStage) {
     this.setState({
       open: true,
       message: 'ファイル読み込み中…',
@@ -23,7 +24,14 @@ class Load extends Component {
     this.reader.onload = () => {
       const regex = new RegExp(/\[[0-9",]+\]$/);
       if (regex.test(this.reader.result)) {
-        this.props.onLoadFile(JSON.parse(this.reader.result));
+        const impossessions = JSON.parse(this.reader.result);
+        localStorage.setItem('impossessions', JSON.stringify(impossessions)); // string
+        this.props.onLoadFile(
+          impossessions.map(v => parseInt(v, 10)), // number
+          stages,
+          items,
+          selectedStage,
+        );
         this.setState({
           open: true,
           message: 'ファイル読み込みが完了しました。',
@@ -54,7 +62,12 @@ class Load extends Component {
         </div>
         <div>
           <Dropzone
-            onDropAccepted={e => this.onDropAccepted(e)}
+            onDropAccepted={e => this.onDropAccepted(
+              e,
+              this.props.stages,
+              this.props.items,
+              this.props.selectedStage,
+            )}
             onDropRejected={e => this.onDropRejected(e)}
             accept="application/json"
           >
@@ -77,14 +90,21 @@ class Load extends Component {
 Load.propTypes = {
   viewMode: PropTypes.number.isRequired,
   onLoadFile: PropTypes.func.isRequired,
+  stages: PropTypes.arrayOf(Object).isRequired,
+  items: PropTypes.arrayOf(Object).isRequired,
+  selectedStage: PropTypes.string.isRequired,
 };
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
+  stages: state.stages,
+  items: state.items,
+  selectedStage: state.selectedStage,
 });
 const mapDispatchToProps = dispatch => ({
-  onLoadFile: (impossessions) => {
+  onLoadFile: (impossessions, stages, items, selectedStage) => {
     dispatch(loadImpossessionFile(impossessions));
-    // TODO re-calc
+    // re-calc
+    dispatch(calc(stages, items, selectedStage, impossessions));
   },
 });
 

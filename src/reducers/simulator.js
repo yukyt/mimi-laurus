@@ -84,7 +84,7 @@ export const bestCoordinates = (state = {}, action) => {
             id: item.id,
             name: item.name,
             score: totalScore,
-            possession: item.possession,
+            possession: (action.impossessions.indexOf(item.id) === -1),
           });
         }
       });

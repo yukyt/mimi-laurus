@@ -13,7 +13,7 @@ import Help from './containers/Help';
 import Comment from './containers/Comment';
 import NaviBar from './containers/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
-import { initStages } from './actions/stage';
+import { initStages, chooseStage } from './actions/stage';
 import { resetFocus, calc } from './actions/simulator';
 import * as CONSTANTS from './define';
 
@@ -24,11 +24,17 @@ const store = configureStore();
 const init = async () => {
   store.dispatch(initImpossessions());
   store.dispatch(resetFocus());
-  const awaitItems = store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json', store.getState().impossessions));
+  const awaitItems = store.dispatch(initItems('https://miramiku.github.io/Laurus/resources/wardrobe.json'));
   const awaitStages = store.dispatch(initStages('https://miramiku.github.io/Laurus/resources/stages.unpack.json'));
   await awaitItems;
   await awaitStages;
-  store.dispatch(calc(store.getState().stages, store.getState().items, CONSTANTS.INIT_STAGE_ID));
+  store.dispatch(chooseStage(CONSTANTS.INIT_STAGE_ID));
+  store.dispatch(calc(
+    store.getState().stages,
+    store.getState().items,
+    CONSTANTS.INIT_STAGE_ID,
+    store.getState().impossessions,
+  ));
 };
 
 init();

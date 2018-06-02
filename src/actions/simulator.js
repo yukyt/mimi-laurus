@@ -1,8 +1,9 @@
-export const calc = (stages, items, stageSelected) => ({
+export const calc = (stages, items, stageSelected, impossessions) => ({
   type: 'CALC',
   items,
   stages,
   stageSelected,
+  impossessions,
 });
 
 export const swipeItem = (category, pos) => ({
