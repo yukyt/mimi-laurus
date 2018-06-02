@@ -9,7 +9,7 @@ const download = () => {
   const a = document.createElement('a');
   document.body.appendChild(a);
   a.style = 'display: none';
-  const json = localStorage.getItem('impossessions');
+  const json = localStorage.getItem('impossessions') || '[]';
   const blob = new Blob([json], { type: 'octet/stream' });
   const url = window.URL.createObjectURL(blob);
   a.href = url;

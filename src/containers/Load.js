@@ -23,7 +23,7 @@ class Load extends Component {
     this.reader = new FileReader();
     this.reader.onload = () => {
       const regex = new RegExp(/\[[0-9",]+\]$/);
-      if (regex.test(this.reader.result)) {
+      if (regex.test(this.reader.result) || this.reader.result === '[]') {
         const impossessions = JSON.parse(this.reader.result);
         localStorage.setItem('impossessions', JSON.stringify(impossessions)); // string
         this.props.onLoadFile(
