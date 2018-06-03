@@ -3,6 +3,8 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
 import Snackbar from 'material-ui/Snackbar';
+import Button from 'material-ui/Button';
+import RefreshIcon from 'material-ui-icons/Refresh';
 import * as CONSTANTS from '../define';
 import { loadImpossessionFile } from '../actions/item';
 import { calc } from '../actions/simulator';
@@ -54,6 +56,21 @@ class Load extends Component {
   handleClose() {
     this.setState({ open: false });
   }
+  confirmReset(e, stages, items, selectedStage) {
+    if (window.confirm('本当によろしいですか？')) { // eslint-disable-line no-alert
+      localStorage.removeItem('impossessions');
+      this.props.onLoadFile(
+        [],
+        stages,
+        items,
+        selectedStage,
+      );
+      this.setState({
+        open: true,
+        message: '全て所持状態に戻りました。',
+      });
+    }
+  }
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
@@ -76,6 +93,21 @@ class Load extends Component {
             </div>
           </Dropzone>
         </div>
+        <Button
+          aria-label="Reset"
+          variant="raised"
+          color="secondary"
+          className="button"
+          onClick={e => this.confirmReset(
+            e,
+            this.props.stages,
+            this.props.items,
+            this.props.selectedStage,
+          )}
+        >
+          <RefreshIcon />
+            全て所持に戻す
+        </Button>
         <Snackbar
           open={this.state.open}
           autoHideDuration={5000}

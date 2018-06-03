@@ -27,6 +27,7 @@ const Save = props => (
       aria-label="Save"
       variant="raised"
       color="secondary"
+      className="button"
       onClick={download}
     >
       <FileDownloadIcon />
