@@ -46,7 +46,7 @@ class ItemList extends Component {
                   return (<AddToPhotosIcon className="item__possession-button-icon" />);
                 })()}
               </Button>
-              <ListItemText primary={`${singleItem.possession ? '' : '[非所持]'}${singleItem.name}`} />
+              <ListItemText primary={`${this.props.impossessions.indexOf(singleItem.id) === -1 ? '' : '[非所持]'}${singleItem.name}`} />
             </ListItem>
           ))}
         </List>
