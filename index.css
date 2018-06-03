@@ -99,6 +99,9 @@ body {
   width: 113px;
   margin-left: 0px;
   margin-right: 0px; }
+  .itemCategory > span:first-child {
+    width: 28px; }
 
-.itemCategory > span:first-child {
-  width: 28px; }
+/** Save / Load */
+.content .button {
+  margin: 10px; }
