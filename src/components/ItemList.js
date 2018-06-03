@@ -29,7 +29,7 @@ class ItemList extends Component {
               dense
               button
               className="item"
-              style={{ backgroundColor: (singleItem.possession) ? 'white' : 'lightgray' }}
+              style={{ backgroundColor: (this.props.impossessions.indexOf(singleItem.id) === -1) ? 'white' : 'lightgray' }}
               disableRipple
             >
               <Button
@@ -40,7 +40,7 @@ class ItemList extends Component {
                 onClick={this.handleToggle(singleItem.id)}
               >
                 {(() => {
-                  if (singleItem.possession) {
+                  if (this.props.impossessions.indexOf(singleItem.id) === -1) {
                     return <DeleteForeverIcon className="item__possession-button-icon" />;
                   }
                   return (<AddToPhotosIcon className="item__possession-button-icon" />);
@@ -69,6 +69,7 @@ ItemList.propTypes = {
   onScrollEnd: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(Object),
   itemShowMaxCount: PropTypes.number.isRequired,
+  impossessions: PropTypes.arrayOf(Number).isRequired,
 };
 
 const getVisibleItems = (items, itemCategoryFilter, searchText) =>
@@ -81,6 +82,7 @@ const mapStateToProps = state => ({
   itemCategory: state.itemCategory,
   items: getVisibleItems(state.items, state.itemCategoryFilter, state.searchText),
   itemShowMaxCount: state.itemShowMaxCount,
+  impossessions: state.impossessions,
 });
 
 const mapDispatchToProps = dispatch => ({
