@@ -103,12 +103,5 @@ body {
     width: 28px; }
 
 /** Save / Load */
-.content_type_save__button {
+.content .button {
   margin: 10px; }
-
-.content_type_load__button {
-  margin: 10px; }
-
-/** emoticons */
-.content_type_emoticon__button {
-  text-transform: 'none'; }
