@@ -2,14 +2,16 @@ export const VIEW_MODE = {
   SIMULATOR: 1,
   WARDROBE: 2,
   SAVE_LOAD: 3,
-  HELP: 4,
-  COMMENT: 5,
+  EMMOTICON: 4,
+  HELP: 5,
+  COMMENT: 6,
 };
 
 export const VIEW_NAME_NAME = new Map([
   [VIEW_MODE.SIMULATOR, 'おすすめコーデ'],
   [VIEW_MODE.WARDROBE, 'アイテム確認'],
   [VIEW_MODE.SAVE_LOAD, '非所持アイテムのセーブ/ロード'],
+  [VIEW_MODE.EMMOTICON, '顔文字'],
   [VIEW_MODE.HELP, 'ヘルプ'],
   [VIEW_MODE.COMMENT, 'コメント'],
 ]);

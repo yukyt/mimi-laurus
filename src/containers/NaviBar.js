@@ -54,6 +54,12 @@ class NaviBar extends Component {
           セーブ＆ロード
         </MenuItem>
         <MenuItem
+          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.EMMOTICON)}
+          className="naviBar__menu"
+        >
+          顔文字
+        </MenuItem>
+        <MenuItem
           onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
           className="naviBar__menu"
         >

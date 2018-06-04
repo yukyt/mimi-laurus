@@ -9,6 +9,7 @@ import Wardrobe from './containers/Wardrobe';
 import Simulator from './containers/Simulator';
 import Save from './containers/Save';
 import Load from './containers/Load';
+import Emoticon from './containers/Emoticon';
 import Help from './containers/Help';
 import Comment from './containers/Comment';
 import NaviBar from './containers/NaviBar';
@@ -87,6 +88,13 @@ ReactDOM.render(
     <Load />
   </Provider>,
   document.getElementById('load'),
+);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Emoticon />
+  </Provider>,
+  document.getElementById('emoticon'),
 );
 
 ReactDOM.render(
