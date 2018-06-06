@@ -80,11 +80,11 @@ body {
     font-size: 14px; }
 
 /** Simulator */
-.loading {
+.content .loading {
   display: block;
   margin: 10px auto; }
 
-.frame {
+.content .frame {
   display: flex;
   box-sizing: border-box;
   max-width: 932px;
