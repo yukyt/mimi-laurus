@@ -6,6 +6,7 @@ import Snackbar from 'material-ui/Snackbar';
 import * as CONSTANTS from '../define';
 
 const emoticons = () => [
+  '(*\'ω\'*)',
   'ヽ(。ゝω・。)ﾉ',
   'Σ(･ω･ﾉ)ﾉ',
   '(〃艸〃)',
