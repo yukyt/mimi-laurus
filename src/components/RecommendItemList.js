@@ -39,7 +39,10 @@ const isDiffBestCoordinates = (currentBestCoordinates, nextBestCoordinates) => {
 
 class RecommendItemList extends Component {
   shouldComponentUpdate(nextProps) {
-    return isDiffBestCoordinates(this.props.bestCoordinates, nextProps.bestCoordinates);
+    return isDiffBestCoordinates(
+      this.props.slicedCategoryBestCoordinates,
+      nextProps.slicedCategoryBestCoordinates,
+    );
   }
   render() {
     return (
@@ -55,7 +58,8 @@ class RecommendItemList extends Component {
           >
             {<NavigateBefore />}
           </Button>
-          {this.props.bestCoordinates.slice(0, bestCoordinateShowCount()).map((bestCoordinate, i) =>
+          {this.props.slicedCategoryBestCoordinates.slice(0, bestCoordinateShowCount())
+              .map((bestCoordinate, i) =>
             (<RecommendItem
               key={bestCoordinate.id}
               item={bestCoordinate}
@@ -67,7 +71,7 @@ class RecommendItemList extends Component {
             style={styles.nav}
             color="secondary"
             onClick={() => this.props.next(this.props.category, this.props.order)}
-            disabled={this.props.bestCoordinates.length === 1}
+            disabled={this.props.slicedCategoryBestCoordinates.length === 1}
           >
             {<NavigateNext />}
           </Button>
@@ -81,7 +85,7 @@ RecommendItemList.propTypes = {
   category: PropTypes.number.isRequired,
   categoryName: PropTypes.string.isRequired,
   order: PropTypes.number.isRequired,
-  bestCoordinates: PropTypes.arrayOf(Object).isRequired,
+  slicedCategoryBestCoordinates: PropTypes.arrayOf(Object).isRequired,
   next: PropTypes.func.isRequired,
   prev: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,

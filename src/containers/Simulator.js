@@ -14,7 +14,7 @@ const getFocusItem = (bestCoordinates, focusItems) => {
 };
 
 const mapStateToProps = state => ({
-  bestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
+  slicedBestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
   focusItems: state.focusItems,
   viewMode: state.viewMode,
   next: PropTypes.func,
