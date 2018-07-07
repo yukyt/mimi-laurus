@@ -117,6 +117,22 @@ export const focusItems = (state = new Map(), action) => {
       CONSTANTS.ITEM_CATEGORY_NAME.forEach((value, key) => results.set(key, 0));
       return results;
     }
+    case 'CALC_FOCUS': {
+      const results = new Map();
+      CONSTANTS.ITEM_CATEGORY_NAME.forEach((categoryName, categoryId) => {
+        results.set(categoryId, 0);
+        let i = 0;
+        // eslint-disable-next-line no-restricted-syntax
+        for (const bestCoordinate of action.bestCoordinates[categoryId]) {
+          if (bestCoordinate.possession) {
+            results.set(categoryId, i);
+            break;
+          }
+          i++;
+        }
+      });
+      return results;
+    }
     default:
       return state;
   }

@@ -15,7 +15,7 @@ import Comment from './containers/Comment';
 import NaviBar from './containers/NaviBar';
 import { initItems, initImpossessions } from './actions/item';
 import { initStages, chooseStage } from './actions/stage';
-import { resetFocus, calc } from './actions/simulator';
+import { resetFocus, calc, setHighScorePossessionFocus } from './actions/simulator';
 import * as CONSTANTS from './define';
 
 injectTapEventPlugin();
@@ -36,6 +36,7 @@ const init = async () => {
     CONSTANTS.INIT_STAGE_ID,
     store.getState().impossessions,
   ));
+  store.dispatch(setHighScorePossessionFocus(store.getState().bestCoordinates));
 };
 
 init();
