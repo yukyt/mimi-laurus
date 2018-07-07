@@ -6,9 +6,8 @@ import { MenuItem } from 'material-ui/Menu';
 import Select from 'material-ui/Select';
 import { FormControl } from 'material-ui/Form';
 import { chooseSection, chooseStage } from '../actions/stage';
-import { calc } from '../actions/simulator';
+import { calc, setHighScorePossessionFocus } from '../actions/simulator';
 import * as CONSTANTS from '../define';
-
 
 const styles = theme => ({
   root: {
@@ -43,6 +42,7 @@ class StageList extends Component {
           event.target.value,
           this.props.impossessions,
         );
+        this.props.onResetPos(this.props.bestCoordinates);
       }
     };
   }
@@ -116,6 +116,8 @@ StageList.propTypes = {
   impossessions: PropTypes.arrayOf(Number).isRequired,
   onChangeSection: PropTypes.func.isRequired,
   onChangeStage: PropTypes.func.isRequired,
+  onResetPos: PropTypes.func.isRequired,
+  bestCoordinates: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -124,6 +126,7 @@ const mapStateToProps = state => ({
   sectionFilter: state.sectionFilter,
   items: state.items,
   impossessions: state.impossessions,
+  bestCoordinates: state.bestCoordinates,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -133,6 +136,11 @@ const mapDispatchToProps = dispatch => ({
   onChangeStage: (stages, items, stageId, impossessions) => {
     dispatch(chooseStage(stageId));
     dispatch(calc(stages, items, stageId, impossessions));
+  },
+  onResetPos: (bestCoordinates) => {
+    console.log('reset pos');
+    console.log(bestCoordinates);
+    dispatch(setHighScorePossessionFocus(bestCoordinates));
   },
 });
 
