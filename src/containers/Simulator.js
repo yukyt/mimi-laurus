@@ -4,20 +4,12 @@ import { swipeItem } from '../actions/simulator';
 import { toggleItem } from '../actions/wardrobe';
 import Advisor from '../components/Advisor';
 
-const getFocusItem = (bestCoordinates, focusItems) => {
-  const results = {};
-  Object.keys(bestCoordinates).forEach((category) => {
-    const pos = focusItems.get(parseInt(category, 10));
-    results[category] = bestCoordinates[category].slice(pos, pos + 3);
-  });
-  return results;
-};
-
 const mapStateToProps = state => ({
-  slicedBestCoordinates: getFocusItem(state.bestCoordinates, state.focusItems),
+  bestCoordinates: state.bestCoordinates,
   focusItems: state.focusItems,
   viewMode: state.viewMode,
   selectedStage: state.selectedStage,
+  getFocusItem: PropTypes.func,
   next: PropTypes.func,
   prev: PropTypes.func,
   onItemClick: PropTypes.func,
@@ -26,6 +18,14 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onItemClick: (itemId) => {
     dispatch(toggleItem(itemId));
+  },
+  getFocusItem: (bestCoordinates, focusItems) => {
+    const results = {};
+    Object.keys(bestCoordinates).forEach((category) => {
+      const pos = focusItems.get(parseInt(category, 10));
+      results[category] = bestCoordinates[category].slice(pos, pos + 3);
+    });
+    return results;
   },
   next: (category, currentPos) => {
     dispatch(swipeItem(category, currentPos + 1));

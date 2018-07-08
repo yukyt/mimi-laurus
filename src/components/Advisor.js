@@ -4,31 +4,34 @@ import { connect } from 'react-redux';
 import { CircularProgress } from 'material-ui/Progress';
 import RecommendItemList from './RecommendItemList';
 import * as CONSTANTS from '../define';
+import { setHighScorePossessionFocus } from '../actions/simulator';
 
 const nowRendering = isRendering => ((isRendering) ? (<CircularProgress className="loading" />) : '');
 
 class Advisor extends Component {
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps');
-    if (this.props.selectedStage !== nextProps.selectedStage) {
-      console.log('stageChange');
-      console.log(nextProps.selectedStage);
-      console.log(nextProps.slicedBestCoordinates);
+    // if stage is changed, reset focus.
+    if (this.props.selectedStage !== 'NONE' && this.props.selectedStage !== nextProps.selectedStage) {
+      this.props.onStageChange(nextProps.bestCoordinates);
     }
+  }
+  getFocusItem(category) {
+    const pos = this.props.focusItems.get(Number(category));
+    return this.props.bestCoordinates[category].slice(pos, pos + 3);
   }
   render() {
     return (
       <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
-        {nowRendering(Object.keys(this.props.slicedBestCoordinates).length === 0)}
-        {Object.keys(this.props.slicedBestCoordinates).map(category =>
+        {nowRendering(Object.keys(this.props.bestCoordinates).length === 0)}
+        {Object.keys(this.props.bestCoordinates).map(category =>
           (<RecommendItemList
             key={parseInt(category, 10)}
             category={parseInt(category, 10)}
             categoryName={CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10))}
-            order={this.props.focusItems.get(parseInt(category, 10))}
+            order={this.props.focusItems.get(Number(category))}
             next={this.props.next}
             prev={this.props.prev}
-            slicedCategoryBestCoordinates={this.props.slicedBestCoordinates[category]}
+            slicedCategoryBestCoordinates={this.getFocusItem(category)}
             onItemClick={() => this.props.onItemClick}
           />))
         }
@@ -38,18 +41,25 @@ class Advisor extends Component {
 }
 
 Advisor.propTypes = {
-  slicedBestCoordinates: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  bestCoordinates: PropTypes.shape({}).isRequired,
   focusItems: PropTypes.instanceOf(Map).isRequired,
   viewMode: PropTypes.number.isRequired,
-  selectedStage: PropTypes.number.isRequired,
+  selectedStage: PropTypes.string.isRequired,
   next: PropTypes.func.isRequired,
   prev: PropTypes.func.isRequired,
   onItemClick: PropTypes.func.isRequired,
+  onStageChange: PropTypes.func.isRequired,
 };
 
-
 const mapStateToProps = state => ({
+  bestCoordinates: state.bestCoordinates,
   viewMode: state.viewMode,
 });
 
-export default connect(mapStateToProps)(Advisor);
+const mapDispatchToProps = dispatch => ({
+  onStageChange: (bestCoordinates) => {
+    dispatch(setHighScorePossessionFocus(bestCoordinates));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Advisor);

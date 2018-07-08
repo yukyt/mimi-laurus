@@ -13,7 +13,7 @@ export const swipeItem = (category, pos) => ({
 });
 
 export const resetFocus = () => ({
-  type: 'RESET_FOCUS',
+  type: 'ZERO_RESET_FOCUS',
 });
 
 export const setHighScorePossessionFocus = bestCoordinates => ({

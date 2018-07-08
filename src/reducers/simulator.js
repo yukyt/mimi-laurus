@@ -112,7 +112,7 @@ export const focusItems = (state = new Map(), action) => {
       return results;
     }
     case 'CALC':
-    case 'RESET_FOCUS': {
+    case 'ZERO_RESET_FOCUS': {
       const results = new Map();
       CONSTANTS.ITEM_CATEGORY_NAME.forEach((value, key) => results.set(key, 0));
       return results;

@@ -138,8 +138,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(calc(stages, items, stageId, impossessions));
   },
   onResetPos: (bestCoordinates) => {
-    console.log('reset pos');
-    console.log(bestCoordinates);
     dispatch(setHighScorePossessionFocus(bestCoordinates));
   },
 });
