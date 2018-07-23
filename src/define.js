@@ -97,6 +97,7 @@ export const ITEM_CATEGORY = {
   HANGING: 38,
   GROUND: 39,
   SKIN: 40,
+  VITA: 41,
 };
 
 export const ITEM_CATEGORY_NAME = new Map([
@@ -135,6 +136,7 @@ export const ITEM_CATEGORY_NAME = new Map([
   [ITEM_CATEGORY.HANGING, '吊り'],
   [ITEM_CATEGORY.GROUND, '床'],
   [ITEM_CATEGORY.SKIN, '肌'],
+  [ITEM_CATEGORY.VITA, 'ヴィータ(まだ未実装)'],
 ]);
 
 /* score scale */
@@ -174,6 +176,7 @@ export const ITEM_CATEGORY_SCALE = new Map([
   [ITEM_CATEGORY.HANGING, 0.2],
   [ITEM_CATEGORY.GROUND, 0.2],
   [ITEM_CATEGORY.SKIN, 0.2],
+  [ITEM_CATEGORY.VITA, 0.0],
 ]);
 
 /*
@@ -222,6 +225,7 @@ export const BLACKLIST_ITEM_CATEGORY = new Map([
   ['head-ornaments', ITEM_CATEGORY.HANGING],
   ['ground', ITEM_CATEGORY.GROUND],
   ['skin', ITEM_CATEGORY.SKIN],
+  ['vita', ITEM_CATEGORY.VITA],
 ]);
 
 export const STAGE_SECTION = new Map([
