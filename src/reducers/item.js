@@ -16,6 +16,16 @@ export const items = (state = [], action) => {
           styles.set(styleType, styleClass);
         });
 
+        const skill = {
+          style: 0,
+          value: 0,
+        };
+        if (itemArray[CONSTANTS.ITEM_JSON_COLUMN.CATEGORY][0] === CONSTANTS.ITEM_CATEGORY.VITA) {
+          const rawItemSkill = itemArray[CONSTANTS.ITEM_JSON_COLUMN.SKILL];
+          skill.style = CONSTANTS.VITA_SKILL_STYLE[rawItemSkill.substr(0, 1)];
+          skill.value = Number(rawItemSkill.substr(1));
+        }
+
         formattedItems.push({
           id: itemArray[CONSTANTS.ITEM_JSON_COLUMN.ID],
           category: itemArray[CONSTANTS.ITEM_JSON_COLUMN.CATEGORY][0],
@@ -25,7 +35,7 @@ export const items = (state = [], action) => {
             (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count.
             Math.floor(itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] / 45),
           ],
-          skill: itemArray[CONSTANTS.ITEM_JSON_COLUMN.SKILL],
+          skill,
         });
       });
       return formattedItems;

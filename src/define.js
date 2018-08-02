@@ -136,7 +136,7 @@ export const ITEM_CATEGORY_NAME = new Map([
   [ITEM_CATEGORY.HANGING, '吊り'],
   [ITEM_CATEGORY.GROUND, '床'],
   [ITEM_CATEGORY.SKIN, '肌'],
-  [ITEM_CATEGORY.VITA, 'ヴィータ(スキルは未加算)'],
+  [ITEM_CATEGORY.VITA, 'ヴィータ(スキル加算済)'],
 ]);
 
 /* score scale */

@@ -60,15 +60,8 @@ export const bestCoordinates = (state = {}, action) => {
           }
         });
 
-        // Vita skill
-        let skillStr = '';
-        if (item.category === CONSTANTS.ITEM_CATEGORY.VITA) {
-          const vitaSkillStyle = CONSTANTS.VITA_SKILL_STYLE[item.skill.substr(0, 1)];
-          const vitaSkillValue = item.skill.substr(1);
-          skillStr = `${CONSTANTS.STYLE_NAME.get(vitaSkillStyle)}+${vitaSkillValue}`;
-        }
-
         let totalScore = 0;
+        let skillScore = 0;
         // stage styles loop
         stageObject.styles.forEach((styleRate, styleId) => {
           let styleScore = 0;
@@ -82,9 +75,15 @@ export const bestCoordinates = (state = {}, action) => {
           }
           // style rate effects both tag score and style score.
           totalScore += (styleScore + tagScore) * styleRate;
+
+          // skill activate
+          if (styleId === item.skill.style) {
+            skillScore = item.skill.value;
+          }
         });
         // half round up
         totalScore = Math.round(totalScore * CONSTANTS.ITEM_CATEGORY_SCALE.get(item.category));
+        totalScore += skillScore;
 
         // add coordinate if score is not zero.
         if (totalScore > 0) {
@@ -95,7 +94,7 @@ export const bestCoordinates = (state = {}, action) => {
             possession: (action.impossessions.indexOf(item.id) === -1),
           };
           if (item.category === CONSTANTS.ITEM_CATEGORY.VITA) {
-            bestCoordinate.skill = skillStr;
+            bestCoordinate.skill = `${CONSTANTS.STYLE_NAME.get(item.skill.style)}+${item.skill.value}`;
           }
           formattedBestCoordinates[item.category].push(bestCoordinate);
         }
