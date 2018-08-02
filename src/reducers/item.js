@@ -25,6 +25,7 @@ export const items = (state = [], action) => {
             (itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] % 45), // TODO: 45 is all tag count.
             Math.floor(itemArray[CONSTANTS.ITEM_JSON_COLUMN.TAG] / 45),
           ],
+          skill: itemArray[CONSTANTS.ITEM_JSON_COLUMN.SKILL],
         });
       });
       return formattedItems;

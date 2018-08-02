@@ -60,6 +60,14 @@ export const bestCoordinates = (state = {}, action) => {
           }
         });
 
+        // Vita skill
+        let skillStr = '';
+        if (item.category === CONSTANTS.ITEM_CATEGORY.VITA) {
+          const vitaSkillStyle = CONSTANTS.VITA_SKILL_STYLE[item.skill.substr(0, 1)];
+          const vitaSkillValue = item.skill.substr(1);
+          skillStr = `${CONSTANTS.STYLE_NAME.get(vitaSkillStyle)}+${vitaSkillValue}`;
+        }
+
         let totalScore = 0;
         // stage styles loop
         stageObject.styles.forEach((styleRate, styleId) => {
@@ -80,12 +88,16 @@ export const bestCoordinates = (state = {}, action) => {
 
         // add coordinate if score is not zero.
         if (totalScore > 0) {
-          formattedBestCoordinates[item.category].push({
+          const bestCoordinate = {
             id: item.id,
             name: item.name,
             score: totalScore,
             possession: (action.impossessions.indexOf(item.id) === -1),
-          });
+          };
+          if (item.category === CONSTANTS.ITEM_CATEGORY.VITA) {
+            bestCoordinate.skill = skillStr;
+          }
+          formattedBestCoordinates[item.category].push(bestCoordinate);
         }
       });
 

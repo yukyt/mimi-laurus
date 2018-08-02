@@ -38,7 +38,15 @@ const RecommendItem = ({
         </span>
         <span className="item__name">{item.name}</span>
       </div>
-      <div className="item__score" style={{ display: (item.id) ? 'block' : 'none' }}>{item.score}点</div>
+      <div className="item__score" style={{ display: (item.id) ? 'block' : 'none' }}>
+        {item.score}点
+        {(() => {
+          if (item.skill) {
+            return ` スキル:${item.skill}`;
+          }
+          return '';
+        })()}
+      </div>
     </div>
   </Paper>
 );

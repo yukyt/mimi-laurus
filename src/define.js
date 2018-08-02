@@ -136,7 +136,7 @@ export const ITEM_CATEGORY_NAME = new Map([
   [ITEM_CATEGORY.HANGING, '吊り'],
   [ITEM_CATEGORY.GROUND, '床'],
   [ITEM_CATEGORY.SKIN, '肌'],
-  [ITEM_CATEGORY.VITA, 'ヴィータ(特殊効果未実装)'],
+  [ITEM_CATEGORY.VITA, 'ヴィータ(スキルは未加算)'],
 ]);
 
 /* score scale */
@@ -242,6 +242,7 @@ export const ITEM_JSON_COLUMN = {
   NAME: 3,
   STYLE: 4,
   TAG: 5,
+  SKILL: 6,
 };
 
 export const STAGE_JSON_COLUMN = {
@@ -251,6 +252,21 @@ export const STAGE_JSON_COLUMN = {
   TAG: 4,
   BLACK_LIST: 6,
   WHITE_LIST: 7,
+};
+
+
+// Vita skill style
+export const VITA_SKILL_STYLE = {
+  a: STYLE.GORGEOUS,
+  b: STYLE.SIMPLE,
+  c: STYLE.ELEGANCE,
+  d: STYLE.LIVELY,
+  e: STYLE.MATURE,
+  f: STYLE.CUTE,
+  g: STYLE.SEXY,
+  h: STYLE.PURE,
+  i: STYLE.WARM,
+  j: STYLE.COOL,
 };
 
 export const ITEM_SHOW_COUNT = {
