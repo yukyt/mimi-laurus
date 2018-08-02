@@ -12,7 +12,7 @@ export const initItems = url => async (dispatch) => {
 
 export const initImpossessions = () => (dispatch) => {
   const impossessions = JSON.parse(localStorage.getItem('impossessions')) || [];
-  dispatch({ type: 'FETCH_IMPOSSESSIONS_SUCCESS', impossessions: impossessions.map(v => parseInt(v, 10)) });
+  dispatch({ type: 'FETCH_IMPOSSESSIONS_SUCCESS', impossessions: impossessions.map(v => Number(v)) });
   return true;
 };
 

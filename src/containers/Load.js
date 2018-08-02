@@ -29,7 +29,7 @@ class Load extends Component {
         const impossessions = JSON.parse(this.reader.result);
         localStorage.setItem('impossessions', JSON.stringify(impossessions)); // string
         this.props.onLoadFile(
-          impossessions.map(v => parseInt(v, 10)), // number
+          impossessions.map(v => Number(v)), // number
           stages,
           items,
           selectedStage,

@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
   getFocusItem: (bestCoordinates, focusItems) => {
     const results = {};
     Object.keys(bestCoordinates).forEach((category) => {
-      const pos = focusItems.get(parseInt(category, 10));
+      const pos = focusItems.get(Number(category));
       results[category] = bestCoordinates[category].slice(pos, pos + 3);
     });
     return results;

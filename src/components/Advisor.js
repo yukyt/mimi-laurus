@@ -25,9 +25,9 @@ class Advisor extends Component {
         {nowRendering(Object.keys(this.props.bestCoordinates).length === 0)}
         {Object.keys(this.props.bestCoordinates).map(category =>
           (<RecommendItemList
-            key={parseInt(category, 10)}
-            category={parseInt(category, 10)}
-            categoryName={CONSTANTS.ITEM_CATEGORY_NAME.get(parseInt(category, 10))}
+            key={Number(category)}
+            category={Number(category)}
+            categoryName={CONSTANTS.ITEM_CATEGORY_NAME.get(Number(category))}
             order={this.props.focusItems.get(Number(category))}
             next={this.props.next}
             prev={this.props.prev}
