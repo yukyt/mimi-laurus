@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import configureStore from './store/configureStore';
 import ItemList from './components/ItemList';
 import StageList from './components/StageList';
@@ -17,8 +16,6 @@ import { initItems, initImpossessions } from './actions/item';
 import { initStages, chooseStage } from './actions/stage';
 import { resetFocus, calc, setHighScorePossessionFocus } from './actions/simulator';
 import * as CONSTANTS from './define';
-
-injectTapEventPlugin();
 
 const store = configureStore();
 
