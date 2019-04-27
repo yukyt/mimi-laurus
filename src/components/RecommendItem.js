@@ -1,10 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
-import DeleteForeverIcon from 'material-ui-icons/DeleteForever';
-import AddToPhotosIcon from 'material-ui-icons/AddToPhotos';
-
+import Paper from '@material-ui/core/Paper';
+import Fab from '@material-ui/core/Fab';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 
 const possessionStyle = (possession) => {
   if (possession) {
@@ -17,8 +16,7 @@ const RecommendItem = ({
   item, itemClass, onClick,
 }) => (
   <Paper className={itemClass} style={possessionStyle(item.possession)}>
-    <Button
-      variant="fab"
+    <Fab
       color="secondary"
       className="item__possession-button"
       style={{ display: (item.id) ? 'inline-block' : 'none' }}
@@ -30,7 +28,7 @@ const RecommendItem = ({
         }
         return (<AddToPhotosIcon className="item__possession-button-icon" />);
       })()}
-    </Button>
+    </Fab>
     <div className="item__detail">
       <div className="item__header">
         <span className="item__possession">

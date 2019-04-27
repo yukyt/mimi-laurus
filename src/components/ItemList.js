@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Button from 'material-ui/Button';
+import Fab from '@material-ui/core/Fab';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Waypoint from 'react-waypoint';
-import DeleteForeverIcon from 'material-ui-icons/DeleteForever';
-import AddToPhotosIcon from 'material-ui-icons/AddToPhotos';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import { toggleItem, scrollEnd } from '../actions/wardrobe';
 import * as CONSTANTS from '../define';
 
@@ -32,8 +34,7 @@ class ItemList extends Component {
               style={{ backgroundColor: (this.props.impossessions.indexOf(singleItem.id) === -1) ? 'white' : 'lightgray' }}
               disableRipple
             >
-              <Button
-                variant="fab"
+              <Fab
                 color="secondary"
                 className="item__possession-button"
                 style={{ display: (singleItem.id) ? 'inline-block' : 'none' }}
@@ -45,7 +46,7 @@ class ItemList extends Component {
                   }
                   return (<AddToPhotosIcon className="item__possession-button-icon" />);
                 })()}
-              </Button>
+              </Fab>
               <ListItemText primary={`${this.props.impossessions.indexOf(singleItem.id) === -1 ? '' : '[非所持]'}${singleItem.name}`} />
             </ListItem>
           ))}

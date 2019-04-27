@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Dropzone from 'react-dropzone';
-import Snackbar from 'material-ui/Snackbar';
-import Button from 'material-ui/Button';
-import RefreshIcon from 'material-ui-icons/Refresh';
+import Snackbar from '@material-ui/core/Snackbar';
+import Button from '@material-ui/core/Button';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import * as CONSTANTS from '../define';
 import { loadImpossessionFile } from '../actions/item';
 import { calc } from '../actions/simulator';
@@ -95,7 +95,7 @@ class Load extends Component {
         </div>
         <Button
           aria-label="Reset"
-          variant="raised"
+          variant="contained"
           color="secondary"
           className="button"
           onClick={e => this.confirmReset(

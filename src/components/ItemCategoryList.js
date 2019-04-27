@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { InputLabel } from 'material-ui/Input';
-import { MenuItem } from 'material-ui/Menu';
-import Select from 'material-ui/Select';
-import { FormControl } from 'material-ui/Form';
-import TextField from 'material-ui/TextField';
+import InputLabel from '@material-ui/core/Input';
+import MenuItem from '@material-ui/core/Menu';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core/TextField';
 import * as CONSTANTS from '../define';
 
 class ItemCategoryList extends Component {

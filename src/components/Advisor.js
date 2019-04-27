@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import RecommendItemList from './RecommendItemList';
 import * as CONSTANTS from '../define';
 import { setHighScorePossessionFocus } from '../actions/simulator';

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Drawer from 'material-ui/Drawer';
-import SwipeableDrawer from 'material-ui/SwipeableDrawer';
-import { AppBar, MenuItem } from 'material-ui';
-import Toolbar from 'material-ui/Toolbar';
-import Divider from 'material-ui/Divider';
-import Hidden from 'material-ui/Hidden';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { AppBar, MenuItem } from '@material-ui/core';
+import Toolbar from '@material-ui/core/Toolbar';
+import Divider from '@material-ui/core/Divider';
+import Hidden from '@material-ui/core/Hidden';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import { clickMenuItem } from '../actions/menu';
 import * as CONSTANTS from '../define';
 

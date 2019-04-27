@@ -1,8 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import Button from 'material-ui/Button';
-import FileDownloadIcon from 'material-ui-icons/FileDownload';
+import Button from '@material-ui/core/Button';
+import FileDownloadIcon from '@material-ui/icons/GetApp';
 import * as CONSTANTS from '../define';
 
 const download = () => {
@@ -25,7 +25,7 @@ const Save = props => (
     </div>
     <Button
       aria-label="Save"
-      variant="raised"
+      variant="contained"
       color="secondary"
       className="button"
       onClick={download}

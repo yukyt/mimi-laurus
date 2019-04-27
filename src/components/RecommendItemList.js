@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import Button from 'material-ui/Button';
-import NavigateBefore from 'material-ui-icons/NavigateBefore';
-import NavigateNext from 'material-ui-icons/NavigateNext';
+import Button from '@material-ui/core/Button';
+import NavigateBefore from '@material-ui/icons/NavigateBefore';
+import NavigateNext from '@material-ui/icons/NavigateNext';
 import RecommendItem from './RecommendItem';
 
 const styles = {
@@ -50,7 +50,7 @@ class RecommendItemList extends Component {
         {this.props.categoryName} {this.props.order + 1}位
         <div className="frame">
           <Button
-            variant="raised"
+            variant="contained"
             style={styles.nav}
             color="secondary"
             onClick={() => this.props.prev(this.props.category, this.props.order)}
@@ -67,7 +67,7 @@ class RecommendItemList extends Component {
               onClick={this.props.onItemClick(bestCoordinate.id)}
             />))}
           <Button
-            variant="raised"
+            variant="contained"
             style={styles.nav}
             color="secondary"
             onClick={() => this.props.next(this.props.category, this.props.order)}
