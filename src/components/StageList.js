@@ -26,40 +26,45 @@ class StageList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      section: CONSTANTS.INIT_SECTION_ID,
-      stage: CONSTANTS.INIT_STAGE_ID,
+      selectedSection: CONSTANTS.INIT_SECTION_ID,
+      selectedStage: CONSTANTS.INIT_STAGE_ID,
     };
 
     this.handleChange = (event) => {
+      const {
+        stages, items, impossessions, bestCoordinates, onChangeSection, onChangeStage, onResetPos,
+      } = this.props;
       this.setState({ [event.target.name]: event.target.value });
       if (event.target.name === 'section') {
-        this.props.onChangeSection(event.target.value);
-        this.setState({ stage: '' });
+        onChangeSection(event.target.value);
+        this.setState({ selectedStage: '' });
       } else {
-        this.props.onChangeStage(
-          this.props.stages,
-          this.props.items,
+        onChangeStage(
+          stages,
+          items,
           event.target.value,
-          this.props.impossessions,
+          impossessions,
         );
-        this.props.onResetPos(this.props.bestCoordinates);
+        onResetPos(bestCoordinates);
       }
     };
   }
 
   render() {
+    const { viewMode, stages } = this.props;
+    const { selectedSection, selectedStage } = this.state;
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
+      <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
         <FormControl style={styles.formControl}>
           <InputLabel htmlFor="section-select">Section</InputLabel>
           <Select
-            value={this.state.section}
+            value={selectedSection}
             onChange={this.handleChange}
             style={{ width: '120px' }}
             inputProps={{
-            name: 'section',
-            id: 'section-select',
-          }}
+              name: 'section',
+              id: 'section-select',
+            }}
           >
             {Array.from(CONSTANTS.STAGE_SECTION.keys()).map(section => (
               <MenuItem
@@ -68,21 +73,21 @@ class StageList extends Component {
               >
                 { CONSTANTS.STAGE_SECTION.get(section) }
               </MenuItem>
-          ))}
+            ))}
           </Select>
         </FormControl>
         <FormControl style={styles.formControl}>
           <InputLabel htmlFor="stage-select">Stage</InputLabel>
           <Select
-            value={this.state.stage}
+            value={selectedStage}
             onChange={this.handleChange}
             style={{ width: '320px' }}
             inputProps={{
-            name: 'stage',
-            id: 'stage-select',
-          }}
+              name: 'stage',
+              id: 'stage-select',
+            }}
           >
-            {this.props.stages.map(stage => (
+            {stages.map(stage => (
               <MenuItem key={stage.id} value={stage.id}>
                 {stage.name}
               </MenuItem>

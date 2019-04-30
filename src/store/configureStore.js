@@ -4,9 +4,9 @@ import rootReducer from '../reducers/index';
 
 
 // Be sure to ONLY add this middleware in development!
-const middleware = process.env.NODE_ENV !== 'production' ?
-  [require('redux-immutable-state-invariant').default(), thunk] : // eslint-disable-line global-require
-  [thunk];
+const middleware = process.env.NODE_ENV !== 'production'
+  ? [require('redux-immutable-state-invariant').default(), thunk] // eslint-disable-line global-require
+  : [thunk];
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -11,29 +11,37 @@ const nowRendering = isRendering => ((isRendering) ? (<CircularProgress classNam
 class Advisor extends Component {
   componentWillReceiveProps(nextProps) {
     // if stage is changed, reset focus.
-    if (this.props.selectedStage !== 'NONE' && this.props.selectedStage !== nextProps.selectedStage) {
-      this.props.onStageChange(nextProps.bestCoordinates);
+    const { selectedStage, onStageChange } = this.props;
+    if (selectedStage !== 'NONE' && selectedStage !== nextProps.selectedStage) {
+      onStageChange(nextProps.bestCoordinates);
     }
   }
+
   getFocusItem(category) {
-    const pos = this.props.focusItems.get(Number(category));
-    return this.props.bestCoordinates[category].slice(pos, pos + 3);
+    const { focusItems, bestCoordinates } = this.props;
+    const pos = focusItems.get(Number(category));
+    return bestCoordinates[category].slice(pos, pos + 3);
   }
+
   render() {
+    const {
+      viewMode, bestCoordinates, focusItems, next, prev, onItemClick,
+    } = this.props;
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
-        {nowRendering(Object.keys(this.props.bestCoordinates).length === 0)}
-        {Object.keys(this.props.bestCoordinates).map(category =>
-          (<RecommendItemList
+      <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.SIMULATOR ? '' : 'none' }}>
+        {nowRendering(Object.keys(bestCoordinates).length === 0)}
+        {Object.keys(bestCoordinates).map(category => (
+          <RecommendItemList
             key={Number(category)}
             category={Number(category)}
             categoryName={CONSTANTS.ITEM_CATEGORY_NAME.get(Number(category))}
-            order={this.props.focusItems.get(Number(category))}
-            next={this.props.next}
-            prev={this.props.prev}
+            order={focusItems.get(Number(category))}
+            next={next}
+            prev={prev}
             slicedCategoryBestCoordinates={this.getFocusItem(category)}
-            onItemClick={() => this.props.onItemClick}
-          />))
+            onItemClick={() => onItemClick}
+          />
+        ))
         }
       </section>
     );

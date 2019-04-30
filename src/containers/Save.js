@@ -18,23 +18,26 @@ const download = () => {
   window.URL.revokeObjectURL(url);
 };
 
-const Save = props => (
-  <section style={{ display: props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
-    <div>
-          非所持アイテム情報をファイルに書き出します。
-    </div>
-    <Button
-      aria-label="Save"
-      variant="contained"
-      color="secondary"
-      className="button"
-      onClick={download}
-    >
-      <FileDownloadIcon />
-          書き出し
-    </Button>
-  </section>
-);
+const Save = (props) => {
+  const { viewMode } = props;
+  return (
+    <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
+      <div>
+            非所持アイテム情報をファイルに書き出します。
+      </div>
+      <Button
+        aria-label="Save"
+        variant="contained"
+        color="secondary"
+        className="button"
+        onClick={download}
+      >
+        <FileDownloadIcon />
+            書き出し
+      </Button>
+    </section>
+  );
+};
 
 Save.propTypes = {
   viewMode: PropTypes.number.isRequired,

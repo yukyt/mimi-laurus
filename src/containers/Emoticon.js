@@ -30,6 +30,7 @@ class Emoticon extends Component {
       open: false,
     };
   }
+
   execCopy(copyText) {
     const temp = document.createElement('div');
     temp.appendChild(document.createElement('pre')).textContent = copyText;
@@ -44,25 +45,34 @@ class Emoticon extends Component {
       open: true,
     });
   }
+
   handleClose() {
     this.setState({ open: false });
   }
+
   render() {
+    const { viewMode } = this.props;
+    const { open } = this.state;
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.EMMOTICON ? '' : 'none' }}>
-        ニキは使用可能な文字種の制限が厳しいので、利用しやすいように一覧を作ってみました。<br />
-        入力できないものがあった場合は、コメントにて、Androidかiphoneかを添えて教えてくださいm(_ _)m<br />
+      <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.EMMOTICON ? '' : 'none' }}>
+        ニキは使用可能な文字種の制限が厳しいので、利用しやすいように一覧を作ってみました。
+        <br />
+        入力できないものがあった場合は、コメントにて、Androidかiphoneかを添えて教えてくださいm(_ _)m
+        <br />
         {emoticons().map((text, index) => (
           <Button
             key={text}
             style={{ textTransform: 'none' }}
             onClick={() => this.execCopy(text)}
           >
-            {index + 1}. {text}
+            {index + 1}
+            .
+            {' '}
+            {text}
           </Button>
         ))}
         <Snackbar
-          open={this.state.open}
+          open={open}
           autoHideDuration={5000}
           onClose={e => this.handleClose(e)}
           message="クリップボードにコピーしました。"

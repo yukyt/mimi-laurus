@@ -18,7 +18,7 @@ const itemClass = i => `item item_pos_${i}`;
 const bestCoordinateShowCount = () => {
   if (window.matchMedia('(max-width: 690px)').matches) {
     return 1;
-  } else if (window.matchMedia('(max-width: 930px)').matches) {
+  } if (window.matchMedia('(max-width: 930px)').matches) {
     return 2;
   }
   return 3;
@@ -39,39 +39,48 @@ const isDiffBestCoordinates = (currentBestCoordinates, nextBestCoordinates) => {
 
 class RecommendItemList extends Component {
   shouldComponentUpdate(nextProps) {
+    const { slicedCategoryBestCoordinates } = this.props;
     return isDiffBestCoordinates(
-      this.props.slicedCategoryBestCoordinates,
+      slicedCategoryBestCoordinates,
       nextProps.slicedCategoryBestCoordinates,
     );
   }
+
   render() {
+    const {
+      categoryName, category, order, prev, next, slicedCategoryBestCoordinates, onItemClick,
+    } = this.props;
     return (
       <div>
-        {this.props.categoryName} {this.props.order + 1}位
+        {categoryName}
+        {' '}
+        {order + 1}
+        位
         <div className="frame">
           <Button
             variant="contained"
             style={styles.nav}
             color="secondary"
-            onClick={() => this.props.prev(this.props.category, this.props.order)}
-            disabled={this.props.order === 0}
+            onClick={() => prev(category, order)}
+            disabled={order === 0}
           >
             {<NavigateBefore />}
           </Button>
-          {this.props.slicedCategoryBestCoordinates.slice(0, bestCoordinateShowCount())
-              .map((bestCoordinate, i) =>
-            (<RecommendItem
-              key={bestCoordinate.id}
-              item={bestCoordinate}
-              itemClass={itemClass(i + 1)}
-              onClick={this.props.onItemClick(bestCoordinate.id)}
-            />))}
+          {slicedCategoryBestCoordinates.slice(0, bestCoordinateShowCount())
+            .map((bestCoordinate, i) => (
+              <RecommendItem
+                key={bestCoordinate.id}
+                item={bestCoordinate}
+                itemClass={itemClass(i + 1)}
+                onClick={onItemClick(bestCoordinate.id)}
+              />
+            ))}
           <Button
             variant="contained"
             style={styles.nav}
             color="secondary"
-            onClick={() => this.props.next(this.props.category, this.props.order)}
-            disabled={this.props.slicedCategoryBestCoordinates.length === 1}
+            onClick={() => next(category, order)}
+            disabled={slicedCategoryBestCoordinates.length === 1}
           >
             {<NavigateNext />}
           </Button>

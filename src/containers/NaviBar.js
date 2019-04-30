@@ -20,12 +20,16 @@ class NaviBar extends Component {
       open: false,
     };
   }
+
   onToggle(openStatus) {
     this.setState({
       open: openStatus,
     });
   }
+
   render() {
+    const { onMenuItemClick, viewMode } = this.props;
+    const { open } = this.state;
     const drawerContent = (
       <div>
         <div className="naviBar__title">
@@ -36,37 +40,37 @@ class NaviBar extends Component {
         </div>
         <Divider />
         <MenuItem
-          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}
+          onClick={() => onMenuItemClick(CONSTANTS.VIEW_MODE.SIMULATOR)}
           className="naviBar__menu"
         >
           おすすめコーデ
         </MenuItem>
         <MenuItem
-          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}
+          onClick={() => onMenuItemClick(CONSTANTS.VIEW_MODE.WARDROBE)}
           className="naviBar__menu"
         >
           クローゼット
         </MenuItem>
         <MenuItem
-          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.SAVE_LOAD)}
+          onClick={() => onMenuItemClick(CONSTANTS.VIEW_MODE.SAVE_LOAD)}
           className="naviBar__menu"
         >
           セーブ＆ロード
         </MenuItem>
         <MenuItem
-          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.EMMOTICON)}
+          onClick={() => onMenuItemClick(CONSTANTS.VIEW_MODE.EMMOTICON)}
           className="naviBar__menu"
         >
           顔文字
         </MenuItem>
         <MenuItem
-          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
+          onClick={() => onMenuItemClick(CONSTANTS.VIEW_MODE.HELP)}
           className="naviBar__menu"
         >
           ヘルプ
         </MenuItem>
         <MenuItem
-          onClick={() => this.props.onMenuItemClick(CONSTANTS.VIEW_MODE.COMMENT)}
+          onClick={() => onMenuItemClick(CONSTANTS.VIEW_MODE.COMMENT)}
           className="naviBar__menu"
         >
           コメント
@@ -78,7 +82,7 @@ class NaviBar extends Component {
         <Hidden mdUp>
           <SwipeableDrawer
             variant="temporary"
-            open={this.state.open}
+            open={open}
             onClose={() => this.onToggle(false)}
             onOpen={() => this.onToggle(true)}
             swipeAreaWidth={10}
@@ -114,7 +118,7 @@ class NaviBar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit">
-              {CONSTANTS.VIEW_NAME_NAME.get(this.props.viewMode)}
+              {CONSTANTS.VIEW_NAME_NAME.get(viewMode)}
             </Typography>
           </Toolbar>
         </AppBar>

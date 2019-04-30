@@ -17,7 +17,9 @@ class Load extends Component {
       message: '初期化中',
     };
   }
+
   onDropAccepted(files, stages, items, selectedStage) {
+    const { onLoadFile } = this.props;
     this.setState({
       open: true,
       message: 'ファイル読み込み中…',
@@ -28,7 +30,7 @@ class Load extends Component {
       if (regex.test(this.reader.result) || this.reader.result === '[]') {
         const impossessions = JSON.parse(this.reader.result);
         localStorage.setItem('impossessions', JSON.stringify(impossessions)); // string
-        this.props.onLoadFile(
+        onLoadFile(
           impossessions.map(v => Number(v)), // number
           stages,
           items,
@@ -47,19 +49,23 @@ class Load extends Component {
     };
     this.reader.readAsText(files[0]);
   }
+
   onDropRejected() {
     this.setState({
       open: true,
       message: 'ファイル読み込みに失敗しました。jsonファイルをアップしてください。',
     });
   }
+
   handleClose() {
     this.setState({ open: false });
   }
+
   confirmReset(e, stages, items, selectedStage) {
+    const { onLoadFile } = this.props;
     if (window.confirm('本当によろしいですか？')) { // eslint-disable-line no-alert
       localStorage.removeItem('impossessions');
-      this.props.onLoadFile(
+      onLoadFile(
         [],
         stages,
         items,
@@ -71,9 +77,16 @@ class Load extends Component {
       });
     }
   }
+
   render() {
+    const {
+      viewMode, stages, items, selectedStage,
+    } = this.props;
+    const {
+      open, message,
+    } = this.state;
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
+      <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.SAVE_LOAD ? '' : 'none' }}>
         <div>
           非所持アイテム情報をファイルから読み込みます。
         </div>
@@ -81,9 +94,9 @@ class Load extends Component {
           <Dropzone
             onDropAccepted={e => this.onDropAccepted(
               e,
-              this.props.stages,
-              this.props.items,
-              this.props.selectedStage,
+              stages,
+              items,
+              selectedStage,
             )}
             onDropRejected={e => this.onDropRejected(e)}
             accept="application/json"
@@ -100,19 +113,19 @@ class Load extends Component {
           className="button"
           onClick={e => this.confirmReset(
             e,
-            this.props.stages,
-            this.props.items,
-            this.props.selectedStage,
+            stages,
+            items,
+            selectedStage,
           )}
         >
           <RefreshIcon />
             全て所持に戻す
         </Button>
         <Snackbar
-          open={this.state.open}
+          open={open}
           autoHideDuration={5000}
           onClose={e => this.handleClose(e)}
-          message={this.state.message}
+          message={message}
         />
       </section>
     );

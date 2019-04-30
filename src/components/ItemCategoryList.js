@@ -16,22 +16,26 @@ class ItemCategoryList extends Component {
       search: '',
     };
     this.handleChange = (e) => {
+      const { onClickItemCategory } = this.props;
       this.setState({ category: e.target.value });
-      this.props.onClickItemCategory(e.target.value);
+      onClickItemCategory(e.target.value);
     };
     this.searchTextChange = (e) => {
+      const { onChangeSearchText } = this.props;
       this.setState({ search: e.target.value });
-      this.props.onChangeSearchText(e.target.value);
+      onChangeSearchText(e.target.value);
     };
   }
 
   render() {
+    const { viewMode } = this.props;
+    const { category, search } = this.state;
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
+      <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
         <FormControl>
           <InputLabel htmlFor="wardrobe-item-category-select">Item Category</InputLabel>
           <Select
-            value={this.state.category}
+            value={category}
             onChange={this.handleChange}
             style={{ width: '200px' }}
             inputProps={{
@@ -45,14 +49,14 @@ class ItemCategoryList extends Component {
               >
                 {CONSTANTS.ITEM_CATEGORY_NAME.get(key)}
               </MenuItem>
-          ))}
+            ))}
           </Select>
         </FormControl>
         <form>
           <TextField
             id="search"
             label="絞り込みキーワード"
-            value={this.state.search}
+            value={search}
             onChange={e => this.searchTextChange(e)}
             margin="normal"
           />

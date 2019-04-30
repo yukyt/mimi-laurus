@@ -6,8 +6,8 @@ module.exports = {
     "extends": "eslint:recommended",
     "extends": "airbnb",
     "parserOptions": {
+        "ecmaVersion": 2018,
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "sourceType": "module"

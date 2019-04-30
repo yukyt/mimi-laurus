@@ -16,22 +16,26 @@ class ItemList extends Component {
     super(props);
 
     this.handleToggle = value => () => {
-      this.props.onItemClick(value);
+      const { onItemClick } = this.props;
+      onItemClick(value);
     };
   }
 
   render() {
+    const {
+      viewMode, items, itemShowMaxCount, impossessions, onScrollEnd,
+    } = this.props;
     return (
-      <section style={{ display: this.props.viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
+      <section style={{ display: viewMode === CONSTANTS.VIEW_MODE.WARDROBE ? '' : 'none' }}>
         <List>
-          {this.props.items.slice(0, this.props.itemShowMaxCount).map(singleItem => (
+          {items.slice(0, itemShowMaxCount).map(singleItem => (
             <ListItem
               key={singleItem.id}
               role={undefined}
               dense
               button
               className="item"
-              style={{ backgroundColor: (this.props.impossessions.indexOf(singleItem.id) === -1) ? 'white' : 'lightgray' }}
+              style={{ backgroundColor: (impossessions.indexOf(singleItem.id) === -1) ? 'white' : 'lightgray' }}
               disableRipple
             >
               <Fab
@@ -41,19 +45,19 @@ class ItemList extends Component {
                 onClick={this.handleToggle(singleItem.id)}
               >
                 {(() => {
-                  if (this.props.impossessions.indexOf(singleItem.id) === -1) {
+                  if (impossessions.indexOf(singleItem.id) === -1) {
                     return <DeleteForeverIcon className="item__possession-button-icon" />;
                   }
                   return (<AddToPhotosIcon className="item__possession-button-icon" />);
                 })()}
               </Fab>
-              <ListItemText primary={`${this.props.impossessions.indexOf(singleItem.id) === -1 ? '' : '[非所持]'}${singleItem.name}`} />
+              <ListItemText primary={`${impossessions.indexOf(singleItem.id) === -1 ? '' : '[非所持]'}${singleItem.name}`} />
             </ListItem>
           ))}
         </List>
         <Waypoint onEnter={() => {
-            this.props.onScrollEnd();
-          }}
+          onScrollEnd();
+        }}
         />
       </section>
     );
@@ -73,10 +77,9 @@ ItemList.propTypes = {
   impossessions: PropTypes.arrayOf(Number).isRequired,
 };
 
-const getVisibleItems = (items, itemCategoryFilter, searchText) =>
-  items
-    .filter(item => (item.category === itemCategoryFilter))
-    .filter(item => (item.name.indexOf(searchText) > -1));
+const getVisibleItems = (items, itemCategoryFilter, searchText) => items
+  .filter(item => (item.category === itemCategoryFilter))
+  .filter(item => (item.name.indexOf(searchText) > -1));
 
 const mapStateToProps = state => ({
   viewMode: state.viewMode,
