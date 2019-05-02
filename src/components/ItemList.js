@@ -5,7 +5,7 @@ import Fab from '@material-ui/core/Fab';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Waypoint from 'react-waypoint';
+import { Waypoint } from 'react-waypoint';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import { toggleItem, scrollEnd } from '../actions/wardrobe';
